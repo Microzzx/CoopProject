@@ -1,4 +1,5 @@
 import InputAddress from "react-thailand-address-autocomplete";
+import React from "react";
 
 function Address(props) {
   const {
@@ -11,57 +12,64 @@ function Address(props) {
     zipcode,
     setZipcode,
     onSelect,
-    setError
   } = props;
 
   return (
-    <div className="address flex flex-col space-y-1">
-      <div className="flex justify-center focus:outline-none">
+      <div className="form-group row row-cols-auto g-3 top-row">
+      <div className="md-0"></div>
+      <div className="col-sm-1 width5">
+        <label className="label mt-1">ตำบล</label>
+      </div>
+      <div className="col-sm-2">
         <InputAddress
-          style={{ width: "100%", outlineStyle: "none" }}
+          className="form-control"
           placeholder="แขวง / ตำบล"
           address="subdistrict"
           value={subdistrict}
           onChange={(e) => {
             setSubDistrict(e.target.value);
-            setError("");
           }}
           onSelect={onSelect}
         />
-
+      </div>
+      <div className="col-sm-1 width5">
+        <label className="label mt-1">อำเภอ</label>
+      </div>
+      <div className="col-sm-2 ">
         <InputAddress
-          style={{ width: "100%", outlineStyle: "none" }}
           placeholder="เขต / อำเภอ"
           address="district"
           value={district}
           onChange={(e) => {
             setDistrict(e.target.value);
-            setError("");
           }}
           onSelect={onSelect}
         />
       </div>
-      <div className="flex justify-center">
+      <div className="col-sm-1 width5">
+        <label className="label mt-1">จังหวัด</label>
+      </div>
+      <div className="col-sm-2">
         <InputAddress
-          style={{ width: "100%", outlineStyle: "none" }}
           placeholder="จังหวัด"
           address="province"
           value={province}
           onChange={(e) => {
             setProvince(e.target.value);
-            setError("");
           }}
           onSelect={onSelect}
         />
-
+      </div>
+      <div className="col-sm-1 width10">
+        <label className="label mt-1">รหัสไปรษณีย์</label>
+      </div>
+      <div className="col-sm-2">
         <InputAddress
-          style={{ width: "100%", outlineStyle: "none" }}
           placeholder="เลขไปรษณีย์"
           address="zipcode"
           value={zipcode}
           onChange={(e) => {
             setZipcode(e.target.value);
-            setError("");
           }}
           onSelect={onSelect}
         />

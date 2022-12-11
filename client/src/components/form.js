@@ -1,58 +1,74 @@
 import React, { useState } from "react";
 import "../css/form.css";
-import Select from "react-select";
-import { datas } from "../data";
 import firebase from "../firebase";
 import { getDatabase, ref, push } from "firebase/database";
+import AutoAddress from "./autoaddress";
 
 function Form() {
-  // Firebase Data
+//1  
   const [comname, setComName] = useState("");
   const [comage, setComAge] = useState("");
+//2
+  const [subdistrict, setSubDistrict] = useState("");
   const [district, setDistrict] = useState("");
-  const [amphoe, setAmphoe] = useState("");
   const [province, setProvince] = useState("");
   const [zipcode, setZipcode] = useState("");
+  
+  function onSelect(fulladdress) {
+    const { subdistrict, district, province, zipcode } = fulladdress;
+    setSubDistrict(subdistrict);
+    setDistrict(district);
+    setProvince(province);
+    setZipcode(zipcode);
+  }
+//3
+  const [worktype, setWorktype] = useState("");
+//4
+  const [toughness, setToughness] = useState("");
+//5
+  const [weakness, setWeakness] = useState("");
+//6
+  const [exwork, setExwork] = useState("");
+//7
+  const [civil, setCivil] = useState("");
+  const [electrical, setElectrical] = useState("");
+  const [fore, setFore] = useState("");
+  const [chief1, setChief1] = useState("");
+  const [chief2, setChief2] = useState("");
+  const [chief3, setChief3] = useState("");
+  const [mechanic1, setMechanic1] = useState("");
+  const [mechanic2, setMechanic2] = useState("");
+  const [mechanic3, setMechanic3] = useState("");
+  const [worker, setWorker] = useState("");
+//8
 
-  const handleOnChange0 = (e) => {
-    setComName(e.target.value);
-  };
-  const handleOnChange1 = (e) => {
-    setComAge(e.target.value);
-  };
-  const handleOnChange2 = (e) => {
-    setDistrict(e.target.value);
-  };
-  const handleOnChange3 = (e) => {
-    setAmphoe(e.target.value);
-  };
-  const handleOnChange4 = (e) => {
-    setProvince(e.target.value);
-  };
-  const handleOnChange5 = (e) => {
-    setZipcode(e.target.value);
-  };
-
-  //Fire base Insert Data ---------------------------------------------------------
-  //  const comname = document.getElementById("inputComName");
-  //  const comage = document.getElementById("inputComAge");
-  //  const district = document.getElementById("inputDistrict");
-  //  const amphoe = document.getElementById("inputAmphoe");
-  //  const province = document.getElementById("inputProvince");
-  //  const zipcode = document.getElementById("inputZipcode");
-
-  const subbtn = document.getElementById("Subbtn");
-
+// Firebase Data
   function InsertData() {
     const db = getDatabase();
     push(ref(db, "Company/"), {
       CompanyName: comname,
       CompanyAge: comage,
+      Subdistrict: subdistrict,
       District: district,
-      Amphoe: amphoe,
       Province: province,
       Zipcode: zipcode,
-      Provinces: provinces,
+      Worktype: worktype,
+      Toughness: toughness,
+      Weakness: weakness,
+      Exwork: exwork,
+      Fulltime: {
+        Civil: civil,
+        Electrical: electrical,
+        Fore: fore,
+        Chief1: chief1,
+        Chief2: chief2,
+        Chief3: chief3,
+        Mechanic1: mechanic1,
+        Mechanic2: mechanic2,
+        Mechanic3: mechanic3,
+        Worker: worker,
+      },
+    
     })
       .then(() => {
         alert("data stored");
@@ -63,14 +79,6 @@ function Form() {
       });
   }
   //---------------------------------------------------------
-  // Select
-  const [provinces, setProvinces] = useState("");
-  const optionList = datas;
-  function handleSelect(data) {
-    setProvinces(data.value);
-    console.log(data.value)
-  }
-
   return (
     <div className="container bgc top-buffer mt-5 mb-5 rcorners2">
       <div>
@@ -89,8 +97,9 @@ function Form() {
                 className="form-control "
                 id="inputComName"
                 value={comname}
-                onChange={handleOnChange0}
-                
+                onChange={(e) => {
+                  setComName(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -105,7 +114,9 @@ function Form() {
                   placeholder="ระบุอายุ"
                   id="inputComAge"
                   value={comage}
-                  onChange={handleOnChange1}
+                  onChange={(e) => {
+                    setComAge(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -116,87 +127,34 @@ function Form() {
             </div>
           </div>
         </div>
-        <Select
-          options={optionList}
-          placeholder="ระบุจังหวัด"
-          value={provinces}
-          onChange={handleSelect}
-          isSearchable={true}
-        />
         <div className="row row-cols-auto g-3 top-row">
           <label className="label">2. สถานที่ตั้งบริษัท</label>
         </div>
-
-        <div className="form-group row row-cols-auto g-3 top-row">
-          <div className="md-0"></div>
-          <div className="col-sm-1 width5">
-            <label className="label mt-1">ตำบล</label>
-          </div>
-          <div className="col-sm-2">
-            <input
-              type="text"
-              placeholder="ระบุตำบล"
-              className="form-control mb-2 "
-              id="inputDistrict"
-              value={district}
-              onChange={handleOnChange2}
-            />
-          </div>
-          <div className="col-sm-1 width5">
-            <label className="label mt-1">อำเภอ</label>
-          </div>
-          <div className="col-sm-2 ">
-            <input
-              type="text"
-              placeholder="ระบุอำเภอ"
-              className="form-control"
-              id="inputAmphoe"
-              value={amphoe}
-              onChange={handleOnChange3}
-            />
-          </div>
-          <div className="col-sm-1 width5">
-            <label className="label mt-1">จังหวัด</label>
-          </div>
-          <div className="col-sm-2">
-            <input
-              type="text"
-              placeholder="ระบุจังหวัด"
-              className="form-control"
-              id="inputProvince"
-              value={province}
-              onChange={handleOnChange4}
-            />
-          </div>
-          <div className="col-sm-1 width10">
-            <label className="label mt-1">รหัสไปรษณีย์</label>
-          </div>
-          <div className="col-sm-2">
-            <input
-              type="text"
-              placeholder="ระบุรหัสไปรษณีย์"
-              className="form-control"
-              id="inputZipcode"
-              value={zipcode}
-              onInput={handleOnChange5}
-            />
-          </div>
-        </div>
-
-        {/* <div className="row row-cols-auto g-3 top-row">
+        <AutoAddress
+          subdistrict={subdistrict}
+          setSubDistrict={setSubDistrict}
+          district={district}
+          setDistrict={setDistrict}
+          province={province}
+          setProvince={setProvince}
+          zipcode={zipcode}
+          setZipcode={setZipcode}
+          onSelect={onSelect}
+        />
+        <div className="row row-cols-auto g-3 top-row">
           <div className="col-md-6">
             <div className="field">
               <label className="label">
                 3. ประเภทงาน (ความสามารถด้านงานก่อสร้าง หรืองานไฟฟ้า)
               </label>
-              <select className="form-select" aria-label="Default select example">
+              <select className="form-select" aria-label="Default select example" onChange={(e) => {setWorktype(e.target.value);}}>
                 <option defaultValue>เลือกประเภทงาน</option>
-                <option value="1">ผู้รับเหมาก่อสร้าง</option>
-                <option value="2">ผู้รับเหมาไฟฟ้า</option>
-                <option value="3">ผู้รับเหมาเบลลินี่</option>
-                <option value="4">ผู้รับเหมางานซ่อมปรับปรุง</option>
-                <option value="5">ผู้รับเหมาทำความสะอาด</option>
-                <option value="6">อื่นๆ</option>
+                <option value="ผู้รับเหมาก่อสร้าง">ผู้รับเหมาก่อสร้าง</option>
+                <option value="ผู้รับเหมาไฟฟ้า">ผู้รับเหมาไฟฟ้า</option>
+                <option value="ผู้รับเหมาเบลลินี่">ผู้รับเหมาเบลลินี่</option>
+                <option value="ผู้รับเหมางานซ่อมปรับปรุง">ผู้รับเหมางานซ่อมปรับปรุง</option>
+                <option value="ผู้รับเหมาทำความสะอาด">ผู้รับเหมาทำความสะอาด</option>
+                <option value="อื่นๆ">อื่นๆ</option>
               </select>
             </div>
           </div>
@@ -212,7 +170,10 @@ function Form() {
                 type="text"
                 placeholder="ระบุตัวอย่าง"
                 className="form-control"
-                id="inputGWork"
+                id="toughness"
+                onChange={(e) => {
+                  setToughness(e.target.value);                    
+                }}
               />
             </div>
           </div>
@@ -229,7 +190,10 @@ function Form() {
               type="text"
               placeholder="ระบุตัวอย่าง"
               className="form-control"
-              id="inputBWork"
+              id="weakness"
+              onChange={(e) => {
+                setWeakness(e.target.value);                    
+              }}
             />
           </div>
         </div>
@@ -244,7 +208,10 @@ function Form() {
                 className="form-control"
                 placeholder="ระบุผลงาน"
                 rows="4"
-                id="inputPWork"
+                id="exwork"
+                onChange={(e) => {
+                  setExwork(e.target.value);                    
+                }}
               ></textarea>
             </div>
           </div>
@@ -299,6 +266,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputCivil"
+                  onChange={(e) => {
+                    setCivil(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -312,7 +282,10 @@ function Form() {
                   min="0"
                   className="form-control"
                   placeholder="ระบุจำนวน"
-                  id="inputElec"
+                  id="inputElectrical"
+                  onChange={(e) => {
+                    setElectrical(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -327,6 +300,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputFore"
+                  onChange={(e) => {
+                    setFore(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -341,6 +317,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputCMechanic1"
+                  onChange={(e) => {
+                    setChief1(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -355,6 +334,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputCMechanic2"
+                  onChange={(e) => {
+                    setChief2(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -369,6 +351,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputCMechanic3"
+                  onChange={(e) => {
+                    setChief3(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -383,6 +368,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputWorker"
+                  onChange={(e) => {
+                    setWorker(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -429,6 +417,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputMechanic1"
+                  onChange={(e) => {
+                    setMechanic1(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -443,6 +434,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputMechanic2"
+                  onChange={(e) => {
+                    setMechanic2(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -457,6 +451,9 @@ function Form() {
                   className="form-control"
                   placeholder="ระบุจำนวน"
                   id="inputMechanic3"
+                  onChange={(e) => {
+                    setMechanic3(e.target.value);                    
+                  }}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -745,7 +742,7 @@ function Form() {
               />
             </div>
           </div>
-        </div> */}
+        </div>
         <div className="row row-cols-auto g-3 top-row">
           <button
             id="Subbtn"

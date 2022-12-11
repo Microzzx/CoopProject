@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddressForm from "./AddressForm";
+import AutoAddress from "./autoaddress";
 import { getDatabase, ref, push } from "firebase/database";
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
    
   // };
 
-  //AddressForm state
+  //AutoAddress state
   const [subdistrict, setSubDistrict] = useState("");
   const [district, setDistrict] = useState("");
   const [province, setProvince] = useState("");
@@ -35,7 +35,8 @@ export default function App() {
     setError("");
     console.log("some fulladdress: ", fullAddress);
   }
-  //end AddressForm
+  //end AutoAddress
+  
   //firebase 
   function InsertData() {
     const db = getDatabase();
@@ -56,7 +57,7 @@ export default function App() {
   
   return (
     <div className="App">
-            <AddressForm
+            <AutoAddress
               setError={setError}
               subdistrict={subdistrict}
               setSubDistrict={setSubDistrict}
@@ -66,8 +67,6 @@ export default function App() {
               setProvince={setProvince}
               zipcode={zipcode}
               setZipcode={setZipcode}
-              fullAddress={fullAddress}
-              setFullAddress={setFullAddress}
               onSelect={onSelect}
             />
           <button
