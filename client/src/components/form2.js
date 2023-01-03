@@ -1,72 +1,97 @@
-import React, {useState, UseEffect, useEffect} from "react"
-import {Button, Form, Container, Header} from "semantic-ui-react"
-import axios from "axios"
-import {getDatabase, ref, push, set, child, update, remove} from "firebase/database"
+import React, { useState } from "react";
+import Input from "./input";
+import Axios from "axios";
+import "../css/form2.css";
+
 function Form2() {
-const [namebox, setName]  = useState('');
-const [rollbox, setRoll]  = useState('');
-const [secbox, setSec]  = useState('');
-const [genbox, setGen]  = useState('');
+  const [comname, setComName] = useState("");
+  const [comage, setComAge] = useState("");
+  const [comlist, setComList] = useState([]);
 
-const handleOnChange0 = (e) => {
-  setName(e.target.value);
-}
-const handleOnChange1 = (e) => {
-  setRoll(e.target.value);
-}
-const handleOnChange2 = (e) => {
-  setSec(e.target.value);
-}
-const handleOnChange3 = (e) => {
-  setGen(e.target.value);
-}
+  const GetCompanies = () => {
+    Axios.get("http://localhost:3001/companies").then((response) => {
+    setComList(response.data);
+    });
+  }
 
+  const PostCompanies = () => {
+    Axios.post("http://localhost:3001/create",{
+        name: comname,
+        age : comage
+    }).then(() => {
+        setComList([...comlist,
+        {
+            name: comname,
+            age : comage
+        }
+    ])
+    })
+  }
 
- const insBtn = document.getElementById("Insbtn");
- const selBtn = document.getElementById("Selbtn");
- const updBtn = document.getElementById("Updbtn");
- const delBth = document.getElementById("Delbtn");
-
- function InsertData(){
-  const db = getDatabase();
-  push(ref(db, "TheStudents/"),{
-    NameOfStd: namebox,
-    RollNo: rollbox,
-    Section: secbox,
-    Gender: genbox
-  })
-  .then(()=>{
-    alert("data stored");
-  })
-  .catch((error)=>{
-    alert("unsuccessful, error"+ error);
-  })
- }
-
-  return(
-    <>
-    <label>Name</label> 
-    <input id="Namebox" onChange={handleOnChange0} type="text"/>
-    <hr/>
-    <label>RollNo</label> 
-    <input id="Rollbox" onChange={handleOnChange1} type="text"/>
-    <hr/>
-    <label>Section</label> 
-    <input id="Secbox" onChange={handleOnChange2} type="text"/>
-    <hr/>
-    <label>Gender</label> 
-    <select id ="Genbox" onChange={handleOnChange3}>          
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>      
-    </select>
-    
-    <hr/>
-    <button id="Insbtn" onClick={InsertData}>INSERT</button>
-    <button id="Selbtn">SELECT</button>
-    <button id="Updbtn">UPDATE</button>
-    <button id="Delbtn">DELETE</button>
-    </>
-    
-  )
+  return (
+    <form>
+      <div className="row row-cols-auto g-3 top-row">
+        <div className="col-md-4">
+          <div className="field">
+            <label className="label">1. ชื่อบริษัท</label>
+            <Input
+              id={"validationDefaultUsername"}
+              value={comname}
+              type={"text"}
+              placeholder={"ระบุชื่อ"}
+              setFunc={setComName}
+            ></Input>
+          </div>
+        </div>
+        <div className="col-md-2">
+          <div className="field">
+            <label className="label md-5">อายุบริษัท</label>
+            <div className="input-group mb-3">
+              <Input
+                id={"inputComAge"}
+                value={comage}
+                type={"number"}
+                min="0"
+                placeholder={"ระบุอายุ"}
+                setFunc={setComAge}
+              ></Input>
+              <div className="input-group-append">
+                <span className="input-group-text" id="basic-addon2">
+                  ปี
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row row-cols-auto g-3 top-row">
+        <button
+          className="btn btn-primary"
+          type="submit"
+          onClick={PostCompanies}
+        >
+          Submit
+        </button>
+        
+      </div>
+      <button
+          className="btn btn-primary"
+          onClick={GetCompanies}
+        >
+          ShowData
+        </button>
+      {comlist.map((val, key) => {
+            return (
+                <div className="company card">
+                    <div className="card-body text-left ">
+                    <p className="card-text">Name: {val.name}</p>
+                    <p className="card-text">Age: {val.age}</p>
+                    </div>
+                </div>
+            )
+        })}
+    </form>
+  );
 }
-export default Form2
+//
+export default Form2;

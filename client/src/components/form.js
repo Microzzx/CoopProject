@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../css/form.css";
-//import firebase from "../firebase";
-import { getDatabase, ref, push } from "firebase/database";
+import firebase from "firebase/app";
+import "firebase/database";
 import Input from "./input";
 import Textarea from "./textarea";
 import AutoAddress from "./autoaddress";
@@ -60,48 +60,52 @@ function Form() {
   const [branch, setBranch] = useState("");
   //11
   const [provinces, setProvinces] = useState("");
+
   // Firebase Data
   function InsertData() {
-    const db = getDatabase();
-    push(ref(db, "Company/"), {
-      CompanyName: comname,
-      CompanyAge: comage,
-      Subdistrict: subdistrict,
-      District: district,
-      Province: province,
-      Zipcode: zipcode,
-      Worktype: worktype,
-      Toughness: toughness,
-      Weakness: weakness,
-      Exwork: exwork,
-      Fulltime: {
-        Civil: civil,
-        Electrical: electrical,
-        Fore: fore,
-        Chief1: chief1,
-        Chief2: chief2,
-        Chief3: chief3,
-        Mechanic1: mechanic1,
-        Mechanic2: mechanic2,
-        Mechanic3: mechanic3,
-        Worker: worker,
-      },
-      Outsource: {
-        OCivil: ocivil,
-        OElectrical: oelectrical,
-        OFore: ofore,
-        OChief1: ochief1,
-        OChief2: ochief2,
-        OChief3: ochief3,
-        OMechanic1: omechanic1,
-        OMechanic2: omechanic2,
-        OMechanic3: omechanic3,
-        OWorker: oworker,
-      },
-      Tools: tools,
-      Branch: branch,
-      Provinces: provinces,
-    })
+    firebase
+      .database()
+      .ref("Company/")
+      .push()
+      .set({
+        CompanyName: comname,
+        CompanyAge: comage,
+        Subdistrict: subdistrict,
+        District: district,
+        Province: province,
+        Zipcode: zipcode,
+        Worktype: worktype,
+        Toughness: toughness,
+        Weakness: weakness,
+        Exwork: exwork,
+        Fulltime: {
+          Civil: civil,
+          Electrical: electrical,
+          Fore: fore,
+          Chief1: chief1,
+          Chief2: chief2,
+          Chief3: chief3,
+          Mechanic1: mechanic1,
+          Mechanic2: mechanic2,
+          Mechanic3: mechanic3,
+          Worker: worker,
+        },
+        Outsource: {
+          OCivil: ocivil,
+          OElectrical: oelectrical,
+          OFore: ofore,
+          OChief1: ochief1,
+          OChief2: ochief2,
+          OChief3: ochief3,
+          OMechanic1: omechanic1,
+          OMechanic2: omechanic2,
+          OMechanic3: omechanic3,
+          OWorker: oworker,
+        },
+        Tools: tools,
+        Branch: branch,
+        Provinces: provinces,
+      })
       .then(() => {
         alert("data stored");
       })
@@ -110,10 +114,19 @@ function Form() {
         console.log(error);
       });
   }
+  //
+  const formRef = useRef(null);
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (formRef.current.checkValidity()) {
+      InsertData();
+    }
+  }
+  //
   //---------------------------------------------------------
   return (
     <div className="container bgc top-buffer mt-5 mb-5 rcorners2">
-      <div>
+      <form class="needs-validation" novalidate>
         {/* form tag */}
         <div className="row row-cols-auto g-4">
           <h2 className="center">แบบสอบถามประวัติผู้รับเหมารายใหม่</h2>
@@ -123,10 +136,11 @@ function Form() {
           <div className="col-md-4">
             <div className="field">
               <label className="label">1. ชื่อบริษัท</label>
+              
               <Input
-                id={"inputComName"}
+                id={"validationDefaultUsername"}
                 value={comname}
-                type ={"text"}
+                type={"text"}
                 placeholder={"ระบุชื่อ"}
                 setFunc={setComName}
               ></Input>
@@ -136,14 +150,14 @@ function Form() {
             <div className="field">
               <label className="label md-5">อายุบริษัท</label>
               <div className="input-group mb-3">
-              <Input
-                id={"inputComAge"}
-                value={comage}
-                type ={"number"}
-                min ="0"
-                placeholder={"ระบุอายุ"}
-                setFunc={setComAge}
-              ></Input>
+                <Input
+                  id={"inputComAge"}
+                  value={comage}
+                  type={"number"}
+                  min="0"
+                  placeholder={"ระบุอายุ"}
+                  setFunc={setComAge}
+                ></Input>
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
                     ปี
@@ -205,7 +219,7 @@ function Form() {
               <Input
                 id={"inputToughness"}
                 value={toughness}
-                type ={"text"}
+                type={"text"}
                 placeholder={"ระบุตัวอย่าง"}
                 setFunc={setToughness}
               ></Input>
@@ -221,12 +235,12 @@ function Form() {
               </label>
             </div>
             <Input
-                id={"inputWeakness"}
-                value={weakness}
-                type ={"text"}
-                placeholder={"ระบุตัวอย่าง"}
-                setFunc={setWeakness}
-              ></Input>
+              id={"inputWeakness"}
+              value={weakness}
+              type={"text"}
+              placeholder={"ระบุตัวอย่าง"}
+              setFunc={setWeakness}
+            ></Input>
           </div>
         </div>
 
@@ -322,14 +336,14 @@ function Form() {
                 10. งานที่ตั้งเป้าจะรับงานกับ 7-11 กี่สาขา/เดือน
               </label>
               <div className="input-group mb-4">
-              <Input
-                id={"inputBranch"}
-                value={branch}
-                type ={"number"}
-                min ="1"
-                placeholder={"ระบุจำนวน"}
-                setFunc={setBranch}
-              ></Input>
+                <Input
+                  id={"inputBranch"}
+                  value={branch}
+                  type={"number"}
+                  min="1"
+                  placeholder={"ระบุจำนวน"}
+                  setFunc={setBranch}
+                ></Input>
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
                     สาขา
@@ -348,7 +362,7 @@ function Form() {
               <Input
                 id={"inputProvinces"}
                 value={provinces}
-                type ={"text"}
+                type={"text"}
                 placeholder={"ระบุจังหวัด"}
                 setFunc={setProvinces}
               ></Input>
@@ -357,16 +371,14 @@ function Form() {
         </div>
         <div className="row row-cols-auto g-3 top-row">
           <button
-            id="Subbtn"
             className="btn btn-primary"
-            onClick={() => {
-              return InsertData();
-            }}
+            type="submit"
+            onClick={handleSubmit}
           >
             Submit
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

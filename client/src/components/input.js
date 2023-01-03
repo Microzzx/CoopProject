@@ -5,8 +5,8 @@ function Input(props) {
 
   return (
     <input
-      type = {type}
-      min = {min}
+      type={type}
+      min={min}
       className="form-control"
       placeholder={placeholder}
       id={id}
@@ -14,7 +14,8 @@ function Input(props) {
       onChange={(e) => {
         setFunc(e.target.value);
       }}
-    ></input>
+      required
+    />
   );
 }
 

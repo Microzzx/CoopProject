@@ -1,6 +1,5 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC17UXNLVAecBBp5P-lME4oaH3xPmdX854",
@@ -13,25 +12,30 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
 
-// firebase auth
-export const auth = firebase.auth();
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => {
-  auth
-    .signInWithPopup(provider)
-    .then((result) => {
-      console.log("success!");
-      const name = result.user.displayName
-      const profilePic = result.user.photoURL
-      localStorage.setItem("name",name)
-      localStorage.setItem("profilePic",profilePic)
-      window.location.reload(false);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+firebase.auth()
+  .getRedirectResult()
+  .then((result) => {
+    if (result.credential) {
+      /** @type {firebase.auth.OAuthCredential} */
+      var credential = result.credential;
+
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = credential.accessToken;
+      // ...
+    }
+    // The signed-in user info.
+    var user = result.user;
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
 
 export default firebase;
