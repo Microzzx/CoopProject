@@ -12,7 +12,7 @@ function Navbar() {
       <a className="nav-item nav-link" href="/home">หน้าหลัก</a>
       <a className="nav-item nav-link" href="/form">ฟอร์ม</a>
       <a className="nav-item nav-link" href="/form2">ฟอร์ม2</a>
-      <a className="nav-item nav-link" href="/form3">ฟอร์ม3</a>
+      <a className="nav-item nav-link" href="/datapage">Data</a>
       </div>
     </div>
     <a href="/login">
