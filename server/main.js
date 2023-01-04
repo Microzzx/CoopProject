@@ -42,3 +42,17 @@ app.post('/create',(req, res) => {
         }
     });
 });
+
+app.put('/update',(req, res) => {
+    const id = req.body.id;
+    const age = req.body.age;
+
+    db.query("UPDATE companies SET age = ? WHERE id = ?", [age, id], (err, result) =>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    })
+})

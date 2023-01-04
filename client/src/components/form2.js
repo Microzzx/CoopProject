@@ -7,26 +7,45 @@ function Form2() {
   const [comname, setComName] = useState("");
   const [comage, setComAge] = useState("");
   const [comlist, setComList] = useState([]);
+  const [newage, setNewAge] = useState("");
 
   const GetCompanies = () => {
     Axios.get("http://localhost:3001/companies").then((response) => {
-    setComList(response.data);
+      setComList(response.data);
     });
-  }
+  };
 
   const PostCompanies = () => {
-    Axios.post("http://localhost:3001/create",{
-        name: comname,
-        age : comage
+    Axios.post("http://localhost:3001/create", {
+      name: comname,
+      age: comage,
     }).then(() => {
-        setComList([...comlist,
+      setComList([
+        ...comlist,
         {
-            name: comname,
-            age : comage
-        }
-    ])
-    })
-  }
+          name: comname,
+          age: comage,
+        },
+      ]);
+    });
+  };
+
+  const updateCompanyAge = (id) => {
+    Axios.put("http://localhost:3001/update", {
+      age: newage,
+      id: id,
+    }).then((response) => {
+      setComList(
+        comlist.map((val) => {
+          return val.id == id ? {id: val.id, name: val.name, age: newage}: val;
+        })
+      );
+      alert("Data Updated!");
+    }).catch((error) => {
+      alert("unsuccessful, error" + error);
+      console.log(error);
+    });
+  };
 
   return (
     <form>
@@ -72,24 +91,30 @@ function Form2() {
         >
           Submit
         </button>
-        
       </div>
-      <button
-          className="btn btn-primary"
-          onClick={GetCompanies}
-        >
-          ShowData
-        </button>
+      <button className="btn btn-primary" onClick={GetCompanies}>
+        ShowData
+      </button>
       {comlist.map((val, key) => {
-            return (
-                <div className="company card">
-                    <div className="card-body text-left ">
-                    <p className="card-text">Name: {val.name}</p>
-                    <p className="card-text">Age: {val.age}</p>
-                    </div>
-                </div>
-            )
-        })}
+        return (
+          <div className="company card">
+            <div className="card-body text-left ">
+              <p className="card-text">Name: {val.name}</p>
+              <p className="card-text">Age: {val.age}</p>
+              <div className="d-flex">
+                <input
+                  type="number"
+                  placeholder="Insert Number"
+                  onChange={(event) => {
+                    setNewAge(event.target.value);
+                  }}
+                />
+                <button className="btn btn-primary" onClick={() => {updateCompanyAge(val.id)}}>Update</button>  
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </form>
   );
 }
