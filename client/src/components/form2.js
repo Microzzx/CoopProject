@@ -47,6 +47,16 @@ function Form2() {
     });
   };
 
+  const deleteCompany = (id) => {
+    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+      setComList(
+        comlist.filter((val) =>{
+          return val.id != id;
+        })
+      )
+    })
+  }
+
   return (
     <form>
       <div className="row row-cols-auto g-3 top-row">
@@ -85,14 +95,14 @@ function Form2() {
       </div>
       <div className="row row-cols-auto g-3 top-row">
         <button
-          className="btn btn-primary"
+          className="btn btn-primary btnsize mbc"
           type="submit"
           onClick={PostCompanies}
         >
           Submit
         </button>
       </div>
-      <button className="btn btn-primary" onClick={GetCompanies}>
+      <button className="btn btn-primary btnsize mbc" onClick={GetCompanies}>
         ShowData
       </button>
       {comlist.map((val, key) => {
@@ -103,13 +113,15 @@ function Form2() {
               <p className="card-text">Age: {val.age}</p>
               <div className="d-flex">
                 <input
+                  className="mrc"
                   type="number"
                   placeholder="Insert Number"
                   onChange={(event) => {
                     setNewAge(event.target.value);
                   }}
                 />
-                <button className="btn btn-primary" onClick={() => {updateCompanyAge(val.id)}}>Update</button>  
+                <button className="btn btn-warning mrc" onClick={() => {updateCompanyAge(val.id)}}>Update</button>  
+                <button className="btn btn-danger mrc" onClick={() => {deleteCompany(val.id)}}>Delete</button>  
               </div>
             </div>
           </div>

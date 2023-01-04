@@ -1,3 +1,13 @@
 .card {
-    width: 350px;
+    width: 450px;
+}
+.mbc {
+    margin-bottom: 20px;
+  }
+.mrc {
+    margin-right: 10px;
+  }
+
+.btnsize {
+    width: 100px;
 }
