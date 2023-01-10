@@ -14,7 +14,7 @@ function Form2() {
       setComList(response.data);
     });
   };
-
+  
   const PostCompanies = () => {
     Axios.post("http://localhost:3001/create", {
       name: comname,
@@ -100,14 +100,14 @@ function Form2() {
       </div>
       <div className="row row-cols-auto g-3 top-row">
         <button
-          className="btn btn-primary btnsize mbc"
+          className="btn btn-primary btnsize mb2"
           type="submit"
           onClick={PostCompanies}
         >
           Submit
         </button>
       </div>
-      <button className="btn btn-primary btnsize mbc" onClick={GetCompanies}>
+      <button className="btn btn-primary btnsize mb2" onClick={GetCompanies}>
         ShowData
       </button>
       {comlist.map((val, key) => {
@@ -126,7 +126,7 @@ function Form2() {
                   }}
                 />
                 <button
-                  className="btn btn-warning mrc"
+                  className="btn btn-warning mr2"
                   onClick={() => {
                     updateCompanyAge(val.id);
                   }}
@@ -134,7 +134,7 @@ function Form2() {
                   Update
                 </button>
                 <button
-                  className="btn btn-danger mrc"
+                  className="btn btn-danger mr2"
                   onClick={() => {
                     deleteCompany(val.id);
                   }}

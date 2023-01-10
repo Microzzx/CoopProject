@@ -14,7 +14,7 @@ function Input(props) {
       onChange={(e) => {
         setFunc(e.target.value);
       }}
-      required
+      
     />
   );
 }

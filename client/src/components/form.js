@@ -1,11 +1,10 @@
 import React, { useState, useRef } from "react";
 import "../css/form.css";
-import firebase from "firebase/app";
-import "firebase/database";
 import Input from "./input";
 import Textarea from "./textarea";
 import AutoAddress from "./autoaddress";
 import Employee from "./employee";
+import Axios from "axios";
 
 function Form() {
   //1
@@ -26,6 +25,7 @@ function Form() {
   }
   //3
   const [worktype, setWorktype] = useState("");
+
   //4
   const [toughness, setToughness] = useState("");
   //5
@@ -61,72 +61,91 @@ function Form() {
   //11
   const [provinces, setProvinces] = useState("");
 
-  // Firebase Data
-  function InsertData() {
-    firebase
-      .database()
-      .ref("Company/")
-      .push()
-      .set({
-        CompanyName: comname,
-        CompanyAge: comage,
-        Subdistrict: subdistrict,
-        District: district,
-        Province: province,
-        Zipcode: zipcode,
-        Worktype: worktype,
-        Toughness: toughness,
-        Weakness: weakness,
-        Exwork: exwork,
-        Fulltime: {
-          Civil: civil,
-          Electrical: electrical,
-          Fore: fore,
-          Chief1: chief1,
-          Chief2: chief2,
-          Chief3: chief3,
-          Mechanic1: mechanic1,
-          Mechanic2: mechanic2,
-          Mechanic3: mechanic3,
-          Worker: worker,
+  const [comlist, setComList] = useState([]);
+  const PostCompanies = () => {
+    window.onbeforeunload = function () {
+      return "Data will be lost if you leave the page, are you sure?";
+    };
+    Axios.post("http://localhost:3001/create1", {
+      name: comname,
+      age: comage,
+      subdistrict: subdistrict,
+      district: district,
+      province: province,
+      zipcode: zipcode,
+      worktype: worktype,
+      toughness: toughness,
+      weakness: weakness,
+      exwork: exwork,
+      civil: civil,
+      electrical: electrical,
+      fore: fore,
+      chief1: chief1,
+      chief2: chief2,
+      chief3: chief3,
+      mechanic1: mechanic1,
+      mechanic2: mechanic2,
+      mechanic3: mechanic3,
+      worker: worker,
+      ocivil: ocivil,
+      oelectrical: oelectrical,
+      ofore: ofore,
+      ochief1: ochief1,
+      ochief2: ochief2,
+      ochief3: ochief3,
+      omechanic1: omechanic1,
+      omechanic2: omechanic2,
+      omechanic3: omechanic3,
+      oworker: oworker,
+      tools: tools,
+      branch: branch,
+      provinces: provinces,
+    }).then(() => {
+      setComList([
+        ...comlist,
+        {
+          name: comname,
+          age: comage,
+          subdistrict: subdistrict,
+          district: district,
+          province: province,
+          zipcode: zipcode,
+          worktype: worktype,
+          toughness: toughness,
+          weakness: weakness,
+          exwork: exwork,
+          civil: civil,
+          electrical: electrical,
+          fore: fore,
+          chief1: chief1,
+          chief2: chief2,
+          chief3: chief3,
+          mechanic1: mechanic1,
+          mechanic2: mechanic2,
+          mechanic3: mechanic3,
+          worker: worker,
+          ocivil: ocivil,
+          oelectrical: oelectrical,
+          ofore: ofore,
+          ochief1: ochief1,
+          ochief2: ochief2,
+          ochief3: ochief3,
+          omechanic1: omechanic1,
+          omechanic2: omechanic2,
+          omechanic3: omechanic3,
+          oworker: oworker,
+          tools: tools,
+          branch: branch,
+          provinces: provinces,
         },
-        Outsource: {
-          OCivil: ocivil,
-          OElectrical: oelectrical,
-          OFore: ofore,
-          OChief1: ochief1,
-          OChief2: ochief2,
-          OChief3: ochief3,
-          OMechanic1: omechanic1,
-          OMechanic2: omechanic2,
-          OMechanic3: omechanic3,
-          OWorker: oworker,
-        },
-        Tools: tools,
-        Branch: branch,
-        Provinces: provinces,
-      })
-      .then(() => {
-        alert("data stored");
-      })
-      .catch((error) => {
-        alert("unsuccessful, error" + error);
-        console.log(error);
-      });
-  }
-  //
-  const formRef = useRef(null);
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (formRef.current.checkValidity()) {
-      InsertData();
-    }
-  }
-  //
+      ]);
+    });
+  };
+
   //---------------------------------------------------------
   return (
     <div className="container bgc top-buffer mt-5 mb-5 rcorners2">
-      <form class="needs-validation" novalidate>
+      <form>
         {/* form tag */}
         <div className="row row-cols-auto g-4">
           <h2 className="center">แบบสอบถามประวัติผู้รับเหมารายใหม่</h2>
@@ -136,7 +155,6 @@ function Form() {
           <div className="col-md-4">
             <div className="field">
               <label className="label">1. ชื่อบริษัท</label>
-              
               <Input
                 id={"validationDefaultUsername"}
                 value={comname}
@@ -373,7 +391,7 @@ function Form() {
           <button
             className="btn btn-primary"
             type="submit"
-            onClick={handleSubmit}
+            onClick={PostCompanies}
           >
             Submit
           </button>
