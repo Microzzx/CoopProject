@@ -139,6 +139,11 @@ function Form() {
           provinces: provinces,
         },
       ]);
+      alert("Data Inserted!");
+    })
+    .catch((error) => {
+      alert("unsuccessful, error" + error);
+      console.log(error);
     });
   };
 

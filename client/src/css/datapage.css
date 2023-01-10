@@ -1,0 +1,28 @@
+.bgsize {
+  max-width: 1800px;
+  width: 1000px;
+}
+
+  .tablecol1 {
+    width: 100px;
+    text-align: center;
+  }
+
+  .tablecol2 {
+    width: 170px;
+    text-align: center;
+  }
+
+  .tablecol3 {
+    width: 200px;
+    text-align: center;
+  }
+
+  .tablecol4 {
+    width: 300px;
+    text-align: center;
+  }
+
+  .tbc {
+    background-color: rgba(158, 158, 158, 0.849);
+  }
