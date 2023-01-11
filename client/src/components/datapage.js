@@ -2,11 +2,20 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import "../css/datapage.css";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 
 function Form3() {
   const [comlist, setComList] = useState([]);
   const [newage, setNewAge] = useState(0);
 
+  //modal info
+  const [modalinfo, setModalInfo] = useState([]);
+  //modal toggle
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+
+  
   const GetCompanies = () => {
     Axios.get("http://localhost:3001/companyinfo").then((response) => {
       setComList(response.data);
@@ -53,6 +62,9 @@ function Form3() {
     GetCompanies();
   };
 
+  const print = (val) => {
+    console.log(val);
+  };
   return (
     <div className="container-{100} tbc">
       <table class="table table-dark table-striped">
@@ -80,6 +92,27 @@ function Form3() {
               <td className="tablecol3">{val.province}</td>
               <td className="tablecol2">{val.worktype}</td>
               <td className="tablecol4">
+              
+              <Button color="danger" onClick={() => {setModalInfo(val); toggle();}}>
+                Click Me
+              </Button>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>{modalinfo.name}</ModalHeader>
+        <ModalBody>
+        ชื่อบริษัท : {modalinfo.name}<br/>
+        อายุบริษัท : {modalinfo.age}<br/>
+        ที่อยู่ : {modalinfo.subdistrict} {modalinfo.district} {modalinfo.province} {modalinfo.zipcode}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={toggle}>
+            Do Something
+          </Button>
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
+            
                 {/* <input
                   className="mrc"
                   type="number"
@@ -91,7 +124,8 @@ function Form3() {
                 <button
                   className="btn btn-warning mrc"
                   onClick={() => {
-                    updateCompanyAge(val.id);
+                    //updateCompanyAge(val.id);
+                    console.log(val.id);
                   }}
                 >
                   Update

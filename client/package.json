@@ -20,6 +20,7 @@
     "react-select-search": "^4.1.6",
     "react-thai-address": "^1.0.6",
     "react-thailand-address-autocomplete": "^0.0.6",
+    "reactstrap": "^9.1.5",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
     "thai-address-autocomplete-react": "^0.1.0",
