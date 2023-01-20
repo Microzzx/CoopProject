@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import "../css/form.css";
-import Input from "./input";
-import Textarea from "./textarea";
-import AutoAddress from "./autoaddress";
-import Employee from "./employee";
+import Input from "./sub_components/input";
+import Textarea from "./sub_components/textarea";
+import AutoAddress from "./sub_components/autoaddress";
+import Employee from "./sub_components/employee";
 import Axios from "axios";
 
 function Form() {
@@ -153,7 +153,7 @@ function Form() {
       <form>
         {/* form tag */}
         <div className="row row-cols-auto g-4">
-          <h2 className="center">แบบสอบถามประวัติผู้รับเหมารายใหม่</h2>
+          <h2 className="center mtc mbc">แบบสอบถามประวัติผู้รับเหมารายใหม่</h2>
           <div className="dropdown-container"></div>
         </div>
         <div className="row row-cols-auto g-3 top-row">
@@ -208,7 +208,7 @@ function Form() {
           <div className="col-md-6">
             <div className="field">
               <label className="label">
-                3. ประเภทงาน (ความสามารถด้านงานก่อสร้าง หรืองานไฟฟ้า)
+                3. ประเภทงาน
               </label>
               <select
                 className="form-select"

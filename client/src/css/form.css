@@ -7,6 +7,7 @@
 .center {
   text-align: center;
   vertical-align: middle;
+  margin: auto;
 }
 .bgc {
   background-color: rgba(236, 236, 236, 0.849);
@@ -58,28 +59,16 @@ br {
   line-height: 300%;
 }
 
+.mtc {
+  margin-top: 39px;
+}
+
 .mbc {
   margin-bottom: 39px;
 }
 
 .mrc {
   margin-right: 39px;
-}
-
-#backgroundimage {
-  background-image: url("../image/skyscraper.jpg");
-  width: 100%;
-  height: 2800px;
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#notfull {
-  width: 80%;
-  height: 80%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .width10 {

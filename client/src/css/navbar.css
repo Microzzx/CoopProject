@@ -1,20 +1,23 @@
+.navbar-color {
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px solid #bbbbbb;
+}
 .navbar-light .navbar-nav .nav-link {
   position: relative;
   color: rgb(0, 0, 0);
   font-size: 1.1rem;
 }
 .navbar-brand {
-    position: relative;
-    color: rgb(0, 0, 0);
-    font-size: 1.5rem;
+  position: relative;
+  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
 }
 @media screen and (min-width: 767px) {
-
   .navbar-light .navbar-nav .nav-link {
     padding: 23px 15px;
   }
   .navbar-light .navbar-nav .nav-link::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 15px;
     left: 30%;
@@ -31,5 +34,22 @@
     -ms-transform: scaleX(1);
     transform: scaleX(1);
   }
-  
+}
+
+.dropdown-caret {
+  border-bottom-color: #0000;
+  border-left-color: #0000;
+  border-right-color: #0000;
+  border-style: solid;
+  border-width: var(--primer-borderWidth-thicker, 4px)
+    var(--primer-borderWidth-thicker, 4px) 0;
+  content: "";
+  display: inline-block;
+  height: 0;
+  vertical-align: middle;
+  width: 0;
+}
+
+.text-center {
+  text-align: center !important;
 }

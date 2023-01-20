@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "./input";
+import Input from "./sub_components/input";
 import Axios from "axios";
 import "../css/form2.css";
 

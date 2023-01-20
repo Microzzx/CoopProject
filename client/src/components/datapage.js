@@ -2,8 +2,11 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import "../css/datapage.css";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import edit_btn from "../image/edit_icon.jpg";
+import delete_btn from "../image/delete_icon.jpg";
+import view_btn from "../image/view_icon.png";
+import Mdbody from "./sub_components/modalbody";
 
 function Form3() {
   const [comlist, setComList] = useState([]);
@@ -15,7 +18,6 @@ function Form3() {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  
   const GetCompanies = () => {
     Axios.get("http://localhost:3001/companyinfo").then((response) => {
       setComList(response.data);
@@ -30,12 +32,20 @@ function Form3() {
       .then((response) => {
         setComList(
           comlist.map((val) => {
-            return val.id == id
-              ? { id: val.id, name: val.name, age: newage }
+            return val.id === id
+              ? {
+                  id: val.id,
+                  time: val.time,
+                  name: val.name,
+                  age: newage,
+                  province: val.province,
+                  worktype: val.worktype,
+                }
               : val;
           })
         );
         alert("Data Updated!");
+        window.location.reload(false);
       })
       .catch((error) => {
         alert("unsuccessful, error" + error);
@@ -44,18 +54,19 @@ function Form3() {
   };
 
   const deleteCompany = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
-      setComList(
-        comlist.filter((val) => {
-          return val.id != id;
-        })
-      );
-      alert("Data Deleted!");
-    })
-    .catch((error) => {
-      alert("unsuccessful, error" + error);
-      console.log(error);
-    });
+    Axios.delete(`http://localhost:3001/delete/${id}`)
+      .then((response) => {
+        setComList(
+          comlist.filter((val) => {
+            return val.id !== id;
+          })
+        );
+        alert("Data Deleted!");
+      })
+      .catch((error) => {
+        alert("unsuccessful, error" + error);
+        console.log(error);
+      });
   };
 
   window.onload = function () {
@@ -65,123 +76,145 @@ function Form3() {
   const print = (val) => {
     console.log(val);
   };
+  document.body.style.overflow = "hidden";
   return (
-    <div className="container-{100} tbc">
-      <table class="table table-dark table-striped">
-          <thead>
-            <tr>
-              <th scope="col" className="tablecol1">No.</th>
-              <th scope="col" className="tablecol2">Time</th>
-              <th scope="col" className="tablecol3">Name</th>
-              <th scope="col" className="tablecol1">Age</th>
-              <th scope="col" className="tablecol3">Province</th>
-              <th scope="col" className="tablecol2">Type</th>
-              <th scope="col" className="tablecol4"></th>
-            </tr>
-          </thead>
+    
+    <div>
+      <table class="table table-dark tableheader">
+        <thead>
+          <tr>
+            <th scope="col" className="tablecol1 center">
+              No.
+            </th>
+            <th scope="col" className="tablecol2 center">
+              Time
+            </th>
+            <th scope="col" className="tablecol2 center">
+              Name
+            </th>
+            <th scope="col" className="tablecol1 center">
+              Age
+            </th>
+            <th scope="col" className="tablecol2 center">
+              Province
+            </th>
+            <th scope="col" className="tablecol2 center">
+              Type
+            </th>
+            <th scope="col" className="tablecol2 center">
+              Status
+            </th>
+            <th scope="col" className="tablecol1 center"></th>
+            <th scope="col" className="tablecol1 center"></th>
+          </tr>
+        </thead>
       </table>
       {comlist.map((val, key) => {
         return (
           <table class="table">
-          <tbody>
-            <tr>
-              <td className="tablecol1">{key+1}</td>
-              <td className="tablecol2">{val.time}</td>
-              <td className="tablecol3">{val.name}</td>
-              <td className="tablecol1">{val.age}</td>
-              <td className="tablecol3">{val.province}</td>
-              <td className="tablecol2">{val.worktype}</td>
-              <td className="tablecol4">
-              
-              <Button color="danger" onClick={() => {setModalInfo(val); toggle();}}>
-                Click Me
-              </Button>
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{modalinfo.name}</ModalHeader>
-        <ModalBody>
-        ชื่อบริษัท : {modalinfo.name}<br/>
-        อายุบริษัท : {modalinfo.age}<br/>
-        ที่อยู่ : {modalinfo.subdistrict} {modalinfo.district} {modalinfo.province} {modalinfo.zipcode}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Do Something
-          </Button>
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
-            
-                {/* <input
-                  className="mrc"
-                  type="number"
-                  placeholder="Insert Number"
-                  onChange={(event) => {
-                    setNewAge(event.target.value);
-                  }}
-                /> */}
-                <button
-                  className="btn btn-warning mrc"
-                  onClick={() => {
-                    //updateCompanyAge(val.id);
-                    console.log(val.id);
-                  }}
-                >
-                  Update
-                </button>
-                <button
-                  className="btn btn-danger mrc"
-                  onClick={() => {
-                    deleteCompany(val.id);
-                  }}
-                >
-                  Delete
-                </button>
-              </td>
-            
-            </tr>
-          </tbody>
-        </table>
-            );
-            
-              // <p className="card-text">Age: {val.age}</p>
-              // <p className="card-text">Subdistrict: {val.subdistrict}</p>
-              // <p className="card-text">District: {val.district}</p>
-              // <p className="card-text">Province: {val.province}</p>
-              // <p className="card-text">Zipcode: {val.zipcode}</p>
-              // <p className="card-text">Worktype: {val.worktype}</p>
-              // <p className="card-text">Toughness: {val.toughness}</p>
-              // <p className="card-text">Weakness: {val.weakness}</p>
-              // <p className="card-text">Exwork: {val.exwork}</p>
-              // <p className="card-text">Civil: {val.civil}</p>
-              // <p className="card-text">Electrical: {val.electrical}</p>
-              // <p className="card-text">Fore: {val.fore}</p>
-              // <p className="card-text">Chief1: {val.chief1}</p>
-              // <p className="card-text">Chief2: {val.chief2}</p>
-              // <p className="card-text">Chief3: {val.chief3}</p>
-              // <p className="card-text">Mechanic1: {val.mechanic1}</p>
-              // <p className="card-text">Mechanic2: {val.mechanic2}</p>
-              // <p className="card-text">Mechanic3: {val.mechanic3}</p>
-              // <p className="card-text">Worker: {val.worker}</p>
-              // <p className="card-text">OCivil: {val.ocivil}</p>
-              // <p className="card-text">OElectrical: {val.oelectrical}</p>
-              // <p className="card-text">OFore: {val.ofore}</p>
-              // <p className="card-text">OChief1: {val.ochief1}</p>
-              // <p className="card-text">OChief2: {val.ochief2}</p>
-              // <p className="card-text">OChief3: {val.ochief3}</p>
-              // <p className="card-text">OMechanic1: {val.omechanic1}</p>
-              // <p className="card-text">OMechanic2: {val.omechanic2}</p>
-              // <p className="card-text">OMechanic3: {val.omechanic3}</p>
-              // <p className="card-text">OWorker: {val.oworker}</p>
-              // <p className="card-text">Tools: {val.tools}</p>
-              // <p className="card-text">Branch: {val.branch}</p>
-              // <p className="card-text">Provinces: {val.provinces}</p>
+            <tbody>
+              <tr>
+                <td scope="row" className="tablecol1">
+                  {key + 1}
+                </td>
+                <td className="tablecol2">{val.time}</td>
+                <td className="tablecol2">{val.name}</td>
+                <td className="tablecol1">{val.age}</td>
+                <td className="tablecol2">{val.province}</td>
+                <td className="tablecol2">{val.worktype}</td>
+                <td className="tablecol2">x</td>
+                <td className="tablecol1">
+                  <input
+                    className="btnsize mrc"
+                    type="image"
+                    src={view_btn}
+                    onClick={() => {
+                      setModalInfo(val);
+                      toggle();
+                    }}
+                  ></input>
 
-              
-           
-          
-        
+                  <Modal isOpen={modal} toggle={toggle} className="modalsize">
+                    <ModalHeader toggle={toggle} className="ms-3 mt-3">
+                      บริษัท {modalinfo.name}
+                    </ModalHeader>
+                    <ModalBody className="ms-3">
+                      <Mdbody
+                        name={modalinfo.name}
+                        age={modalinfo.age}
+                        subdistrict={modalinfo.subdistrict}
+                        district={modalinfo.district}
+                        province={modalinfo.province}
+                        zipcode={modalinfo.zipcode}
+                        worktype={modalinfo.worktype}
+                        toughness={modalinfo.toughness}
+                        weakness={modalinfo.weakness}
+                        exwork={modalinfo.exwork}
+                        civil={modalinfo.civil}
+                        electrical={modalinfo.electrical}
+                        fore={modalinfo.fore}
+                        chief1={modalinfo.chief1}
+                        chief2={modalinfo.chief2}
+                        chief3={modalinfo.chief3}
+                        mechanic1={modalinfo.mechanic1}
+                        mechanic2={modalinfo.mechanic2}
+                        mechanic3={modalinfo.mechanic3}
+                        worker={modalinfo.worker}
+                        ocivil={modalinfo.ocivil}
+                        oelectrical={modalinfo.oelectrical}
+                        ofore={modalinfo.ofore}
+                        ochief1={modalinfo.ochief1}
+                        ochief2={modalinfo.ochief2}
+                        ochief3={modalinfo.ochief3}
+                        omechanic1={modalinfo.omechanic1}
+                        omechanic2={modalinfo.omechanic2}
+                        omechanic3={modalinfo.omechanic3}
+                        oworker={modalinfo.worker}
+                        tools={modalinfo.tools}
+                        branch={modalinfo.branch}
+                        provinces={modalinfo.provinces}
+                      />
+                    </ModalBody>
+                    <ModalFooter>
+                      <div className="row">
+                        <div className="col">
+                          <input
+                            className="btnsize"
+                            type="image"
+                            src={edit_btn}
+                            onClick={() => {
+                              updateCompanyAge(modalinfo.id);
+                              console.log(modalinfo.id);
+                            }}
+                          ></input>
+                        </div>
+                        <div className="col">
+                          <Button color="secondary" onClick={toggle}>
+                            อนุมัติ
+                          </Button>
+                        </div>
+                      </div>
+                    </ModalFooter>
+                  </Modal>
+                </td>
+                <td className="tablecol1">
+                  <button
+                    className="btnsize mrc"
+                    onClick={() => {
+                      deleteCompany(val.id);
+                    }}
+                  >
+                    <img
+                      className="btnsize mrc"
+                      src={delete_btn}
+                      alt="delete_button"
+                    />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        );
       })}
     </div>
   );

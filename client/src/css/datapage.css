@@ -3,26 +3,49 @@
   width: 1000px;
 }
 
-  .tablecol1 {
-    width: 100px;
-    text-align: center;
-  }
+.tablecol1 {
+  width: 5%;
+  text-align: center;
+}
 
-  .tablecol2 {
-    width: 170px;
-    text-align: center;
-  }
+.tablecol2 {
+  width: 10%;
+  text-align: center;
+}
 
-  .tablecol3 {
-    width: 200px;
-    text-align: center;
-  }
+.backgroundcolor {
+  background-color: rgba(158, 158, 158, 0.849);
+}
 
-  .tablecol4 {
-    width: 300px;
-    text-align: center;
-  }
+.modalsize {
+  max-width: 1000px;
+  width: 100%;
+}
 
-  .tbc {
-    background-color: rgba(158, 158, 158, 0.849);
-  }
+.btnsize {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  margin: auto;
+  height: 40px;
+  width: 40px;
+}
+
+.tableheader{
+  height: 40px;
+}
+
+.mcal_small{
+  width: 5px;
+}
+
+.modal-backdrop {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+table {
+  padding-bottom: 0px;
+}

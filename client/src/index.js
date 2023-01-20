@@ -1,27 +1,29 @@
-import React, { useEffect, useState, useContext, createContext } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./index.css";
+import "./css/index.css";
 import Form from "./components/form";
-import Layout from "./components/layout";
+import App from "./components/App";
 import Home from "./components/home";
 import Form2 from "./components/form2";
 import Datapage from "./components/datapage";
-//import Login from "./components/login";
-
-import firebase from "./firebase";
-
+import Testpage from "./components/testpage";
+import Login from "./components/login";
+import Choose from "./components/choosedata";
+import Register from "./components/register";
 function Index() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Layout />}>
+        <Route exact path="/" element={<App />}>
           <Route exact path="/home" element={<Home />} />
-          <Route exact path="/login" element={<Home />} />
           <Route exact path="/form" element={<Form />} />
-          <Route exact path="/form2" element={<Form2 />} />
+          <Route exact path="/testpage" element={<Testpage />} />
           <Route exact path="/datapage" element={<Datapage />} />
+          <Route exact path="/choose" element={<Choose />} />
         </Route>
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
