@@ -5,7 +5,7 @@ import Axios from "axios";
 function Choose() {
     useEffect(() =>{
         const token = localStorage.getItem('token');
-        Axios.post("http://localhost:3001/auth",{},{
+        Axios.post("http://localhost:3001/jwtauth",{},{
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`

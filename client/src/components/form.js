@@ -66,7 +66,7 @@ function Form() {
     window.onbeforeunload = function () {
       return "Data will be lost if you leave the page, are you sure?";
     };
-    Axios.post("http://localhost:3001/create1", {
+    Axios.post("http://localhost:3001/companyinput", {
       name: comname,
       age: comage,
       subdistrict: subdistrict,

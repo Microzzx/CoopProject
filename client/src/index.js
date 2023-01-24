@@ -5,7 +5,6 @@ import "./css/index.css";
 import Form from "./components/form";
 import App from "./components/App";
 import Home from "./components/home";
-import Form2 from "./components/form2";
 import Datapage from "./components/datapage";
 import Testpage from "./components/testpage";
 import Login from "./components/login";
@@ -16,6 +15,7 @@ function Index() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<App />}>
+          <Route index element={<Home />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/form" element={<Form />} />
           <Route exact path="/testpage" element={<Testpage />} />

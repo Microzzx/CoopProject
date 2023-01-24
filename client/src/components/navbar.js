@@ -1,9 +1,28 @@
-import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
 import blankpic from "../image/blank.png";
 import "../css/navbar.css"
-import { Dropdown, DropdownMenu } from "reactstrap";
+import Axios from "axios";
+
 function Navbar() {
+  // const [currentUser, setCurrentUser] = useState(undefined);
+  // useEffect(() =>{
+  //   const token = localStorage.getItem('token');
+  //       Axios.post("http://localhost:3001/jwtauth",{},{
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //             'Authorization': `Bearer ${token}`
+  //             }
+  //     })
+  //       .then((response) => {
+  //           setCurrentUser(response.data.decoded.email);
+  //           console.log(currentUser);
+  //       })
+  //       .catch((error) => {
+  //         console.log("Can't get user",error);
+  //       });
+  // }, [])
+
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light navbar-color shadow w-100 p-0">
@@ -20,14 +39,14 @@ function Navbar() {
       </div>
       <div className="me-3">
      
-      <div class="btn-group">
-      <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+      <div className="btn-group">
+      <button type="button" className="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
       <img src={localStorage.getItem("profilePic") ? localStorage.getItem("profilePic") : blankpic} className ="rounded-circle" width="40" height="40"/>
       </button>
-      <ul class="dropdown-menu dropdown-menu-lg-end text-center">
-      <a class="dropdown-item" href="/login">Login</a>
-      <a class="dropdown-item" href="/register">Signup</a>
-      <a class="dropdown-item" href="/login">Logout</a>
+      <ul className="dropdown-menu dropdown-menu-lg-end text-center">
+      <a className="dropdown-item" href="/login">Login</a>
+      <a className="dropdown-item" href="/register">Signup</a>
+      <a className="dropdown-item" href="/login">Logout</a>
       </ul>
       </div>
       </div>

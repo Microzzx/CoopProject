@@ -25,7 +25,7 @@ function Form3() {
   };
 
   const updateCompanyAge = (id) => {
-    Axios.put("http://localhost:3001/update", {
+    Axios.put("http://localhost:3001/companyedit", {
       age: newage,
       id: id,
     })
@@ -54,7 +54,7 @@ function Form3() {
   };
 
   const deleteCompany = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`)
+    Axios.delete(`http://localhost:3001/companydelete/${id}`)
       .then((response) => {
         setComList(
           comlist.filter((val) => {
@@ -80,7 +80,7 @@ function Form3() {
   return (
     
     <div>
-      <table class="table table-dark tableheader">
+      <table className="table table-dark tableheader">
         <thead>
           <tr>
             <th scope="col" className="tablecol1 center">
@@ -111,7 +111,7 @@ function Form3() {
       </table>
       {comlist.map((val, key) => {
         return (
-          <table class="table">
+          <table className="table">
             <tbody>
               <tr>
                 <td scope="row" className="tablecol1">
