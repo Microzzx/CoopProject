@@ -10,9 +10,7 @@ function Textarea(props) {
       rows={row}
       id={id}
       value={value}
-      onChange={(e) => {
-        setFunc(e.target.value);
-      }}
+      onChange={setFunc}
     ></textarea>
   );
 }

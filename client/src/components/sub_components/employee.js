@@ -1,28 +1,7 @@
 import React from "react";
 
 function Employee(props) {
-  const {
-    civil,
-    setCivil,
-    electrical,
-    setElectrical,
-    fore,
-    setFore,
-    chief1,
-    setChief1,
-    chief2,
-    setChief2,
-    chief3,
-    setChief3,
-    worker,
-    setWorker,
-    mechanic1,
-    setMechanic1,
-    mechanic2,
-    setMechanic2,
-    mechanic3,
-    setMechanic3,
-  } = props;
+  const {joblist, onChange} = props;
 
   return (
     <div className="row row-cols-auto g-3 top-row">
@@ -52,14 +31,15 @@ function Employee(props) {
       <div className="field">
         <div className="input-group mb-4">
           <input
+            required
             type="number"
             min="0"
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputCivil"
-            value={civil}
+            value={joblist.civil}
             onChange={(e) => {
-              setCivil(e.target.value);
+              onChange({civil:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -75,9 +55,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputElectrical"
-            value={electrical}
+            value={joblist.electrical}
             onChange={(e) => {
-              setElectrical(e.target.value);
+              onChange({electrical:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -93,9 +73,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputFore"
-            value={fore}
+            value={joblist.fore}
             onChange={(e) => {
-              setFore(e.target.value);
+              onChange({fore:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -111,9 +91,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputCMechanic1"
-            value={chief1}
+            value={joblist.chief1}
             onChange={(e) => {
-              setChief1(e.target.value);
+              onChange({chief1:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -129,9 +109,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputCMechanic2"
-            value={chief2}
+            value={joblist.chief2}
             onChange={(e) => {
-              setChief2(e.target.value);
+              onChange({chief2:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -147,9 +127,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputCMechanic3"
-            value={chief3}
+            value={joblist.chief3}
             onChange={(e) => {
-              setChief3(e.target.value);
+              onChange({chief3:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -165,9 +145,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputWorker"
-            value={worker}
+            value={joblist.worker}
             onChange={(e) => {
-              setWorker(e.target.value);
+              onChange({worker:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -209,9 +189,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputMechanic1"
-            value={mechanic1}
+            value={joblist.mechanic1}
             onChange={(e) => {
-              setMechanic1(e.target.value);
+              onChange({mechanic1:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -227,9 +207,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputMechanic2"
-            value={mechanic2}
+            value={joblist.mechanic2}
             onChange={(e) => {
-              setMechanic2(e.target.value);
+              onChange({mechanic2:e.target.value})
             }}
           />
           <div className="input-group-append">
@@ -245,9 +225,9 @@ function Employee(props) {
             className="form-control"
             placeholder="ระบุจำนวน"
             id="inputMechanic3"
-            value={mechanic3}
+            value={joblist.mechanic3}
             onChange={(e) => {
-              setMechanic3(e.target.value);
+              onChange({mechanic3:e.target.value})
             }}
           />
           <div className="input-group-append">

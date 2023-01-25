@@ -6,152 +6,68 @@ import AutoAddress from "./sub_components/autoaddress";
 import Employee from "./sub_components/employee";
 import Axios from "axios";
 
+const joblist = {
+  civil: "",
+  electrical: "",
+  fore: "",
+  chief1: "",
+  chief2: "",
+  chief3: "",
+  mechanic1: "",
+  mechanic2: "",
+  mechanic3: "",
+  worker: "",
+};
 function Form() {
-  //1
-  const [comname, setComName] = useState("");
-  const [comage, setComAge] = useState("");
-  //2
-  const [subdistrict, setSubDistrict] = useState("");
-  const [district, setDistrict] = useState("");
-  const [province, setProvince] = useState("");
-  const [zipcode, setZipcode] = useState("");
+  const [state, setState] = useState({
+    name: "",
+    age: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    zipcode: "",
+    worktype: "",
+    toughness: "",
+    weakness: "",
+    exwork: "",
+    fulltime: { ...joblist },
+    outsource: { ...joblist },
+    tools: "",
+    branch: "",
+    provinces: "",
+  });
 
   function onSelect(fulladdress) {
     const { subdistrict, district, province, zipcode } = fulladdress;
-    setSubDistrict(subdistrict);
-    setDistrict(district);
-    setProvince(province);
-    setZipcode(zipcode);
-  }
-  //3
-  const [worktype, setWorktype] = useState("");
-
-  //4
-  const [toughness, setToughness] = useState("");
-  //5
-  const [weakness, setWeakness] = useState("");
-  //6
-  const [exwork, setExwork] = useState("");
-  //7
-  const [civil, setCivil] = useState("");
-  const [electrical, setElectrical] = useState("");
-  const [fore, setFore] = useState("");
-  const [chief1, setChief1] = useState("");
-  const [chief2, setChief2] = useState("");
-  const [chief3, setChief3] = useState("");
-  const [mechanic1, setMechanic1] = useState("");
-  const [mechanic2, setMechanic2] = useState("");
-  const [mechanic3, setMechanic3] = useState("");
-  const [worker, setWorker] = useState("");
-  //8
-  const [ocivil, setOCivil] = useState("");
-  const [oelectrical, setOElectrical] = useState("");
-  const [ofore, setOFore] = useState("");
-  const [ochief1, setOChief1] = useState("");
-  const [ochief2, setOChief2] = useState("");
-  const [ochief3, setOChief3] = useState("");
-  const [omechanic1, setOMechanic1] = useState("");
-  const [omechanic2, setOMechanic2] = useState("");
-  const [omechanic3, setOMechanic3] = useState("");
-  const [oworker, setOWorker] = useState("");
-  //9
-  const [tools, setTools] = useState("");
-  //10
-  const [branch, setBranch] = useState("");
-  //11
-  const [provinces, setProvinces] = useState("");
-
-  const [comlist, setComList] = useState([]);
-  const PostCompanies = () => {
-    window.onbeforeunload = function () {
-      return "Data will be lost if you leave the page, are you sure?";
-    };
-    Axios.post("http://localhost:3001/companyinput", {
-      name: comname,
-      age: comage,
+    setState({
+      ...state,
       subdistrict: subdistrict,
       district: district,
       province: province,
       zipcode: zipcode,
-      worktype: worktype,
-      toughness: toughness,
-      weakness: weakness,
-      exwork: exwork,
-      civil: civil,
-      electrical: electrical,
-      fore: fore,
-      chief1: chief1,
-      chief2: chief2,
-      chief3: chief3,
-      mechanic1: mechanic1,
-      mechanic2: mechanic2,
-      mechanic3: mechanic3,
-      worker: worker,
-      ocivil: ocivil,
-      oelectrical: oelectrical,
-      ofore: ofore,
-      ochief1: ochief1,
-      ochief2: ochief2,
-      ochief3: ochief3,
-      omechanic1: omechanic1,
-      omechanic2: omechanic2,
-      omechanic3: omechanic3,
-      oworker: oworker,
-      tools: tools,
-      branch: branch,
-      provinces: provinces,
-    }).then(() => {
-      setComList([
-        ...comlist,
-        {
-          name: comname,
-          age: comage,
-          subdistrict: subdistrict,
-          district: district,
-          province: province,
-          zipcode: zipcode,
-          worktype: worktype,
-          toughness: toughness,
-          weakness: weakness,
-          exwork: exwork,
-          civil: civil,
-          electrical: electrical,
-          fore: fore,
-          chief1: chief1,
-          chief2: chief2,
-          chief3: chief3,
-          mechanic1: mechanic1,
-          mechanic2: mechanic2,
-          mechanic3: mechanic3,
-          worker: worker,
-          ocivil: ocivil,
-          oelectrical: oelectrical,
-          ofore: ofore,
-          ochief1: ochief1,
-          ochief2: ochief2,
-          ochief3: ochief3,
-          omechanic1: omechanic1,
-          omechanic2: omechanic2,
-          omechanic3: omechanic3,
-          oworker: oworker,
-          tools: tools,
-          branch: branch,
-          provinces: provinces,
-        },
-      ]);
-      alert("Data Inserted!");
-    })
-    .catch((error) => {
-      alert("unsuccessful, error" + error);
-      console.log(error);
     });
-  };
+  }
 
+  const [comlist, setComList] = useState([]);
+
+  const PostCompanies = (e) => {
+    e.preventDefault()
+    console.log(state)
+    Axios.post("http://localhost:3001/companyinput", state)
+      .then(() => {
+        setComList([...comlist, state]);
+        alert("Data Inserted!");
+      })
+      .catch((error) => {
+        alert("unsuccessful, error" + error);
+        console.log(error);
+      });
+  };
+  
   //---------------------------------------------------------
   return (
     <div className="container bgc top-buffer mt-5 mb-5 rcorners2">
-      <form>
-        {/* form tag */}
+      <form onSubmit={PostCompanies}>
         <div className="row row-cols-auto g-4">
           <h2 className="center mtc mbc">แบบสอบถามประวัติผู้รับเหมารายใหม่</h2>
           <div className="dropdown-container"></div>
@@ -162,10 +78,10 @@ function Form() {
               <label className="label">1. ชื่อบริษัท</label>
               <Input
                 id={"validationDefaultUsername"}
-                value={comname}
-                type={"text"}
+                value={state.name}
+                type="text"
                 placeholder={"ระบุชื่อ"}
-                setFunc={setComName}
+                setFunc={(e) => setState({ ...state, name: e.target.value })}
               ></Input>
             </div>
           </div>
@@ -175,11 +91,11 @@ function Form() {
               <div className="input-group mb-3">
                 <Input
                   id={"inputComAge"}
-                  value={comage}
+                  value={state.age}
                   type={"number"}
                   min="0"
                   placeholder={"ระบุอายุ"}
-                  setFunc={setComAge}
+                  setFunc={(e) => setState({ ...state, age: e.target.value })}
                 ></Input>
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -193,28 +109,16 @@ function Form() {
         <div className="row row-cols-auto g-3 top-row">
           <label className="label">2. สถานที่ตั้งบริษัท</label>
         </div>
-        <AutoAddress
-          subdistrict={subdistrict}
-          setSubDistrict={setSubDistrict}
-          district={district}
-          setDistrict={setDistrict}
-          province={province}
-          setProvince={setProvince}
-          zipcode={zipcode}
-          setZipcode={setZipcode}
-          onSelect={onSelect}
-        />
+        <AutoAddress state={state} setState={setState} onSelect={onSelect} />
         <div className="row row-cols-auto g-3 top-row">
           <div className="col-md-6">
             <div className="field">
-              <label className="label">
-                3. ประเภทงาน
-              </label>
+              <label className="label">3. ประเภทงาน</label>
               <select
                 className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
-                  setWorktype(e.target.value);
+                  setState({ ...state, worktype: e.target.value });
                 }}
               >
                 <option defaultValue>เลือกประเภทงาน</option>
@@ -241,10 +145,12 @@ function Form() {
               </label>
               <Input
                 id={"inputToughness"}
-                value={toughness}
+                value={state.toughness}
                 type={"text"}
                 placeholder={"ระบุตัวอย่าง"}
-                setFunc={setToughness}
+                setFunc={(e) =>
+                  setState({ ...state, toughness: e.target.value })
+                }
               ></Input>
             </div>
           </div>
@@ -259,10 +165,10 @@ function Form() {
             </div>
             <Input
               id={"inputWeakness"}
-              value={weakness}
+              value={state.weakness}
               type={"text"}
               placeholder={"ระบุตัวอย่าง"}
-              setFunc={setWeakness}
+              setFunc={(e) => setState({ ...state, weakness: e.target.value })}
             ></Input>
           </div>
         </div>
@@ -273,10 +179,10 @@ function Form() {
               <label className="label">6. ผลงานที่โดดเด่นมีอะไรบ้าง</label>
               <Textarea
                 id={"inputExwork"}
-                value={exwork}
+                value={state.exwork}
                 string={"ระบุผลงาน"}
                 row={4}
-                setFunc={setExwork}
+                setFunc={(e) => setState({ ...state, exwork: e.target.value })}
               ></Textarea>
             </div>
           </div>
@@ -284,28 +190,7 @@ function Form() {
         <div className="row row-cols-auto g-3 top-row">
           <label className="label">7. มีพนักงานประจำทั้งหมดที่คน</label>
         </div>
-        <Employee
-          civil={civil}
-          setCivil={setCivil}
-          electrical={electrical}
-          setElectrical={setElectrical}
-          fore={fore}
-          setFore={setFore}
-          chief1={chief1}
-          setChief1={setChief1}
-          chief2={chief2}
-          setChief2={setChief2}
-          chief3={chief3}
-          setChief3={setChief3}
-          worker={worker}
-          setWorker={setWorker}
-          mechanic1={mechanic1}
-          setMechanic1={setMechanic1}
-          mechanic2={mechanic2}
-          setMechanic2={setMechanic2}
-          mechanic3={mechanic3}
-          setMechanic3={setMechanic3}
-        />
+        <Employee joblist={state.fulltime} onChange={(data) => setState({...state,fulltime:{...state.fulltime,...data}})} />
         <div className="row row-cols-auto g-3 top-row">
           <div className="col">
             <label className="label">
@@ -313,28 +198,7 @@ function Form() {
             </label>
           </div>
         </div>
-        <Employee
-          civil={ocivil}
-          setCivil={setOCivil}
-          electrical={oelectrical}
-          setElectrical={setOElectrical}
-          fore={ofore}
-          setFore={setOFore}
-          chief1={ochief1}
-          setChief1={setOChief1}
-          chief2={ochief2}
-          setChief2={setOChief2}
-          chief3={ochief3}
-          setChief3={setOChief3}
-          worker={oworker}
-          setWorker={setOWorker}
-          mechanic1={omechanic1}
-          setMechanic1={setOMechanic1}
-          mechanic2={omechanic2}
-          setMechanic2={setOMechanic2}
-          mechanic3={omechanic3}
-          setMechanic3={setOMechanic3}
-        />
+        <Employee joblist={state.outsource} onChange={(data) => setState({...state,outsource:{...state.outsource,...data}})} />
         <div className="row row-cols-auto g-3 top-row">
           <div className="col-md-6">
             <div className="field">
@@ -343,10 +207,10 @@ function Form() {
               </label>
               <Textarea
                 id={"inputtools"}
-                value={tools}
+                value={state.tools}
                 string={"ระบุเครื่องมือ"}
                 row={4}
-                setFunc={setTools}
+                setFunc={(e) => setState({ ...state, tools: e.target.value })}
               ></Textarea>
             </div>
           </div>
@@ -361,11 +225,11 @@ function Form() {
               <div className="input-group mb-4">
                 <Input
                   id={"inputBranch"}
-                  value={branch}
+                  value={state.branch}
                   type={"number"}
                   min="1"
                   placeholder={"ระบุจำนวน"}
-                  setFunc={setBranch}
+                  setFunc={(e) => setState({ ...state, branch: e.target.value })}
                 ></Input>
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -384,10 +248,10 @@ function Form() {
               </label>
               <Input
                 id={"inputProvinces"}
-                value={provinces}
+                value={state.provinces}
                 type={"text"}
                 placeholder={"ระบุจังหวัด"}
-                setFunc={setProvinces}
+                setFunc={(e) => setState({ ...state, provinces: e.target.value })}
               ></Input>
             </div>
           </div>
@@ -396,7 +260,7 @@ function Form() {
           <button
             className="btn btn-primary"
             type="submit"
-            onClick={PostCompanies}
+            
           >
             Submit
           </button>

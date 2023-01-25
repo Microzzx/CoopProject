@@ -5,16 +5,14 @@ function Input(props) {
 
   return (
     <input
+      required
       type={type}
       min={min}
       className="form-control"
       placeholder={placeholder}
       id={id}
       value={value}
-      onChange={(e) => {
-        setFunc(e.target.value);
-      }}
-      
+      onChange={setFunc}
     />
   );
 }

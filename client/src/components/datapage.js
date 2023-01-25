@@ -54,14 +54,21 @@ function Form3() {
   };
 
   const deleteCompany = (id) => {
-    Axios.delete(`http://localhost:3001/companydelete/${id}`)
+    const token = localStorage.getItem("token");
+    //console.log(token)
+    Axios.delete(`http://localhost:3001/companydelete/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         setComList(
           comlist.filter((val) => {
             return val.id !== id;
           })
         );
-        alert("Data Deleted!");
+        alert("Data Deleted!"+response.data.message);
       })
       .catch((error) => {
         alert("unsuccessful, error" + error);
@@ -78,7 +85,6 @@ function Form3() {
   };
   document.body.style.overflow = "hidden";
   return (
-    
     <div>
       <table className="table table-dark tableheader">
         <thead>
