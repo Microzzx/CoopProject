@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { TOKEN_SECRET } = require('./config');
-const connection = require('./connection');
+const { TOKEN_SECRET } = require('../config');
+const connection = require('../connection');
 
 const authRole = (permission) => {
     return (req, res, next) => {

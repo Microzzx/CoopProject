@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const connection = require('../connection');
-const {authRole} = require('../middleware')
+const {authRole} = require('../middlewares/jwtrole_auth')
 
 router.delete("/:id",authRole(["admin"]),(req, res) => {
     const id = req.params.id;

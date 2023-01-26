@@ -11,7 +11,6 @@ import Mdbody from "./sub_components/modalbody";
 function Form3() {
   const [comlist, setComList] = useState([]);
   const [newage, setNewAge] = useState(0);
-
   //modal info
   const [modalinfo, setModalInfo] = useState([]);
   //modal toggle
@@ -59,19 +58,23 @@ function Form3() {
     Axios.delete(`http://localhost:3001/companydelete/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        setComList(
-          comlist.filter((val) => {
-            return val.id !== id;
-          })
-        );
-        alert("Data Deleted!"+response.data.message);
+        if (response.data.status == "error") {
+          alert("Error: " + response.data.message);
+        } else {
+          setComList(
+            comlist.filter((val) => {
+              return val.id !== id;
+            })
+          );
+          alert("Data Deleted!");
+        }
       })
       .catch((error) => {
-        alert("unsuccessful, error" + error);
+        alert("Error: " + error);
         console.log(error);
       });
   };
@@ -83,6 +86,7 @@ function Form3() {
   const print = (val) => {
     console.log(val);
   };
+
   document.body.style.overflow = "hidden";
   return (
     <div>

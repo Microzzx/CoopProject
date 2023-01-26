@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +17,7 @@ import Axios from "axios";
 const theme = createTheme();
 
 export default function SignInSide() {
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,9 +26,15 @@ export default function SignInSide() {
         password: data.get('password'),
       })
         .then((response) => {
-          localStorage.setItem('token', response.data.token);
-          alert("Login Success!");
-          window.location = '/choose'
+          if(!response.data.token){
+            alert(response.data.message);
+            window.location.reload()
+          }
+          else{
+            localStorage.setItem('token', response.data.token);
+            alert(response.data.message);
+            window.location = '/home'
+          }
         })
         .catch((error) => {
           alert("unsuccessful, error" + error);

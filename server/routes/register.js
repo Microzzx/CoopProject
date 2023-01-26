@@ -21,8 +21,8 @@ router.post("/", jsonParser, (req, res) => {
       }
       bcrypt.hash(password, 10, function (err, hash) {
         connection.query(
-          "INSERT INTO users (email, password, fname, lname) VALUES (?, ?, ?, ?)",
-          [email, hash, fname, lname],
+          "INSERT INTO users (email, password, fname, lname, role) VALUES (?, ?, ?, ?, ?)",
+          [email, hash, fname, lname, "user"],
           (err, result) => {
             if (err) {
               res.json({ status: "error", message: "register failed!" });

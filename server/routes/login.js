@@ -11,11 +11,11 @@ router.post("/", jsonParser, (req, res) => {
     const email = req.body.email;
     connection.query("SELECT * FROM users WHERE email=?", [email], (err, users) => {
       if (err) {
-        res.json({ status: "error", message: "error" });
+        res.json({ status: "error", message: "Database error!" });
         return;
       }
       if (users.length == 0) {
-        res.json({ status: "error", message: "user not found!" });
+        res.json({ status: "error", message: "User not found!" });
         return;
       }
       bcrypt.compare(
@@ -26,9 +26,9 @@ router.post("/", jsonParser, (req, res) => {
             const token = jwt.sign({ email: users[0].email }, TOKEN_SECRET, {
               expiresIn: "1h",
             });
-            res.json({ status: "ok", message: "login success!", token });
+            res.json({ status: "ok", message: "Login success!", token });
           } else {
-            res.json({ status: "error", message: "wrong password!" });
+            res.json({ status: "error", message: "Wrong password!" });
           }
         }
       );

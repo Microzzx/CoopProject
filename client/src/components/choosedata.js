@@ -12,7 +12,7 @@ function Choose() {
               }
       })
         .then((response) => {
-            if(response.data.status == 'ok'){
+            if(response.data.status == 'ok'){                   
                 alert("Authen Success!");
             }
             else{
