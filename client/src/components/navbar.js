@@ -1,9 +1,34 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import blankpic from "../image/blank.png";
 import "../css/navbar.css";
-
+import Axios from "axios";
 
 function Navbar() {
+
+  useEffect(() =>{
+    const token = localStorage.getItem('token');
+    Axios.post("http://localhost:3001/jwtauth",{},{
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+          }
+  })
+    .then((response) => {
+        if(response.data.status == 'ok'){                   
+            //alert("Authen Success!");
+        }
+        else{
+            alert("Authen Failed!");
+            localStorage.removeItem('token');
+            window.location = '/login'
+        }
+    })
+    .catch((error) => {
+      alert("Authen Failed!");
+      localStorage.removeItem('token');
+      window.location = '/login'
+    });
+}, [])
 
   function handleLogout() {
     localStorage.removeItem("token");

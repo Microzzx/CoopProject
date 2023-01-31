@@ -1,33 +1,8 @@
 //THIS PAGE MADE FOR ADMIN
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React from "react";
 
 function Choose() {
-    useEffect(() =>{
-        const token = localStorage.getItem('token');
-        Axios.post("http://localhost:3001/jwtauth",{},{
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-              }
-      })
-        .then((response) => {
-            if(response.data.status == 'ok'){                   
-                alert("Authen Success!");
-            }
-            else{
-                alert("Authen Failed!");
-                localStorage.removeItem('token');
-                window.location = '/login'
-            }
-        })
-        .catch((error) => {
-          alert("Authen Failed!");
-          localStorage.removeItem('token');
-          window.location = '/login'
-        });
-    }, [])
-
+   
   return (
     <div class="card" style={{width:"18rem"}}>
       <img src="..." class="card-img-top" alt="image" />
