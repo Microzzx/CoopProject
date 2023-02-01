@@ -16,12 +16,12 @@ function Document() {
               width="50px"
               alt="image"
             />
-            <h5 className="card-title text">From A1</h5>
+            <h5 className="card-title text">Form A1</h5>
             <p className="card-text">
-              แบบฟอร์มกรอกข้อมูลของผู้รับเหมาในเบื้องต้น
+              แบบฟอร์มสำหรับกรอกข้อมูลประวัติผู้รับเหมารายใหม่
             </p>
             <a href="/formA1" className="btn btn-primary mt-4">
-              Go somewhere
+            Form A1
             </a>
           </div>
         </div>
@@ -36,34 +36,12 @@ function Document() {
               width="50px"
               alt="avatar"
             />
-            <h5 className="card-title">A2</h5>
+            <h5 className="card-title">Form A2</h5>
             <p className="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              แบบฟอร์มส่งข้อมูลแสดงคุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
             </p>
-            <a href="/formA1" className="btn btn-primary">
-              Go somewhere
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="col-sm-3">
-        <div className="card">
-          <div className="card-body ms-2">
-            <img
-              src={a2}
-              className="rounded-circle mb-3"
-              height="50px"
-              width="50px"
-              alt="avatar"
-            />
-            <h5 className="card-title">A2</h5>
-            <p className="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href="/formA1" className="btn btn-primary">
-              Go somewhere
+            <a href="#" className="btn btn-primary">
+            Form A2
             </a>
           </div>
         </div>

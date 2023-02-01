@@ -47,6 +47,8 @@ function Navbar_user() {
               />
             </button>
             <ul className="dropdown-menu dropdown-menu-lg-end text-center">
+            <li><a className="dropdown-item">Sign in as User</a></li>
+            <li><hr className="dropdown-divider"/></li>
               <button className="logoutbtn" onClick={handleLogout}>
                 Logout
               </button>
