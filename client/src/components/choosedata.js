@@ -1,4 +1,3 @@
-//THIS PAGE MADE FOR ADMIN
 import React from "react";
 
 function Choose() {

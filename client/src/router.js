@@ -14,13 +14,13 @@ function Router() {
     <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<NavFoot />}>
+            <Route index element={<Home />} />
             <Route exact path="/home" element={<Home />} />
             <Route exact path="/form" element={<Form />} />
             <Route exact path="/testpage" element={<Testpage />} />
             <Route exact path="/datapage" element={<Datapage />} />
             <Route exact path="/choose" element={<Choose />} />
           </Route>
-          <Route index element={<Login />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
         </Routes>
