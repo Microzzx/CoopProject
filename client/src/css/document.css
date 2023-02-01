@@ -1,0 +1,16 @@
+.card-size {
+    width: 300px;
+    height: 350px;
+  }
+
+  body {
+    background-color: #f5f7fa;
+  }
+  
+  .fas.fa-heart:hover {
+    color: #f44336 !important;
+  }
+  
+  .fas.fa-share-alt:hover {
+    color: #0d47a1 !important;
+  }

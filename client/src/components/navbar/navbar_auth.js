@@ -5,7 +5,7 @@ import Navbar_admin from "./navbar_admin";
 import Navbar_user from "./navbar_user";
 
 function Navbar() {
-  const [ userRole, setUserRole ] = useState("")
+  const [ userRole, setUserRole ] = useState("guest")
   useEffect(() =>{
     const token = localStorage.getItem('token');
     Axios.post("http://localhost:3001/jwtauth",{},{
@@ -16,20 +16,21 @@ function Navbar() {
   })
     .then((response) => {
         if(response.data.status == 'ok'){                   
-            //alert("Authen Success!");
             setUserRole(response.data.message)
         }
-        else{
-            // alert("Authen Failed!");
+        else if(response.data.status == 'error' && response.data.message == 'Token has expired'){
             localStorage.removeItem('token');
-            // window.location = '/login'
             setUserRole("guest")
+            alert("Your session has expired. Please log in.");
+            window.location = '/home'
+        }
+        else{
+          localStorage.removeItem('token');
+          setUserRole("guest")
         }
     })
     .catch((error) => {
-      // alert("Authen Failed!");
       localStorage.removeItem('token');
-      // window.location = '/login'
       setUserRole("guest")
     });
 }, [])
@@ -39,19 +40,15 @@ function Navbar() {
     window.location = "/login";
   }
   
-  if (userRole === 'guest') {
-    return <Navbar_guest />;
-  } 
-  else if (userRole === 'admin') {
+  if (userRole === 'admin') {
     return <Navbar_admin />;
-  }
+  } 
   else if (userRole === 'user') {
-    return <Navbar_user />;
+    return <Navbar_user/>;
   }
   else{
-    return null;
+    return <Navbar_guest />;
   }
-
 }
 
 export default Navbar;

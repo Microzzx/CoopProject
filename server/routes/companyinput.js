@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const connection = require('../connection');
+const {authRole} = require('../middlewares/jwtrole_auth')
 
-router.post("/", (req, res) => {
+router.post("/",authRole(["admin","user"]), (req, res) => {
     const name = req.body.name;
     const age = req.body.age;
     const subdistrict = req.body.subdistrict;

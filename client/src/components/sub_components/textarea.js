@@ -5,6 +5,7 @@ function Textarea(props) {
 
   return (
     <textarea
+      required
       className="form-control"
       placeholder={string}
       rows={row}

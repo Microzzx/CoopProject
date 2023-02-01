@@ -16,9 +16,9 @@ function Navbar_user() {
           <a className="nav-item nav-link" href="/home">
             Home
           </a>
-          <a className="nav-item nav-link" href="/choose">
-            Document
-          </a>
+          <a className="nav-item nav-link" href="/document">
+              Document
+            </a>
           <a className="nav-item nav-link" href="/home">
             About Us
           </a>

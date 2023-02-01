@@ -17,15 +17,15 @@ function Navbar_admin() {
           <a className="nav-item nav-link" href="/home">
             Home
           </a>
-          <a className="nav-item nav-link" href="/form">
+          <a className="nav-item nav-link" href="/formA1">
             FormA1
           </a>
           <a className="nav-item nav-link" href="/testpage">
             testpage
           </a>
           {
-            <a className="nav-item nav-link" href="/choose">
-              choose
+            <a className="nav-item nav-link" href="/document">
+              Document
             </a>
           }
           <a className="nav-item nav-link" href="/datapage">

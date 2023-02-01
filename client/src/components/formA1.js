@@ -18,7 +18,7 @@ const joblist = {
   mechanic3: "",
   worker: "",
 };
-function Form() {
+function FormA1() {
   const [state, setState] = useState({
     name: "",
     age: "",
@@ -54,12 +54,17 @@ function Form() {
     e.preventDefault()
     console.log(state)
     Axios.post("http://localhost:3001/companyinput", state)
-      .then(() => {
+      .then((response) => {
+        if (response.data.status == "error") {
+          alert("Error: " + response.data.message);
+        } else {
         setComList([...comlist, state]);
         alert("Data Inserted!");
+        window.location = '/document'
+        }
       })
       .catch((error) => {
-        alert("unsuccessful, error" + error);
+        alert("Error: " + error);
         console.log(error);
       });
   };
@@ -115,13 +120,15 @@ function Form() {
             <div className="field">
               <label className="label">3. ประเภทงาน</label>
               <select
+                required
                 className="form-select"
+               
                 aria-label="Default select example"
                 onChange={(e) => {
                   setState({ ...state, worktype: e.target.value });
                 }}
               >
-                <option defaultValue>เลือกประเภทงาน</option>
+                <option value="">กรุณาเลือกประเภทงาน</option>
                 <option value="ผู้รับเหมาก่อสร้าง">ผู้รับเหมาก่อสร้าง</option>
                 <option value="ผู้รับเหมาไฟฟ้า">ผู้รับเหมาไฟฟ้า</option>
                 <option value="ผู้รับเหมาเบลลินี่">ผู้รับเหมาเบลลินี่</option>
@@ -260,7 +267,6 @@ function Form() {
           <button
             className="btn btn-primary"
             type="submit"
-            
           >
             Submit
           </button>
@@ -270,4 +276,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default FormA1;
