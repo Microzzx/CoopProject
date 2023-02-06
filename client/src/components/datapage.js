@@ -7,7 +7,7 @@ import edit_btn from "../image/edit_icon.jpg";
 import delete_btn from "../image/delete_icon.jpg";
 import view_btn from "../image/view_icon.png";
 import Mdbody from "./sub_components/modalbody";
-
+import Grid from "@mui/material/Grid";
 function Form3() {
   //new data set for render on table
   const [comlist, setComList] = useState([]);
@@ -92,145 +92,148 @@ function Form3() {
 
   // document.body.style.overflow = "hidden";
   return (
-    <div>
-      <table className="table table-dark tableheader">
-        <thead>
-          <tr>
-            <th scope="col" className="tablecol1 center">
-              No.
-            </th>
-            <th scope="col" className="tablecol2 center">
-              Time
-            </th>
-            <th scope="col" className="tablecol2 center">
-              Email
-            </th>
-            <th scope="col" className="tablecol1 center">
-              Name
-            </th>
-            <th scope="col" className="tablecol2 center">
-              Province
-            </th>
-            <th scope="col" className="tablecol2 center">
-              Type
-            </th>
-            <th scope="col" className="tablecol2 center">
-              Status
-            </th>
-            <th scope="col" className="tablecol1 center"></th>
-            <th scope="col" className="tablecol1 center"></th>
-          </tr>
-        </thead>
-        {comlist.map((val, key) => {
-          return (
-            <tbody>
-              <tr>
-                <td scope="row" className="tablecol1">
-                  {key + 1}
-                </td>
-                <td className="tablecol2">{val.time}</td>
-                <td className="tablecol2">{val.email}</td>
-                <td className="tablecol1">{val.name}</td>
-                <td className="tablecol2">{val.province}</td>
-                <td className="tablecol2">{val.worktype}</td>
-                <td className="tablecol2">{val.status}</td>
-                <td className="tablecol1">
-                  <input
-                    className="btnsize mrc"
-                    type="image"
-                    src={view_btn}
-                    onClick={() => {
-                      setModalInfo(val);
-                      toggle();
-                    }}
-                  ></input>
-
-                  <Modal isOpen={modal} toggle={toggle} className="modalsize">
-                    <ModalHeader toggle={toggle} className="ms-3 mt-3">
-                      บริษัท {modalinfo.name}
-                    </ModalHeader>
-                    <ModalBody className="ms-3">
-                      <Mdbody modalinfo={modalinfo} />
-                    </ModalBody>
-                    <ModalFooter>
-                      <div className="row">
-                        <div className="col">
-                          <input
-                            className="btnsize"
-                            title="Comment"
-                            type="image"
-                            src={edit_btn}
-                            value="Comment"
-                            onClick={() => {
-                              updateCompany(modalinfo.id);
-                            }}
-                          ></input>
-                        </div>
-                        <div className="col">
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              checked={newstatus === "Approved"}
-                              onChange={() => setNewStatus("Approved")}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="flexCheckDisabled"
-                            >
-                              Approve
-                            </label>
-                          </div>
-
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              checked={newstatus === "Decline"}
-                              onChange={() => setNewStatus("Decline")}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="flexCheckDisabled"
-                            >
-                              Decline
-                            </label>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <Button
-                            color="success"
-                            onClick={() => {
-                              updateCompany(modalinfo.id);
-                            }}
-                          >
-                            Confirm
-                          </Button>
-                        </div>
-                      </div>
-                    </ModalFooter>
-                  </Modal>
-                </td>
-                <td className="tablecol1">
-                  <button
-                    className="btnsize mrc"
-                    onClick={() => {
-                      deleteCompany(val.id);
-                    }}
-                  >
-                    <img
+    <Grid Grid container component="main" sx={{ height: "75vh" }}>
+      
+      <div className="table-wrap">
+        <table className="table table-dark tableheader">
+          <thead>
+            <tr>
+              <th scope="col" className="tablecol1 center">
+                No.
+              </th>
+              <th scope="col" className="tablecol2 center">
+                Time
+              </th>
+              <th scope="col" className="tablecol2 center">
+                Email
+              </th>
+              <th scope="col" className="tablecol1 center">
+                Name
+              </th>
+              <th scope="col" className="tablecol2 center">
+                Province
+              </th>
+              <th scope="col" className="tablecol2 center">
+                Type
+              </th>
+              <th scope="col" className="tablecol2 center">
+                Status
+              </th>
+              <th scope="col" className="tablecol1 center"></th>
+              <th scope="col" className="tablecol1 center"></th>
+            </tr>
+          </thead>
+          {comlist.map((val, key) => {
+            return (
+              <tbody>
+                <tr>
+                  <td scope="row" className="tablecol1">
+                    {key + 1}
+                  </td>
+                  <td className="tablecol2">{val.time}</td>
+                  <td className="tablecol2">{val.email}</td>
+                  <td className="tablecol1">{val.name}</td>
+                  <td className="tablecol2">{val.province}</td>
+                  <td className="tablecol2">{val.worktype}</td>
+                  <td className="tablecol2">{val.status}</td>
+                  <td className="tablecol1">
+                    <input
                       className="btnsize mrc"
-                      src={delete_btn}
-                      alt="delete_button"
-                    />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          );
-        })}
-      </table>
-    </div>
+                      type="image"
+                      src={view_btn}
+                      onClick={() => {
+                        setModalInfo(val);
+                        toggle();
+                      }}
+                    ></input>
+
+                    <Modal isOpen={modal} toggle={toggle} className="modalsize">
+                      <ModalHeader toggle={toggle} className="ms-3 mt-3">
+                        บริษัท {modalinfo.name}
+                      </ModalHeader>
+                      <ModalBody className="ms-3">
+                        <Mdbody modalinfo={modalinfo} />
+                      </ModalBody>
+                      <ModalFooter>
+                        <div className="row">
+                          <div className="col">
+                            <input
+                              className="btnsize"
+                              title="Comment"
+                              type="image"
+                              src={edit_btn}
+                              value="Comment"
+                              onClick={() => {
+                                updateCompany(modalinfo.id);
+                              }}
+                            ></input>
+                          </div>
+                          <div className="col">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                checked={newstatus === "Approved"}
+                                onChange={() => setNewStatus("Approved")}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="flexCheckDisabled"
+                              >
+                                Approve
+                              </label>
+                            </div>
+
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                checked={newstatus === "Decline"}
+                                onChange={() => setNewStatus("Decline")}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="flexCheckDisabled"
+                              >
+                                Decline
+                              </label>
+                            </div>
+                          </div>
+                          <div className="col">
+                            <Button
+                              color="success"
+                              onClick={() => {
+                                updateCompany(modalinfo.id);
+                              }}
+                            >
+                              Confirm
+                            </Button>
+                          </div>
+                        </div>
+                      </ModalFooter>
+                    </Modal>
+                  </td>
+                  <td className="tablecol1">
+                    <button
+                      className="btnsize mrc"
+                      onClick={() => {
+                        deleteCompany(val.id);
+                      }}
+                    >
+                      <img
+                        className="btnsize mrc"
+                        src={delete_btn}
+                        alt="delete_button"
+                      />
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            );
+          })}
+        </table>
+      </div>
+    </Grid>
   );
 }
 //
