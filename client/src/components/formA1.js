@@ -53,7 +53,13 @@ function FormA1() {
   const PostCompanies = (e) => {
     e.preventDefault()
     console.log(state)
-    Axios.post("http://localhost:3001/companyinput", state)
+    const token = localStorage.getItem("token");
+    Axios.post("http://localhost:3001/companyinput", state, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (response.data.status == "error") {
           alert("Error: " + response.data.message);

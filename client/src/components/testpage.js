@@ -37,16 +37,7 @@ export default function Album() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Album layout
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: 'background.paper',
@@ -62,12 +53,10 @@ export default function Album() {
               color="text.primary"
               gutterBottom
             >
-              Album layout
+              Home Page
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Something short and leading about the collection below—its contents,
-              the creator, etc. Make it short and sweet, but not too short so folks
-              don&apos;t simply skip over it entirely.
+            บริษัท ซีพี ออลล์ จำกัด (มหาชน) หนึ่งในกลุ่มธุรกิจของเครือเจริญโภคภัณฑ์ ก่อตั้งขึ้นเมื่อปี 2531 บริษัทเป็นผู้ดำเนินธุรกิจค้าปลีกประเภทร้านสะดวกซื้อ 7-Eleven 
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -75,8 +64,8 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
+              <Button variant="contained">เกี่ยวกับเรา</Button>
+              <Button variant="outlined">ติดต่อเรา</Button>
             </Stack>
           </Container>
         </Box>

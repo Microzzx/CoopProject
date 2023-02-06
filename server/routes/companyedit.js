@@ -4,11 +4,13 @@ const connection = require('../connection');
 
 router.put("/", (req, res) => {
     const id = req.body.id;
-    const age = req.body.age;
+    const comment = req.body.comment;
+    const status = req.body.status;
+    const workrole = req.body.workrole;
   
     connection.query(
-      "UPDATE companyinfo SET age = ? WHERE id = ?",
-      [age, id],
+      "UPDATE companyinfo SET comment = ?, status = ?, workrole = ? WHERE id = ?",
+      [comment, status, workrole, id],
       (err, result) => {
         if (err) {
           console.log(err);

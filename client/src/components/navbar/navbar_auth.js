@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import Navbar_guest from "./navbar_guest";
-import Navbar_admin from "./navbar_admin";
-import Navbar_user from "./navbar_user";
+import NavbarGuest from "./navbar_guest";
+import NavbarAdmin from "./navbar_admin";
+import NavbarUser from "./navbar_user";
 
 function Navbar() {
   const [ userRole, setUserRole ] = useState("guest")
@@ -15,14 +15,14 @@ function Navbar() {
           }
   })
     .then((response) => {
-        if(response.data.status == 'ok'){                   
+        if(response.data.status === 'ok'){                   
             setUserRole(response.data.message)
         }
-        else if(response.data.status == 'error' && response.data.message == 'Token has expired'){
+        else if(response.data.status === 'error' && response.data.message === 'Token has expired'){
             localStorage.removeItem('token');
             setUserRole("guest")
             alert("Your session has expired. Please log in.");
-            window.location = '/home'
+            window.location = '/login'
         }
         else{
           localStorage.removeItem('token');
@@ -35,19 +35,14 @@ function Navbar() {
     });
 }, [])
 
-  function handleLogout() {
-    localStorage.removeItem("token");
-    window.location = "/login";
-  }
-  
   if (userRole === 'admin') {
-    return <Navbar_admin />;
+    return <NavbarAdmin />;
   } 
   else if (userRole === 'user') {
-    return <Navbar_user/>;
+    return <NavbarUser/>;
   }
   else{
-    return <Navbar_guest />;
+    return <NavbarGuest />;
   }
 }
 

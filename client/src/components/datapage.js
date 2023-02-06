@@ -9,8 +9,12 @@ import view_btn from "../image/view_icon.png";
 import Mdbody from "./sub_components/modalbody";
 
 function Form3() {
+  //new data set for render on table
   const [comlist, setComList] = useState([]);
-  const [newage, setNewAge] = useState(0);
+  //new data
+  const [newcomment, setNewComment] = useState("-");
+  const [newstatus, setNewStatus] = useState("Approved");
+  const [newworkrole, setNewworkrole] = useState("-");
   //modal info
   const [modalinfo, setModalInfo] = useState([]);
   //modal toggle
@@ -23,9 +27,11 @@ function Form3() {
     });
   };
 
-  const updateCompanyAge = (id) => {
+  const updateCompany = (id) => {
     Axios.put("http://localhost:3001/companyedit", {
-      age: newage,
+      comment: newcomment,
+      status: newstatus,
+      workrole: newworkrole,
       id: id,
     })
       .then((response) => {
@@ -35,10 +41,11 @@ function Form3() {
               ? {
                   id: val.id,
                   time: val.time,
+                  email: val.email,
                   name: val.name,
-                  age: newage,
                   province: val.province,
                   worktype: val.worktype,
+                  status: val.status,
                 }
               : val;
           })
@@ -83,11 +90,7 @@ function Form3() {
     GetCompanies();
   };
 
-  const print = (val) => {
-    console.log(val);
-  };
-
-  document.body.style.overflow = "hidden";
+  // document.body.style.overflow = "hidden";
   return (
     <div>
       <table className="table table-dark tableheader">
@@ -100,10 +103,10 @@ function Form3() {
               Time
             </th>
             <th scope="col" className="tablecol2 center">
-              Name
+              Email
             </th>
             <th scope="col" className="tablecol1 center">
-              Age
+              Name
             </th>
             <th scope="col" className="tablecol2 center">
               Province
@@ -118,21 +121,19 @@ function Form3() {
             <th scope="col" className="tablecol1 center"></th>
           </tr>
         </thead>
-      </table>
-      {comlist.map((val, key) => {
-        return (
-          <table className="table">
+        {comlist.map((val, key) => {
+          return (
             <tbody>
               <tr>
                 <td scope="row" className="tablecol1">
                   {key + 1}
                 </td>
                 <td className="tablecol2">{val.time}</td>
-                <td className="tablecol2">{val.name}</td>
-                <td className="tablecol1">{val.age}</td>
+                <td className="tablecol2">{val.email}</td>
+                <td className="tablecol1">{val.name}</td>
                 <td className="tablecol2">{val.province}</td>
                 <td className="tablecol2">{val.worktype}</td>
-                <td className="tablecol2">x</td>
+                <td className="tablecol2">{val.status}</td>
                 <td className="tablecol1">
                   <input
                     className="btnsize mrc"
@@ -149,58 +150,61 @@ function Form3() {
                       บริษัท {modalinfo.name}
                     </ModalHeader>
                     <ModalBody className="ms-3">
-                      <Mdbody
-                        name={modalinfo.name}
-                        age={modalinfo.age}
-                        subdistrict={modalinfo.subdistrict}
-                        district={modalinfo.district}
-                        province={modalinfo.province}
-                        zipcode={modalinfo.zipcode}
-                        worktype={modalinfo.worktype}
-                        toughness={modalinfo.toughness}
-                        weakness={modalinfo.weakness}
-                        exwork={modalinfo.exwork}
-                        civil={modalinfo.civil}
-                        electrical={modalinfo.electrical}
-                        fore={modalinfo.fore}
-                        chief1={modalinfo.chief1}
-                        chief2={modalinfo.chief2}
-                        chief3={modalinfo.chief3}
-                        mechanic1={modalinfo.mechanic1}
-                        mechanic2={modalinfo.mechanic2}
-                        mechanic3={modalinfo.mechanic3}
-                        worker={modalinfo.worker}
-                        ocivil={modalinfo.ocivil}
-                        oelectrical={modalinfo.oelectrical}
-                        ofore={modalinfo.ofore}
-                        ochief1={modalinfo.ochief1}
-                        ochief2={modalinfo.ochief2}
-                        ochief3={modalinfo.ochief3}
-                        omechanic1={modalinfo.omechanic1}
-                        omechanic2={modalinfo.omechanic2}
-                        omechanic3={modalinfo.omechanic3}
-                        oworker={modalinfo.worker}
-                        tools={modalinfo.tools}
-                        branch={modalinfo.branch}
-                        provinces={modalinfo.provinces}
-                      />
+                      <Mdbody modalinfo={modalinfo} />
                     </ModalBody>
                     <ModalFooter>
                       <div className="row">
                         <div className="col">
                           <input
                             className="btnsize"
+                            title="Comment"
                             type="image"
                             src={edit_btn}
+                            value="Comment"
                             onClick={() => {
-                              updateCompanyAge(modalinfo.id);
-                              console.log(modalinfo.id);
+                              updateCompany(modalinfo.id);
                             }}
                           ></input>
                         </div>
                         <div className="col">
-                          <Button color="secondary" onClick={toggle}>
-                            อนุมัติ
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              checked={newstatus === "Approved"}
+                              onChange={() => setNewStatus("Approved")}
+                            />
+                            <label
+                              class="form-check-label"
+                              for="flexCheckDisabled"
+                            >
+                              Approve
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              checked={newstatus === "Decline"}
+                              onChange={() => setNewStatus("Decline")}
+                            />
+                            <label
+                              class="form-check-label"
+                              for="flexCheckDisabled"
+                            >
+                              Decline
+                            </label>
+                          </div>
+                        </div>
+                        <div className="col">
+                          <Button
+                            color="success"
+                            onClick={() => {
+                              updateCompany(modalinfo.id);
+                            }}
+                          >
+                            Confirm
                           </Button>
                         </div>
                       </div>
@@ -223,9 +227,9 @@ function Form3() {
                 </td>
               </tr>
             </tbody>
-          </table>
-        );
-      })}
+          );
+        })}
+      </table>
     </div>
   );
 }

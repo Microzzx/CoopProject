@@ -19,9 +19,12 @@ router.post("/",authRole(["admin","user"]), (req, res) => {
     const tools = req.body.tools;
     const branch = req.body.branch;
     const provinces = req.body.provinces;
-    console.log(fulltime);
+    const status = "Pending";
+    const workrole = "-";
+    const email = req.email;
+   
     connection.query(
-      "INSERT INTO companyinfo (name, age, subdistrict, district, province, zipcode, worktype, toughness, weakness, exwork, civil, electrical, fore, chief1, chief2, chief3, mechanic1, mechanic2, mechanic3, worker, ocivil, oelectrical, ofore, ochief1, ochief2, ochief3, omechanic1, omechanic2, omechanic3, oworker, tools, branch, provinces) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO companyinfo (name, age, subdistrict, district, province, zipcode, worktype, toughness, weakness, exwork, civil, electrical, fore, chief1, chief2, chief3, mechanic1, mechanic2, mechanic3, worker, ocivil, oelectrical, ofore, ochief1, ochief2, ochief3, omechanic1, omechanic2, omechanic3, oworker, tools, branch, provinces, status, workrole, email) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
       [
         name,
         age,
@@ -56,12 +59,15 @@ router.post("/",authRole(["admin","user"]), (req, res) => {
         tools,
         branch,
         provinces,
+        status,
+        workrole,
+        email,
       ],
       (err, result) => {
         if (err) {
           console.log(err);
         } else {
-          res.send("Value Inserted");
+          console.log(result);
         }
       }
     );

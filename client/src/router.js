@@ -17,7 +17,7 @@ function Router() {
       <Routes>
         <Route exact path="/" element={<NavFoot />}>
           <Route index element={<Home />} />
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/home" element={<Testpage />} />
           <Route element={<PrivateUserRoutes />}>
             <Route exact path="/formA1" element={<FormA1 />} />
           <Route exact path="/document" element={<Document />} />

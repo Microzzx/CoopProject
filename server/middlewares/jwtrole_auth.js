@@ -7,6 +7,7 @@ const authRole = (permission) => {
         if(req.headers.authorization){
             const token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, TOKEN_SECRET);
+            req.email = decoded.email; 
             connection.query("SELECT role FROM users WHERE email=?", [decoded.email], (err, users) => {
               if (err) {
                 res.json({ status: "error", message: "Role not found!" });
