@@ -167,31 +167,31 @@ function Form3() {
                           ></input>
                         </div>
                         <div className="col">
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               checked={newstatus === "Approved"}
                               onChange={() => setNewStatus("Approved")}
                             />
                             <label
-                              class="form-check-label"
-                              for="flexCheckDisabled"
+                              className="form-check-label"
+                              htmlFor="flexCheckDisabled"
                             >
                               Approve
                             </label>
                           </div>
 
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               checked={newstatus === "Decline"}
                               onChange={() => setNewStatus("Decline")}
                             />
                             <label
-                              class="form-check-label"
-                              for="flexCheckDisabled"
+                              className="form-check-label"
+                              htmlFor="flexCheckDisabled"
                             >
                               Decline
                             </label>
