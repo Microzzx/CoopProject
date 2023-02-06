@@ -77,11 +77,10 @@ function FormA1() {
   
   //---------------------------------------------------------
   return (
-    <div className="container bgc top-buffer mt-5 mb-5 rcorners2">
+    <div className="container bgc top-buffer mt-3 mb-5 rcorners2">
       <form onSubmit={PostCompanies}>
         <div className="row row-cols-auto g-4">
           <h2 className="center mtc mbc">แบบสอบถามประวัติผู้รับเหมารายใหม่</h2>
-          <div className="dropdown-container"></div>
         </div>
         <div className="row row-cols-auto g-3 top-row">
           <div className="col-md-4">
@@ -96,6 +95,7 @@ function FormA1() {
               ></Input>
             </div>
           </div>
+
           <div className="col-md-2">
             <div className="field">
               <label className="label md-5">อายุบริษัท</label>

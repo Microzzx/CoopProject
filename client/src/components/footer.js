@@ -3,11 +3,11 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      <footer id= "t3-footer" className="wrap t3-footer">
+      <footer className="bg-dark text-center text-white">
         <div className="text-center p-3">
-          © 2023 Copyright :
+          © 2020 Copyright:
           <a className="text-white" href="https://mdbootstrap.com/">
-            Example.com
+            MDBootstrap.com
           </a>
         </div>
       </footer>

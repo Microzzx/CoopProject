@@ -14,9 +14,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Axios from "axios";
-const theme = createTheme();
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Prompt',
+  },
+});
 
-export default function SignInSide() {
+export default function Login() {
   
   const handleSubmit = (event) => {
     event.preventDefault();

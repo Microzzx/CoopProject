@@ -5,7 +5,7 @@ import "../css/document.css";
 import Grid from "@mui/material/Grid";
 function Document() {
   return (
-    <Grid container component="main" sx={{ height: "75vh" }}>
+    <Grid container component="main" sx={{ height: "86.5vh" }}>
       <div class="row mt-5 ms-5 me-5">
         <div class="col-lg-5  align-items-stretch">
         <div className="card">

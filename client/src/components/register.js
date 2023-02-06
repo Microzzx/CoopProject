@@ -13,7 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Axios from "axios";
-const theme = createTheme();
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Prompt'
+  },
+});
 
 export default function SignUp() {
   const handleSubmit = (event) => {

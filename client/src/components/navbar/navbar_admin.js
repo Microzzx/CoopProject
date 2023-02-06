@@ -3,15 +3,14 @@ import status_image from "../../image/admin.png";
 import "../../css/navbar.css";
 
 function Navbar_admin() {
-
-    function handleLogout() {
-        localStorage.removeItem("token");
-        window.location = "/home";
-      }
+  function handleLogout() {
+    localStorage.removeItem("token");
+    window.location = "/home";
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light navbar-color shadow w-100 p-0">
-      <h2 className="ms-3">Admin</h2>
+      <h2 className="ms-3">CP ALL</h2>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav ms-auto">
           <a className="nav-item nav-link" href="/home">
@@ -20,14 +19,9 @@ function Navbar_admin() {
           <a className="nav-item nav-link" href="/formA1">
             FormA1
           </a>
-          <a className="nav-item nav-link" href="/testpage">
-            testpage
+          <a className="nav-item nav-link" href="/document">
+            Document
           </a>
-          {
-            <a className="nav-item nav-link" href="/document">
-              Document
-            </a>
-          }
           <a className="nav-item nav-link" href="/datapage">
             Data
           </a>
@@ -59,9 +53,13 @@ function Navbar_admin() {
               />
             </button>
             <ul className="dropdown-menu dropdown-menu-lg-end text-center">
-            <li><a className="dropdown-item">Sign in as Admin</a></li>
-            <li><hr className="dropdown-divider"/></li>
-            <button className="logoutbtn" onClick={handleLogout}>
+              <li>
+                <a className="dropdown-item">Sign in as Admin</a>
+              </li>
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
+              <button className="logoutbtn" onClick={handleLogout}>
                 Logout
               </button>
             </ul>

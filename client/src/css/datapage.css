@@ -52,6 +52,6 @@ table {
 
 .table-wrap {
   width: 100%;
-  height: 800px;
+  height: 600px;
   overflow-y: auto;
 }

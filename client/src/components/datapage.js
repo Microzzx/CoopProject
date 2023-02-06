@@ -92,10 +92,10 @@ function Form3() {
 
   // document.body.style.overflow = "hidden";
   return (
-    <Grid Grid container component="main" sx={{ height: "75vh" }}>
-      
+    <Grid Grid container component="main" sx={{ height: "86.5vh" }}>
+      <h2 className="center">ข้อมูลฟอร์ม A1</h2>
       <div className="table-wrap">
-        <table className="table table-dark tableheader">
+        <table className="table table-hover table-dark">
           <thead>
             <tr>
               <th scope="col" className="tablecol1 center">
@@ -188,8 +188,8 @@ function Form3() {
                               <input
                                 className="form-check-input"
                                 type="checkbox"
-                                checked={newstatus === "Decline"}
-                                onChange={() => setNewStatus("Decline")}
+                                checked={newstatus === "Declined"}
+                                onChange={() => setNewStatus("Declined")}
                               />
                               <label
                                 className="form-check-label"
