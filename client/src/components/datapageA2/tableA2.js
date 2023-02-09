@@ -94,7 +94,7 @@ function TableA2() {
   // document.body.style.overflow = "hidden";
   return (
     <Grid container component="main" sx={{ height: "86.5vh" }}>
-      <h2 className="center">ข้อมูลฟอร์ม A1</h2>
+      <h2 className="center">ข้อมูลฟอร์ม A2</h2>
       <div className="table-wrap">
         <table className="table table-hover">
           <thead className="table-dark">
@@ -127,7 +127,7 @@ function TableA2() {
           {comlist.map((val, index) => {
             return (
               <tbody key={index}>
-                <Link to={`/viewA2/${val.id}`}>
+                {/* <Link to={`/viewA2/${val.id}`}>
                   <tr className="center">
                     <td scope="row" className="tablecol1">
                       {index + 1}
@@ -139,7 +139,7 @@ function TableA2() {
                     <td className="tablecol2">{val.worktype}</td>
                     <td className="tablecol2">{val.status}</td>
                   </tr>
-                </Link>
+                </Link> */}
               </tbody>
             );
           })}

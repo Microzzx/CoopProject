@@ -24,7 +24,7 @@ function TableA1() {
 
   useEffect(() => {
     const GetCompanies = () => {
-      Axios.get("http://localhost:3001/companyinfo").then((response) => {
+      Axios.get("http://localhost:3001/a1_get").then((response) => {
         setComList(response.data);
       });
     };
@@ -91,12 +91,12 @@ function TableA1() {
   };
 
   const view = (id) =>{
-    window.location = `/viewA2/${id}`
+    window.location = `/viewA1/${id}`
   };
 
   // document.body.style.overflow = "hidden";
   return (
-    <Grid Grid container component="main" sx={{ height: "86.5vh" }}>
+    <Grid container component="main" sx={{ height: "86.5vh" }}>
       <h2 className="center">ข้อมูลฟอร์ม A1</h2>
       <div className="table-wrap">
         <table className="table table-hover">

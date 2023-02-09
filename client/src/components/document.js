@@ -7,8 +7,8 @@ function Document() {
   //check user status 
   return (
     <Grid container component="main" sx={{ height: "86.5vh" }}>
-      <div class="row mt-5 ms-5 me-5">
-        <div class="col-lg-5  align-items-stretch">
+      <div className="row mt-5 ms-5 me-5">
+        <div className="col-lg-5  align-items-stretch">
         <div className="card">
             <div className="card-body ms-2">
               <img
@@ -28,7 +28,7 @@ function Document() {
             </div>
           </div>
         </div>
-        <div class="col-lg-5  align-items-stretch">
+        <div className="col-lg-5  align-items-stretch">
         <div className="card">
             <div className="card-body ms-2">
               <img
@@ -50,15 +50,6 @@ function Document() {
         </div>
         
     </div>
-
-
-
-
-
-
-
-
-      
     </Grid>
   );
 }

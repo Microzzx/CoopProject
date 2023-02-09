@@ -10,7 +10,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json());
 //routes
-app.use('/companyinfo', require('./routes/companyinfo'));
+app.use('/a1_get', require('./routes/a1_get'));
 app.use('/a1_input', require('./routes/a1_input'));
 app.use('/a2_image_input', require('./routes/a2_image_input'));
 app.use('/a2_image_get', require('./routes/a2_image_get'));
