@@ -8,7 +8,8 @@ import delete_btn from "../image/delete_icon.jpg";
 import view_btn from "../image/view_icon.png";
 import Mdbody from "./sub_components/modalbody";
 import Grid from "@mui/material/Grid";
-function Form3() {
+
+function DatapageA1() {
   //new data set for render on table
   const [comlist, setComList] = useState([]);
   //new data
@@ -237,4 +238,4 @@ function Form3() {
   );
 }
 //
-export default Form3;
+export default DatapageA1;

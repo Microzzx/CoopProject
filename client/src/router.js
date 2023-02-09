@@ -6,7 +6,8 @@ import FormA1 from "./components/formA1";
 import FormA2 from "./components/formA2";
 import NavFoot from "./components/navfoot";
 import Home from "./components/home";
-import Datapage from "./components/datapage";
+import DatapageA1 from "./components/datapageA1";
+import DatapageA2 from "./components/datapageA2";
 import Login from "./components/login";
 import Document from "./components/document";
 import Register from "./components/register";
@@ -23,7 +24,8 @@ function Router() {
             <Route exact path="/formA2" element={<FormA2 />} />
             <Route exact path="/document" element={<Document />} />
             <Route element={<PrivateAdminRoutes />}>
-              <Route exact path="/datapage" element={<Datapage />} />
+              <Route exact path="/datapageA1" element={<DatapageA1 />} />
+              <Route exact path="/datapageA2" element={<DatapageA2 />} />
             </Route>
           </Route>
         </Route>

@@ -25,8 +25,11 @@ function Navbar_admin() {
           <a className="nav-item nav-link" href="/document">
             Document
           </a>
-          <a className="nav-item nav-link" href="/datapage">
-            Data
+          <a className="nav-item nav-link" href="/datapageA1">
+            DataA1
+          </a>
+          <a className="nav-item nav-link" href="/datapageA2">
+            DataA2
           </a>
           <a className="nav-item nav-link" href="/home">
             About Us
