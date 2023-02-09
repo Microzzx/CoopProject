@@ -13,4 +13,16 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+    const { id } = req.params;
+    connection.query(`SELECT time, email FROM a1 WHERE id=${id}`, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error while retrieving the data");
+        } else {
+            res.send(result);
+        }
+    });
+});
+
 module.exports = router;

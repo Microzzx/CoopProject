@@ -1,15 +1,15 @@
 //THIS PAGE MADE FOR ADMIN
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import "../css/datapage.css";
+import "../../css/datapage.css";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import edit_btn from "../image/edit_icon.jpg";
-import delete_btn from "../image/delete_icon.jpg";
-import view_btn from "../image/view_icon.png";
-import Mdbody from "./sub_components/modalbody";
+import edit_btn from "../../image/edit_icon.jpg";
+import delete_btn from "../../image/delete_icon.jpg";
+import view_btn from "../../image/view_icon.png";
+import Mdbody from "../sub_components/modalbody";
 import Grid from "@mui/material/Grid";
 
-function DatapageA1() {
+function TableA1() {
   //new data set for render on table
   const [comlist, setComList] = useState([]);
   //new data
@@ -22,11 +22,14 @@ function DatapageA1() {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  const GetCompanies = () => {
-    Axios.get("http://localhost:3001/companyinfo").then((response) => {
-      setComList(response.data);
-    });
-  };
+  useEffect(() => {
+    const GetCompanies = () => {
+      Axios.get("http://localhost:3001/companyinfo").then((response) => {
+        setComList(response.data);
+      });
+    };
+    GetCompanies();
+  }, []);
 
   const updateCompany = (id) => {
     Axios.put("http://localhost:3001/companyedit", {
@@ -87,8 +90,8 @@ function DatapageA1() {
       });
   };
 
-  window.onload = function () {
-    GetCompanies();
+  const view = (id) =>{
+    window.location = `/viewA2/${id}`
   };
 
   // document.body.style.overflow = "hidden";
@@ -124,12 +127,12 @@ function DatapageA1() {
               <th scope="col" className="tablecol1"></th>
             </tr>
           </thead>
-          {comlist.map((val, key) => {
+          {comlist.map((val, index) => {
             return (
-              <tbody>
+              <tbody key={index}>
                 <tr className="center">
                   <td scope="row" className="tablecol1">
-                    {key + 1}
+                    {index + 1}
                   </td>
                   <td className="tablecol2">{val.time}</td>
                   <td className="tablecol2">{val.email}</td>
@@ -143,8 +146,9 @@ function DatapageA1() {
                       type="image"
                       src={view_btn}
                       onClick={() => {
-                        setModalInfo(val);
-                        toggle();
+                        view(val.id);
+                        //setModalInfo(val);
+                        //toggle();
                       }}
                     ></input>
 
@@ -238,4 +242,4 @@ function DatapageA1() {
   );
 }
 //
-export default DatapageA1;
+export default TableA1;

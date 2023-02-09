@@ -25,10 +25,10 @@ function Navbar_admin() {
           <a className="nav-item nav-link" href="/document">
             Document
           </a>
-          <a className="nav-item nav-link" href="/datapageA1">
+          <a className="nav-item nav-link" href="/tableA1">
             DataA1
           </a>
-          <a className="nav-item nav-link" href="/datapageA2">
+          <a className="nav-item nav-link" href="/tableA2">
             DataA2
           </a>
           <a className="nav-item nav-link" href="/home">
