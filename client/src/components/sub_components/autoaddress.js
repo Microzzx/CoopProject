@@ -12,7 +12,7 @@ function Address(props) {
       </div>
       <div className="col-sm-2">
         <InputAddress
-          required
+          
           className="form-control"
           placeholder="แขวง / ตำบล"
           address="subdistrict"
@@ -28,7 +28,7 @@ function Address(props) {
       </div>
       <div className="col-sm-2 ">
         <InputAddress
-          required
+          
           placeholder="เขต / อำเภอ"
           address="district"
           value={state.district}
@@ -43,7 +43,7 @@ function Address(props) {
       </div>
       <div className="col-sm-2">
         <InputAddress
-          required
+          
           placeholder="จังหวัด"
           address="province"
           value={state.province}
@@ -58,7 +58,7 @@ function Address(props) {
       </div>
       <div className="col-sm-2">
         <InputAddress
-          required
+          
           placeholder="เลขไปรษณีย์"
           address="zipcode"
           value={state.zipcode}

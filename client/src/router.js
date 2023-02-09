@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateAdminRoutes from "./private_admin_routes";
 import PrivateUserRoutes from "./private _user_routes";
 import FormA1 from "./components/formA1";
+import FormA2 from "./components/formA2";
 import NavFoot from "./components/navfoot";
 import Home from "./components/home";
 import Datapage from "./components/datapage";
@@ -19,6 +20,7 @@ function Router() {
           <Route exact path="/home" element={<Home />} />
           <Route element={<PrivateUserRoutes />}>
             <Route exact path="/formA1" element={<FormA1 />} />
+            <Route exact path="/formA2" element={<FormA2 />} />
             <Route exact path="/document" element={<Document />} />
             <Route element={<PrivateAdminRoutes />}>
               <Route exact path="/datapage" element={<Datapage />} />

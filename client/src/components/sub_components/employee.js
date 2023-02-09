@@ -31,7 +31,7 @@ function Employee(props) {
       <div className="field">
         <div className="input-group mb-4">
           <input
-            required
+            
             type="number"
             min="0"
             className="form-control"

@@ -4,6 +4,7 @@ import a2 from "../image/a2.jpg";
 import "../css/document.css";
 import Grid from "@mui/material/Grid";
 function Document() {
+  //check user status 
   return (
     <Grid container component="main" sx={{ height: "86.5vh" }}>
       <div class="row mt-5 ms-5 me-5">
@@ -41,7 +42,7 @@ function Document() {
               <p className="card-text">
                 แบบฟอร์มส่งข้อมูลแสดงคุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
               </p>
-              <a href="#" className="btn btn-primary">
+              <a href="/formA2" className="btn btn-primary">
                 Form A2
               </a>
             </div>

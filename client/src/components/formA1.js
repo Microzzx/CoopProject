@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import "../css/form.css";
+import React, { useState } from "react";
+import "../css/formA1.css";
 import Input from "./sub_components/input";
 import Textarea from "./sub_components/textarea";
 import AutoAddress from "./sub_components/autoaddress";
@@ -54,14 +54,14 @@ function FormA1() {
     e.preventDefault()
     console.log(state)
     const token = localStorage.getItem("token");
-    Axios.post("http://localhost:3001/companyinput", state, {
+    Axios.post("http://localhost:3001/a1_input", state, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
-        if (response.data.status == "error") {
+        if (response.data.status === "error") {
           alert("Error: " + response.data.message);
         } else {
         setComList([...comlist, state]);
@@ -126,7 +126,7 @@ function FormA1() {
             <div className="field">
               <label className="label">3. ประเภทงาน</label>
               <select
-                required
+                
                 className="form-select"
                
                 aria-label="Default select example"

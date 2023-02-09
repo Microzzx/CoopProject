@@ -10,7 +10,7 @@ function Navbar_user() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light navbar-color shadow w-100 p-0">
-      <h2 className="ms-3">User</h2>
+      <h2 className="ms-3">CPALL (User)</h2>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav ms-auto">
           <a className="nav-item nav-link" href="/home">

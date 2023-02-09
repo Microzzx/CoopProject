@@ -95,38 +95,38 @@ function Form3() {
     <Grid Grid container component="main" sx={{ height: "86.5vh" }}>
       <h2 className="center">ข้อมูลฟอร์ม A1</h2>
       <div className="table-wrap">
-        <table className="table table-hover table-dark">
-          <thead>
-            <tr>
-              <th scope="col" className="tablecol1 center">
+        <table className="table table-hover">
+          <thead className="table-dark">
+            <tr className="center">
+              <th scope="col" className="tablecol1">
                 No.
               </th>
-              <th scope="col" className="tablecol2 center">
+              <th scope="col" className="tablecol2">
                 Time
               </th>
-              <th scope="col" className="tablecol2 center">
+              <th scope="col" className="tablecol2">
                 Email
               </th>
-              <th scope="col" className="tablecol1 center">
+              <th scope="col" className="tablecol1">
                 Name
               </th>
-              <th scope="col" className="tablecol2 center">
+              <th scope="col" className="tablecol2">
                 Province
               </th>
-              <th scope="col" className="tablecol2 center">
+              <th scope="col" className="tablecol2">
                 Type
               </th>
-              <th scope="col" className="tablecol2 center">
+              <th scope="col" className="tablecol2">
                 Status
               </th>
-              <th scope="col" className="tablecol1 center"></th>
-              <th scope="col" className="tablecol1 center"></th>
+              <th scope="col" className="tablecol1"></th>
+              <th scope="col" className="tablecol1"></th>
             </tr>
           </thead>
           {comlist.map((val, key) => {
             return (
               <tbody>
-                <tr>
+                <tr className="center">
                   <td scope="row" className="tablecol1">
                     {key + 1}
                   </td>

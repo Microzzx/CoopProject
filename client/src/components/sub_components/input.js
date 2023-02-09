@@ -5,7 +5,7 @@ function Input(props) {
 
   return (
     <input
-      required
+      
       type={type}
       min={min}
       className="form-control"
