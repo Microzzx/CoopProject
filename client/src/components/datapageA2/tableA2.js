@@ -25,7 +25,7 @@ function TableA2() {
 
   useEffect(() => {
     const GetCompanies = () => {
-      Axios.get("http://localhost:3001/companyinfo").then((response) => {
+      Axios.get("http://localhost:3001/a2_image_get").then((response) => {
         setComList(response.data);
       });
     };
@@ -94,7 +94,7 @@ function TableA2() {
   // document.body.style.overflow = "hidden";
   return (
     <Grid container component="main" sx={{ height: "86.5vh" }}>
-      <h2 className="center">ข้อมูลฟอร์ม A2</h2>
+      <h2 className="center">ตารางข้อมูลฟอร์ม A2</h2>
       <div className="table-wrap">
         <table className="table table-hover">
           <thead className="table-dark">

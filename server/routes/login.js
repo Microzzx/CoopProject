@@ -24,7 +24,7 @@ router.post("/", jsonParser, (req, res) => {
         function (err, isLogin) {
           if (isLogin) {
             const token = jwt.sign({ email: users[0].email }, TOKEN_SECRET, {
-              expiresIn: "1h",
+              expiresIn: "10h",
             });
             res.json({ status: "ok", message: "Login success!", token });
           } else {

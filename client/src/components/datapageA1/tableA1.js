@@ -97,7 +97,7 @@ function TableA1() {
   // document.body.style.overflow = "hidden";
   return (
     <Grid container component="main" sx={{ height: "86.5vh" }}>
-      <h2 className="center">ข้อมูลฟอร์ม A1</h2>
+      <h2 className="center">ตารางข้อมูลฟอร์ม A1</h2>
       <div className="table-wrap">
         <table className="table table-hover">
           <thead className="table-dark">
