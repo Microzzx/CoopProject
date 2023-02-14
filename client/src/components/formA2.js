@@ -4,24 +4,27 @@ import Input from "./sub_components/input";
 import Axios from "axios";
 
 function FormA2() {
-  const [image, setImage] = useState(null);
+  const [state,setState] = useState({
+    name: "",
+    pdf1: "",
+    pdf2: "",
+  })
 
-const handleImageChange = (event) => {
-  const file = event.target.files[0];
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => {
-    setImage(reader.result);
+  const handlePDFChange = (event,num) => {
+    const file = event.target.files[0];
+    setState({ ...state, [`pdf${num}`]: file });
   };
-};
-  
-  const PostA2 = (e) =>{
-    e.preventDefault()
-    console.log(image)
+
+  const postPDF = (e) => {
+    e.preventDefault();
     const token = localStorage.getItem("token");
-    Axios.post("http://localhost:3001/a2_image_input", {image: image}, {
+    const formData = new FormData();
+    formData.append("name", state.name);
+    formData.append("pdf1", state.pdf1);
+    formData.append("pdf2", state.pdf2);
+    Axios.post("http://localhost:3001/a2_input", formData, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       },
     })
@@ -29,27 +32,60 @@ const handleImageChange = (event) => {
         if (response.data.status === "error") {
           alert("Error: " + response.data.message);
         } else {
-        alert("Data Inserted!");
-        window.location = '/document'
+          alert("Data Inserted!");
+          window.location = "/document";
         }
       })
       .catch((error) => {
         alert("Error: " + error);
         console.log(error);
       });
-  }
-  
+  };
+
+  const printPDF = (e) => {
+    e.preventDefault();
+    console.log(state.name,state.pdf1,state.pdf2)
+  };
+
   return (
-    <form className="row row-cols-auto g-3 top-row" onSubmit={PostA2}>
-           <label className="label">
-             1. หนังสือรับรอง (อายุไม่เกิน 3 เดือน)
-           </label>
-           <input className="form-control" type="file" name="image1" onChange={handleImageChange} />
-           {image && <img src={image} alt="Selected Image" />}
-           <button type="submit" className="btn btn-primary">
-             Submit
-           </button>
+    <form className="row row-cols-auto g-3 top-row" onSubmit={postPDF}>
+      <label className="label">
+        1. ชื่อจริง
+      </label>
+      <input
+      type="text"
+      className="form-control"
+      placeholder="กรอกชื่อ"
+      value={state.name}
+      onChange={(e) => setState({...state, name: e.target.value})}
+    />
+      <label className="label">
+        2. หนังสือรับรอง 1 (อายุไม่เกิน 3 เดือน)
+      </label>
+      <input
+        className="form-control"
+        type="file"
+        name="pdf"
+        accept="application/pdf"
+        onChange={(e) => handlePDFChange(e, 1)}
+      />
+      {state.pdf1 && <p>Selected PDF: {state.pdf1.name}</p>}
+      <label className="label">
+        3. หนังสือรับรอง 2 (อายุไม่เกิน 3 เดือน)
+      </label>
+      <input
+        className="form-control"
+        type="file"
+        name="pdf"
+        accept="application/pdf"
+        onChange={(e) => handlePDFChange(e, 2)}
+      />
+      {state.pdf2 && <p>Selected PDF: {state.pdf2.name}</p>}
+      <button type="submit" className="btn btn-primary">
+        Submit
+      </button>
     </form>
+  
 
     // <div className="container mt-3 mb-5">
     //   <form className="row row-cols-auto g-3 top-row" onSubmit={PostA2}>

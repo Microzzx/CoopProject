@@ -11,12 +11,12 @@ router.post("/", jsonParser, (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     try {
       const decoded = jwt.verify(token, TOKEN_SECRET);
-      connection.query("SELECT role FROM users WHERE email=?", [decoded.email], (err, users) => {
+      connection.query("SELECT * FROM users WHERE email=?", [decoded.email], (err, users) => {
         if (err) {
-          res.json({ status: "error", message: "role not found!" });
+          res.json({ status: "error", message: "User not found!" });
           return;
         } else {
-          res.json({ status: "ok", message: users[0].role });
+          res.json({ status: "ok", user_id: users[0].user_id, role: users[0].role, email: users[0].email, user_status: users[0].status});
           return;
         }
       });
@@ -28,7 +28,7 @@ router.post("/", jsonParser, (req, res) => {
       res.json({ status: "error", message: "Invalid token" });
     }
   } else {
-    res.json({ status: 'error', message: "no token provided" });
+    res.json({ status: 'error', message: "No token provided" });
   }
 });
 

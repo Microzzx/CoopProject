@@ -20,8 +20,8 @@ const joblist = {
 };
 function FormA1() {
   const [state, setState] = useState({
-    name: "",
-    age: "",
+    comname: "",
+    comage: "",
     subdistrict: "",
     district: "",
     province: "",
@@ -29,7 +29,7 @@ function FormA1() {
     worktype: "",
     toughness: "",
     weakness: "",
-    exwork: "",
+    achieve: "",
     fulltime: { ...joblist },
     outsource: { ...joblist },
     tools: "",
@@ -77,7 +77,7 @@ function FormA1() {
   
   //---------------------------------------------------------
   return (
-    <div className="container bgc top-buffer mt-3 mb-5 rcorners2">
+    <div className="container border shadow rcorners2 mt-5 mb-5">
       <form onSubmit={PostCompanies}>
         <div className="row row-cols-auto g-4">
           <h2 className="center mtc mbc">แบบสอบถามประวัติผู้รับเหมารายใหม่</h2>
@@ -88,10 +88,10 @@ function FormA1() {
               <label className="label">1. ชื่อบริษัท</label>
               <Input
                 id={"validationDefaultUsername"}
-                value={state.name}
+                value={state.comname}
                 type="text"
                 placeholder={"ระบุชื่อ"}
-                setFunc={(e) => setState({ ...state, name: e.target.value })}
+                setFunc={(e) => setState({ ...state, comname: e.target.value })}
               ></Input>
             </div>
           </div>
@@ -102,11 +102,11 @@ function FormA1() {
               <div className="input-group mb-3">
                 <Input
                   id={"inputComAge"}
-                  value={state.age}
+                  value={state.comage}
                   type={"number"}
                   min="0"
                   placeholder={"ระบุอายุ"}
-                  setFunc={(e) => setState({ ...state, age: e.target.value })}
+                  setFunc={(e) => setState({ ...state, comage: e.target.value })}
                 ></Input>
                 <div className="input-group-append">
                   <span className="input-group-text" id="basic-addon2">
@@ -191,11 +191,11 @@ function FormA1() {
             <div className="field">
               <label className="label">6. ผลงานที่โดดเด่นมีอะไรบ้าง</label>
               <Textarea
-                id={"inputExwork"}
-                value={state.exwork}
+                id={"inputAchieve"}
+                value={state.achieve}
                 string={"ระบุผลงาน"}
                 row={4}
-                setFunc={(e) => setState({ ...state, exwork: e.target.value })}
+                setFunc={(e) => setState({ ...state, achieve: e.target.value })}
               ></Textarea>
             </div>
           </div>

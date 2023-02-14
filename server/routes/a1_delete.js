@@ -5,11 +5,11 @@ const {authRole} = require('../middlewares/jwtrole_auth')
 
 router.delete("/:id",authRole(["admin"]),(req, res) => {
     const id = req.params.id;
-    connection.query("DELETE FROM a1 WHERE id = ?", id, (err, result) => {
+    connection.query("DELETE FROM a1 WHERE a1_id = ?", id, (err, result) => {
       if (err) {
-        console.log(err);
+        res.send({ status: 400, message: err});
       } else {
-        console.log(result); 
+        res.sendStatus(204);
       }
     });
   });

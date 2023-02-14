@@ -16,7 +16,7 @@ const PrivateUserRoutes = () => {
       }
     )
       .then((response) => {
-        if (response.data.status === "ok" && ["admin","user"].includes(response.data.message)) {
+        if (response.data.status === "ok" && ["admin","user"].includes(response.data.role)) {
           setIsAuthenticated(true);
           console.log("Authenticated!");
         } else {

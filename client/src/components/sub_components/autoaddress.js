@@ -12,7 +12,6 @@ function Address(props) {
       </div>
       <div className="col-sm-2">
         <InputAddress
-          
           className="form-control"
           placeholder="แขวง / ตำบล"
           address="subdistrict"

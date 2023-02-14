@@ -15,8 +15,8 @@ function Navbar() {
           }
   })
     .then((response) => {
-        if(response.data.status === 'ok'){                   
-            setUserRole(response.data.message)
+        if(response.data.status === 'ok'){
+            setUserRole(response.data.role)
         }
         else if(response.data.status === 'error' && response.data.message === 'Token has expired'){
             localStorage.removeItem('token');

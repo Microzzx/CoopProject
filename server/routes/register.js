@@ -12,11 +12,11 @@ router.post("/", jsonParser, (req, res) => {
     const lname = req.body.lname;
     connection.query("SELECT * FROM users WHERE email=?", [email], (err, users) => {
       if (err) {
-        res.json({ status: "error", message: "error" });
+        res.json({ status: "error", message: "Error" });
         return;
       }
       if (users.length > 0) {
-        res.json({ status: "error", message: "same username!" });
+        res.json({ status: "error", message: "Same username!" });
         return;
       }
       bcrypt.hash(password, 10, function (err, hash) {
@@ -25,10 +25,10 @@ router.post("/", jsonParser, (req, res) => {
           [email, hash, fname, lname, "user"],
           (err, result) => {
             if (err) {
-              res.json({ status: "error", message: "register failed!" });
+              res.json({ status: "error", message: "Register failed!" });
               console.log(err);
             } else {
-              res.json({ status: "ok", message: "register success!" });
+              res.json({ status: "ok", message: "Register success!" });
             }
           }
         );

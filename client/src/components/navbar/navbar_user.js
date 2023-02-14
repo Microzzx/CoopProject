@@ -38,10 +38,10 @@ function Navbar_user() {
             <NavLink to="/document" className="nav-item nav-link me-2">
               Document
             </NavLink>
-            <NavLink to="/#" className="nav-item nav-link me-2 disabled">
+            <NavLink to="/about" className="nav-item nav-link me-2 disabled">
               About Us
             </NavLink>
-            <NavLink to="/#" className="nav-item nav-link me-2 disabled">
+            <NavLink to="/contact" className="nav-item nav-link me-2 disabled">
               Contact
             </NavLink>
           </div>

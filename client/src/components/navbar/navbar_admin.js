@@ -50,10 +50,10 @@ function Navbar_admin() {
             <NavLink to="/tableA2" className="nav-item nav-link me-2">
               DataA2
             </NavLink>
-            <NavLink to="/#" className="nav-item nav-link me-2 disabled">
+            <NavLink to="/about" className="nav-item nav-link me-2 disabled">
               About Us
             </NavLink>
-            <NavLink to="/#" className="nav-item nav-link me-2 disabled">
+            <NavLink to="/contact" className="nav-item nav-link me-2 disabled">
               Contact
             </NavLink>
           </div>
