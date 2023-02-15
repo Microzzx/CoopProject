@@ -20,14 +20,12 @@ function Document() {
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
-        setState(response.data[0]);
-        console.log(response.data[0])
+        setState(response.data);
+        console.log(response.data)
       });
     };
     GetUserStatus();
   }, []);
-
-
 
   return (
     <Grid container component="main" sx={{ height: "86.5vh" }}>
@@ -119,7 +117,7 @@ function Document() {
                 <p className="card-text">
                 {
                     state.a2_status === "Approved"
-                      ? "A2-Approved"
+                      ? "A2-Approved <Complete all process>"
                       : state.a2_status === "Declined"
                       ? "A2-Declined"
                       : state.a2_status === "Pending"

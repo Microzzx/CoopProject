@@ -10,6 +10,7 @@ function TableA2() {
   //new data set for render on table
   const [comlist, setComList] = useState([]);
   const token = localStorage.getItem("token");
+
   useEffect(() => {
     const GetCompanies = () => {
       Axios.get("http://localhost:3001/a2_get", {
@@ -27,7 +28,7 @@ function TableA2() {
 
   const deleteCompany = (id) => {
     //console.log(token)
-    Axios.delete(`http://localhost:3001/info_delete/${id}`, {
+    Axios.delete(`http://localhost:3001/a2_delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -131,7 +132,7 @@ function TableA2() {
                     <button
                       className="btnsize mrc"
                       onClick={() => {
-                        deleteCompany(val.info_id);
+                        deleteCompany(val.a2_id);
                       }}
                     >
                       <img
