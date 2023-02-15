@@ -20,7 +20,8 @@ function Document() {
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
-        setState({ ...state, a1_status: response.data[0].status });
+        setState(response.data[0]);
+        console.log(response.data[0])
       });
     };
     GetUserStatus();

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-
+import a2 from "../../image/a2.jpg";
 const ViewA2 = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const url = window.location.pathname;
   useEffect(() => {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a2_get/${id}`).then((response) => {
         setData(response.data);
+        setLoading(false);
       });
     };
     fetchData(url.substring(url.lastIndexOf("/") + 1));
@@ -17,17 +19,202 @@ const ViewA2 = () => {
     window.open(url, '_blank');
   };
 
+  const printA2 = (e) => {
+    e.preventDefault();
+    console.log(data[0]);
+  };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   return (
-    <div>
-      <h1>Data from a2</h1>
-      
-       
-          
-          <button onClick={() => console.log(data[0].url1)}>PDF 1</button>
-          <button onClick={() => displayPDF(data[0].url2)}>PDF 2</button>
-          
-        
-      
+    <div className="container border shadow rcorners2 mt-5 mb-5">
+      <form className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">
+      <div className="col-12 mb-2">
+          <label className="form-label">
+            <small>
+              Email : {data[0].email} | Time : {data[0].time} | Status :{" "}
+              <span
+                style={{
+                  color:
+                    data[0].status === "Approved"
+                      ? "green"
+                      : data[0].status === "Declined"
+                      ? "red"
+                      : "orange",
+                }}
+              >
+                {data[0].status}
+              </span>
+            </small>
+          </label>
+        </div>
+        <div className="col-md-11 mb-2">
+          <h5 className="label"><u>ข้อมูลทั่วไป</u></h5>
+        </div>
+        <div className="col-md-1 mb-2">
+        <img
+                  src={a2}
+                  className="rounded-circle mb-3"
+                  height="40px"
+                  width="40px"
+                  alt="avatar"
+                />
+        </div>
+        <div className="col-md-3">
+          <label className="label">ประเภทของผู้รับเหมา :</label>
+        </div>
+        <div className="col-md-9">
+          <label className="form-label">{data[0].comtype}</label>
+        </div>
+        <div className="col-md-3">
+          <label className="label">ชื่อสถานประกอบการ :</label>
+        </div>
+        <div className="col-md-9">
+          <label className="form-label">{data[0].comname}</label>
+        </div>  
+        <div className="col-md-3">
+          <label className="label">ประเภทของการรับงาน :</label>
+        </div>
+        <div className="col-md-9">
+          <label className="form-label">{data[0].worktype}</label>
+        </div>
+        <div className="col-md-3">
+          <label className="label">พื้นที่ที่สะดวกในการดำเนินงานก่อสร้าง :</label>
+        </div>
+        <div className="col-md-9">
+          <label className="form-label">{data[0].workarea}</label>
+        </div>  
+        <div className="col-md-3">
+          <label className="label">ชื่อผู้สมัคร :</label>
+        </div>
+        <div className="col-md-9">
+          <label className="form-label">{data[0].name}</label>
+        </div>
+        <div className="col-md-3">
+          <label className="label">เบอร์โทรศัพท์ :</label>
+        </div>
+        <div className="col-md-9">
+          <label className="form-label">{data[0].phone}</label>
+        </div>
+        <div className="col-12 mt-5 mb-2">
+          <h5 className="label">
+            <u>ข้อมูลผู้สมัครเข้าร่วมโครงการ</u>
+          </h5>
+        </div>
+        <div className="col-md-5">
+        <label className="label">หนังสือรับรอง :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url1)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">ภพ.20 (หนังสือจดทะเบียนภาษีมูลค่าเพิ่ม) :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url2)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">บัญชีรายชื่อผู้ถือหุ้น บมจ.006 หรือ บอจ.5 :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url3)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">หลักฐานอื่น :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url4)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">หนังสือรักษาความลับ :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url5)}>View PDF</button>
+        </div>
+        <div className="col-12 mt-5 mb-2">
+          <h5 className="label">
+            <u>ข้อมูลทางด้านการเงินของผู้สมัคร</u>
+          </h5>
+        </div>
+        <div className="col-md-5">
+        <label className="label">งบการเงิน 2 ปีล่าสุด :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url6)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">Statement เงินฝากธนาคาร 6 เดือนย้อนหลัง :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url7)}>View PDF</button>
+        </div>
+        <div className="col-12 mt-5 mb-2">
+          <h5 className="label">
+            <u>ข้อมูลด้านการบริหารองค์กร</u>
+          </h5>
+        </div>
+        <div className="col-md-5">
+        <label className="label">แผนที่ตั้งพร้อมภาพถ่ายสถานประกอบการ :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url8)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">แผนผังโครงสร้างองค์กร :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url9)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">จำนวนวิศวกร หรือวิศวกรที่ปรึกษา :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url10)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">จำนวน และรายชื่อผู้ควบคุมงาน (Foreman) :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url11)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">จำนวนชุดช่างแรงงาน (Labour) :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url12)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">รายชื่อผู้รับเหมาช่วงงานเฉพาะทาง :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url13)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">รายชื่อร้านค้าที่ผู้รับเหมาซื้อวัสดุก่อสร้างเป็นประจำ :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url14)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">Project Reference ข้อมูลผลงานก่อสร้างในอดีต :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url15)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">ชนิด และจำนวนเครื่องมือ/เครื่องจักร ในการทำงาน :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url16)}>View PDF</button>
+        </div>
+        <div className="col-md-5">
+        <label className="label">นโยบายด้านความปลอดภัยเบื้องต้น :</label>
+        </div>
+        <div className="col-md-7">
+        <button type="button" class="btn btn-secondary" onClick={() => displayPDF(data[0].url17)}>View PDF</button>
+        </div>
+      </form>
     </div>
   );
 };
