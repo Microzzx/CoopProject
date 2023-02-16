@@ -28,7 +28,7 @@ router.post("/", jsonParser, (req, res) => {
             });
             res.json({ status: "ok", message: "Login success!", token });
           } else {
-            res.json({ status: "error", message: "Wrong password!" });
+            res.json({ status: "error", message: "Wrong Password!" });
           }
         }
       );

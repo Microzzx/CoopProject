@@ -90,45 +90,6 @@ function FormA2() {
   };
 
   return (
-    // <form className="row row-cols-auto g-3 top-row" onSubmit={postPDF}>
-    //   <label className="label">
-    //     1. ชื่อจริง
-    //   </label>
-    //   <input
-    //   type="text"
-    //   className="form-control"
-    //   placeholder="กรอกชื่อ"
-    //   value={state.name}
-    //   onChange={(e) => setState({...state, name: e.target.value})}
-    // />
-    //   <label className="label">
-    //     2. หนังสือรับรอง 1 (อายุไม่เกิน 3 เดือน)
-    //   </label>
-    //   <input
-    //     className="form-control"
-    //     type="file"
-    //     name="pdf"
-    //     accept="application/pdf"
-    //     onChange={(e) => handlePDFChange(e, 1)}
-    //   />
-    //   {state.pdf1 && <p>Selected PDF: {state.pdf1.name}</p>}
-    //   <label className="label">
-    //     3. หนังสือรับรอง 2 (อายุไม่เกิน 3 เดือน)
-    //   </label>
-    //   <input
-    //     className="form-control"
-    //     type="file"
-    //     name="pdf"
-    //     accept="application/pdf"
-    //     onChange={(e) => handlePDFChange(e, 2)}
-    //   />
-    //   {state.pdf2 && <p>Selected PDF: {state.pdf2.name}</p>}
-    //   <button type="submit" className="btn btn-primary">
-    //     Submit
-    //   </button>
-    // </form>
-  
-
     <div className="container border shadow rcorners2 mt-3 mb-5">
       <form className="row row-cols-auto g-3 top-row" onSubmit={postA2}>
         <h2 className="center mtc mbc">

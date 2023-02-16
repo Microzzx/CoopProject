@@ -26,7 +26,6 @@ function TableA1() {
   }, []);
 
   const deleteCompany = (id) => {
-    //console.log(token)
     Axios.delete(`http://localhost:3001/a1_delete/${id}`, {
       headers: {
         "Content-Type": "application/json",

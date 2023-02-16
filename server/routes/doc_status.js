@@ -12,13 +12,13 @@ router.get("/",authRole(["admin", "user"]), (req, res) => {
         } else {
             if (result.length === 0) {
                 // if no data in both a1 and a2, return empty string for both
-                res.send({ a1_status: "", a2_status: "" });
+                res.send({status: "ok", a1_status: "", a2_status: "" });
             } else if (!result[0].a2_status) {
                 // if no data in a2, return only a1_status
-                res.send({ a1_status: result[0].a1_status, a2_status: "" });
+                res.send({status: "ok", a1_status: result[0].a1_status, a2_status: "" });
             } else {
                 // both a1 and a2 have data, return both
-                res.send(result[0]);
+                res.send({status: "ok", a1_status: result[0].a1_status, a2_status: result[0].a2_status });
             }
         }
     });
