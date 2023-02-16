@@ -16,6 +16,7 @@ function TableA2() {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a1_get/${id}`).then((response) => {
         setData(response.data);
+        setState({...state,status:response.data.status})
         setLoading(false);
       });
     };
@@ -51,7 +52,10 @@ function TableA2() {
         console.log(error);
       });
   };
-
+  const printA1 = (e) => {
+    e.preventDefault();
+    console.log(data[0]);
+  };
   return (
     <div className="container border shadow rcorners2 mt-5 mb-5">
       <form className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">

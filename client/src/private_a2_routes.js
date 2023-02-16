@@ -14,7 +14,7 @@ const PrivateUserRoutes = () => {
         },
       })
       .then((response) => {
-        if (response.data.status === "ok" && response.data.a1_status !== null && response.data.a1_status !== "Pending" && response.data.a2_status !== "Pending" && response.data.a2_status !== "Approved") {
+        if (response.data.status === "ok" && response.data.a1_status !== null && response.data.a1_status !== "Pending" && response.data.a1_status !== "Declined" && response.data.a2_status !== "Pending" && response.data.a2_status !== "Approved") {
           setIsAuthenticated(true);
           console.log("Authenticated!");
         } else {

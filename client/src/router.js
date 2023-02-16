@@ -15,7 +15,7 @@ import ViewA2 from "./components/datapageA2/viewA2";
 import Login from "./components/login";
 import Document from "./components/document";
 import Register from "./components/register";
-
+import ErrorPage from "./components/errorpage";
 function Router() {
   return (
     <BrowserRouter>
@@ -41,6 +41,7 @@ function Router() {
         </Route>
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
+        <Route exact path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
