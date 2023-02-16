@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateAdminRoutes from "./private_admin_routes";
 import PrivateUserRoutes from "./private_user_routes";
-import PrivateFormRoutes from "./private_form_routes";
+import PrivateA1Routes from "./private_a1_routes";
+import PrivateA2Routes from "./private_a2_routes";
 import FormA1 from "./components/formA1";
 import FormA2 from "./components/formA2";
 import NavFoot from "./components/navfoot";
@@ -24,8 +25,10 @@ function Router() {
           <Route exact path="/home" element={<Home />} />
           <Route element={<PrivateUserRoutes />}>
             <Route exact path="/document" element={<Document />} />
-            <Route element={<PrivateFormRoutes />}>
+            <Route element={<PrivateA1Routes />}>
               <Route exact path="/formA1" element={<FormA1 />} />
+            </Route>
+            <Route element={<PrivateA2Routes />}> 
               <Route exact path="/formA2" element={<FormA2 />} />
             </Route>
             <Route element={<PrivateAdminRoutes />}>
