@@ -35,8 +35,7 @@ function FormA2() {
     setState({ ...state, [`pdf${num}`]: file });
   };
 
-  const postA2 = (e) => {
-    e.preventDefault();
+  const postA2 = () => {
     const token = localStorage.getItem("token");
     const formData = new FormData();
     formData.append("comname", state.comname);
@@ -82,6 +81,24 @@ function FormA2() {
       });
   };
 
+  const checkValidity = () => {
+    for (let key of Object.keys(state)) {
+      if (!Boolean(state[key])) {
+        const form = document.querySelector("form");
+        form.classList.add("was-validated"); // validated check
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (checkValidity()) { 
+      postA2();
+    }
+  };
+
   const printA2 = (e) => {
     e.preventDefault();
     Object.keys(state).forEach(key => {
@@ -91,7 +108,7 @@ function FormA2() {
 
   return (
     <div className="container border shadow rcorners2 mt-3 mb-5">
-      <form className="row row-cols-auto g-3 top-row" onSubmit={postA2}>
+      <form className="row row-cols-auto g-3 top-row needs-validation" noValidate onSubmit={handleSubmit}>
         <h2 className="center mtc mbc">
           คุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
         </h2>
@@ -104,11 +121,15 @@ function FormA2() {
             className="form-select"
             aria-label="Default select example"
             onChange={(e) => setState({...state, comtype: e.target.value})}
+            required
           >
             <option value="">กรุณาเลือกประเภท</option>
             <option value="ห้างหุ้นส่วนจำกัด">ห้างหุ้นส่วนจำกัด</option>
             <option value="บริษัทจำกัด">บริษัทจำกัด</option>
           </select>
+          <div className="invalid-feedback">
+              Please choose a username.
+          </div>
         </div>
         <div className="col-md-8">
           <label className="form-label">
@@ -119,23 +140,26 @@ function FormA2() {
             value={state.comname}
             type={"text"}
             placeholder={"ระบุสถานประกอบการ"}
+            invalid="Please choose a username."
             setFunc={(e) => setState({...state, comname: e.target.value})}
           ></Input>
         </div>
         <div className="col-md-4">
-          <div className="field">
             <label className="label">ประเภทของการรับงาน</label>
             <select
               className="form-select"
               aria-label="Default select example"
               onChange={(e) => setState({...state, worktype: e.target.value})}
+              required
             >
               <option value="">กรุณาเลือกประเภทงาน</option>
               <option value="งานก่อสร้าง">งานก่อสร้าง</option>
               <option value="งานตกแต่ง/สถาปัตย์">งานตกแต่ง/สถาปัตย์</option>
               <option value="งานระบบ(ไฟฟ้า)">งานระบบ(ไฟฟ้า)</option>
             </select>
-          </div>
+            <div className="invalid-feedback">
+              Please choose a username.
+            </div>
         </div>
         <div className="col-md-4">
           <label className="form-label">
@@ -146,6 +170,7 @@ function FormA2() {
             value={state.name}
             type={"text"}
             placeholder={"ระบุชื่อ"}
+            invalid="Please choose a username."
             setFunc={(e) => setState({...state, name: e.target.value})}
           ></Input>
         </div>
@@ -158,6 +183,7 @@ function FormA2() {
             value={state.phone}
             type={"text"}
             placeholder={"ระบุเบอร์โทรศัพท์"}
+            invalid="Please choose a username."
             setFunc={(e) => setState({...state, phone: e.target.value})}
           ></Input>
         </div>
@@ -168,34 +194,62 @@ function FormA2() {
           <label className="label">
             1. หนังสือรับรอง (อายุไม่เกิน 3 เดือน)
           </label>
-          <input className="form-control" type="file" name="pdf1" onChange={(e) => handlePDFChange(e, 1)} />
+          <Input
+            name="pdf1"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 1)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">
             2. ภพ.20 (หนังสือจดทะเบียนภาษีมูลค่าเพิ่ม)
           </label>
-          <input className="form-control" type="file" name="pdf2" onChange={(e) => handlePDFChange(e, 2)} />
+          <Input
+            name="pdf2"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 2)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">
             3. บัญชีรายชื่อผู้ถือหุ้น บมจ.006 หรือ บอจ.5 (ยกเว้น หจก.)
           </label>
-          <input className="form-control" type="file" name="pdf3" onChange={(e) => handlePDFChange(e, 3)} />
+          <Input
+            name="pdf3"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 3)}
+          ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-10">
+        <div className="col-md-12">
           <label className="label">
             4. หลักฐานอื่น เช่น หลักฐานการเปลี่ยนชื่อ/สกุล (ถ้ามี),
             หนังสือมอบอำนาจ (กรณีกรรมการผู้มีอำนาจไม่ได้ลงนามเอง){" "}
           </label>
-          <input className="form-control" type="file" name="pdf4" onChange={(e) => handlePDFChange(e, 4)} />
+          
         </div>
-        <div className="col-md-2" />
+        <div className="col-md-6 mt-1">
+          <Input
+            name="pdf4"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 4)}
+          ></Input>
+        </div>
+        <div className="col-md-6"/>
         <div className="col-md-6">
           <label className="label">5. หนังสือรักษาความลับ</label>
-          <input className="form-control" type="file" name="pdf5" onChange={(e) => handlePDFChange(e, 5)} />
+          <Input
+            name="pdf5"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 5)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-12 mt-5 mb-2">
@@ -203,14 +257,24 @@ function FormA2() {
         </div>
         <div className="col-md-6">
           <label className="label">6. งบการเงิน 2 ปีล่าสุด</label>
-          <input className="form-control" type="file" name="pdf6" onChange={(e) => handlePDFChange(e, 6)} />
+          <Input
+            name="pdf6"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 6)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">
             7. Statement เงินฝากธนาคาร 6 เดือนย้อนหลัง
           </label>
-          <input className="form-control" type="file" name="pdf7" onChange={(e) => handlePDFChange(e, 7)} />
+          <Input
+            name="pdf7"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 7)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-12 mt-5 mb-2">
@@ -218,29 +282,54 @@ function FormA2() {
         </div>
         <div className="col-md-6">
           <label className="label">8. แผนที่ต้งพร้อมภาพถ่ายสถานประกอบการ</label>
-          <input className="form-control" type="file" name="pdf8" onChange={(e) => handlePDFChange(e, 8)} />
+          <Input
+            name="pdf8"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 8)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">9. แผนผังโครงสร้างองค์กร</label>
-          <input className="form-control" type="file" name="pdf9" onChange={(e) => handlePDFChange(e, 9)} />
+          <Input
+            name="pdf9"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 9)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">10. จำนวนวิศวกร หรือวิศวกรที่ปรึกษา</label>
-          <input className="form-control" type="file" name="pdf10" onChange={(e) => handlePDFChange(e, 10)} />
+          <Input
+            name="pdf10"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 10)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">
             11. จำนวน และรายชื่อผู้ควบคุมงาน (Foreman)
           </label>
-          <input className="form-control" type="file" name="pdf11" onChange={(e) => handlePDFChange(e, 11)} />
+          <Input
+            name="pdf11"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 11)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">12. จำนวนชุดช่างแรงงาน (Labour)</label>
-          <input className="form-control" type="file" name="pdf12" onChange={(e) => handlePDFChange(e, 12)} />
+          <Input
+            name="pdf12"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 12)}
+          ></Input>
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
@@ -248,52 +337,85 @@ function FormA2() {
             13. รายชื่อผู้รับเหมาช่วงงานเฉพาะทาง เช่น ผู้รับเหมาช่วงงานกระจก
             งานเหล็ก
           </label>
-          <input className="form-control" type="file" name="pdf13" onChange={(e) => handlePDFChange(e, 13)} />
+          <Input
+            name="pdf13"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 13)}
+          ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-7">
+        <div className="col-md-12">
           <label className="label">
             14.
             รายชื่อร้านค้าที่ผู้รับเหมาสั่งซื้อวัสดุก่อสร้างเป็นประจำพร้อมระบุเงื่อนไขการซื้อ
             เช่น เครดิต เงินสด
           </label>
-          <input className="form-control" type="file" name="pdf14" onChange={(e) => handlePDFChange(e, 14)} />
         </div>
-        <div className="col-md-5" />
-        <div className="col-md-6">
+        <div className="col-md-6 mt-1">
+          <Input
+            name="pdf14"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 14)}
+          ></Input>
+        </div>
+        <div className="col-md-6"/>
+        <div className="col-md-12">
           <label className="label">
             15. Project Reference ข้อมูลผลงานก่อสร้างในอดีต
             (รูปถ่าย/มูลค่างาน/ระยะเวลาการก่อสร้าง)
           </label>
-          <input className="form-control" type="file" name="pdf15" onChange={(e) => handlePDFChange(e, 15)} />
         </div>
-        <div className="col-md-6" />
+        <div className="col-md-6 mt-1">
+          <Input
+            name="pdf15"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 15)}
+          ></Input>
+        </div>
+        <div className="col-md-6"/>
         <div className="col-md-6">
           <label className="label">
             16. ชนิด และจำนวนเครื่องมือ/เครื่องจักร ในการทำงาน
           </label>
-          <input className="form-control" type="file" name="pdf16" onChange={(e) => handlePDFChange(e, 16)} />
+          <Input
+            name="pdf16"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 16)}
+          ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-6">
+        <div className="col-md-12">
           <label className="label">
             17. นโยบายด้านความปลอดภัยเบื้องต้น (คนงานจะต้องสวมใส่ชุดของบริษัท,
             ใส่หมวกแข็ง (Helmet) ใส่รองเท้าหุ้มส้น, ใช้ Safety Belt
             ในกรณีทำงานในที่สูง)
           </label>
-          <input className="form-control" type="file" name="pdf17" onChange={(e) => handlePDFChange(e, 17)} />
+        </div>
+        <div className="col-md-6 mt-1">
+          <Input
+            name="pdf17"
+            type={"file"}
+            invalid="Please choose a username."
+            setFunc={(e) => handlePDFChange(e, 17)}
+          ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-6">
+        <div className="col-md-12">
           <label className="label">
             18. กรุณาระบุพื้นที่ที่สะดวกในการดำเนินงานก่อสร้าง (เช่น
-            ระบุเป็นจังหวัด หรือภาคที่สะดวกในกรดำเนินงาน)
+            ระบุเป็นจังหวัด หรือภาคที่สะดวกในการดำเนินงาน)
           </label>
+        </div>
+        <div className="col-md-6 mt-1">
           <Input
-            id={"inputComArea"}
             value={state.workarea}
             type={"text"}
             placeholder={"ระบุพื้นที่"}
+            invalid="Please choose a username."
             setFunc={(e) => setState({...state, workarea: e.target.value})}
           ></Input>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import a2 from "../../image/a2.jpg";
+import Modal from "../sub_components/modal";
+
 const ViewA2 = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,11 +10,11 @@ const ViewA2 = () => {
     status: "",
   });
   const url = window.location.pathname;
-
+  
   useEffect(() => {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a2_get/${id}`).then((response) => {
-        setData(response.data);
+        setData(response.data); 
         setLoading(false);
       });
     };
@@ -80,19 +81,10 @@ const ViewA2 = () => {
             </small>
           </label>
         </div>
-        <div className="col-md-11 mb-2">
+        <div className="col-md-12 mb-2">
           <h5 className="label">
             <u>ข้อมูลทั่วไป</u>
           </h5>
-        </div>
-        <div className="col-md-1 mb-2">
-          <img
-            src={a2}
-            className="rounded-circle mb-3"
-            height="40px"
-            width="40px"
-            alt="avatar"
-          />
         </div>
         <div className="col-md-4">
           <label className="label">ประเภทของผู้รับเหมา :</label>
@@ -406,7 +398,7 @@ const ViewA2 = () => {
             </label>
           </div>
         </div>
-        <div className="col-11" />
+        {/* <div className="col-11" />
         <div className="col-1">
           <button
             className="btn btn-primary"
@@ -417,8 +409,22 @@ const ViewA2 = () => {
           >
             Confirm
           </button>
-        </div>
+        </div> */}
       </form>
+      <div className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">
+        <div className="col-11" />
+        <div className="col-1">
+          <Modal
+            title="ยืนยันข้อมูล"
+            context="คุณต้องการอัพเดทรายการนี้หรือไม่?"
+            text="Confirm"
+            setFunc={(e) => {
+              e.preventDefault();
+              ConfirmA2(data[0].a2_id);
+            }}
+          ></Modal>
+        </div>
+      </div>
     </div>
   );
 };

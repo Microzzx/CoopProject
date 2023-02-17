@@ -1,19 +1,27 @@
 import React from "react";
 
 function Input(props) {
-  const { id, value, type, min, placeholder, setFunc } = props;
+  const { name, id, type, value, min, placeholder, setFunc, invalid } = props;
 
   return (
+    <>
     <input
-      
-      type={type}
-      min={min}
+      name={name}
       className="form-control"
-      placeholder={placeholder}
       id={id}
+      type={type}
       value={value}
+      min={min}
+      placeholder={placeholder}
       onChange={setFunc}
+      required
     />
+    <div className="invalid-feedback">
+        {invalid}
+    </div>
+    </>
+    
+    
   );
 }
 

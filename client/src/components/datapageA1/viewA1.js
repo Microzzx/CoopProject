@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../../css/datapage.css";
+import Modal from "../sub_components/modal";
 
 function TableA2() {
   const [data, setData] = useState({});
@@ -16,7 +17,7 @@ function TableA2() {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a1_get/${id}`).then((response) => {
         setData(response.data);
-        setState({...state,status:response.data.status})
+        setState({ ...state, status: response.data.status });
         setLoading(false);
       });
     };
@@ -322,19 +323,21 @@ function TableA2() {
             </label>
           </div>
         </div>
+      </form>
+      <div className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">
         <div className="col-11" />
         <div className="col-1">
-          <button
-            className="btn btn-primary"
-            onClick={(e) => {
-              e.preventDefault()
+          <Modal
+            title="ยืนยันข้อมูล"
+            context="คุณต้องการอัพเดทรายการนี้หรือไม่?"
+            text="Confirm"
+            setFunc={(e) => {
+              e.preventDefault();
               ConfirmA1(data[0].a1_id);
             }}
-          >
-            Confirm
-          </button>
+          ></Modal>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

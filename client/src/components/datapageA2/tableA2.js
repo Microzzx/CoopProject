@@ -4,6 +4,7 @@ import Axios from "axios";
 import "../../css/datapage.css";
 import delete_btn from "../../image/delete_icon.jpg";
 import view_btn from "../../image/view_icon.png";
+import Modal from "../sub_components/modal";
 import Grid from "@mui/material/Grid";
 
 function TableA2() {
@@ -18,8 +19,7 @@ function TableA2() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      })
-      .then((response) => {
+      }).then((response) => {
         setComList(response.data);
       });
     };
@@ -37,8 +37,7 @@ function TableA2() {
       .then((response) => {
         if (response.data.status === "error") {
           alert("Error: " + response.data.message);
-          
-        } else { 
+        } else {
           setComList(
             comlist.filter((val) => {
               return val.id !== id;
@@ -95,9 +94,7 @@ function TableA2() {
             return (
               <tbody key={index}>
                 <tr className="center">
-                  <td scope="row">
-                    {index + 1}
-                  </td>
+                  <td scope="row">{index + 1}</td>
                   <td>{val.time}</td>
                   <td>{val.email}</td>
                   <td>{val.name}</td>
@@ -118,29 +115,30 @@ function TableA2() {
                     </span>
                   </td>
                   <td className="tablecol1">
-                    <input
+                  <button
                       className="btnsize mrc"
-                      type="image"
-                      alt="view_btn"
-                      src={view_btn}
                       onClick={() => {
                         view(val.a2_id);
                       }}
-                    ></input>
-                  </td>
-                  <td className="tablecol1">
-                    <button
-                      className="btnsize mrc"
-                      onClick={() => {
-                        deleteCompany(val.a2_id);
-                      }}
                     >
                       <img
-                        className="btnsize mrc"
-                        src={delete_btn}
-                        alt="delete_button"
+                        className="mrc"
+                        src={view_btn}
+                        height="40px"
+                        width="40px"
+                        alt="view_btn"
                       />
-                    </button>
+                    </button>                    
+                  </td>
+                  <td className="tablecol1">
+                  <Modal
+                      title="ลบข้อมูล"
+                      context="คุณแน่ใจที่จะลบรายการนี้หรือไม่?"
+                      img={delete_btn}
+                      setFunc={() => {
+                        deleteCompany(val.a2_id);
+                      }}
+                    ></Modal>
                   </td>
                 </tr>
               </tbody>
