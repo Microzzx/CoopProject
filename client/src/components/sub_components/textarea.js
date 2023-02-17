@@ -5,11 +5,12 @@ function Textarea(props) {
 
   return (
     <textarea
+      required
       className="form-control"
       placeholder={string}
       rows={row}
       id={id}
-      value={value} 
+      value={value}
       onChange={setFunc}
     ></textarea>
   );

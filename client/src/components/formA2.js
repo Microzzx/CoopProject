@@ -4,7 +4,7 @@ import Input from "./sub_components/input";
 import Axios from "axios";
 
 function FormA2() {
-  const [state,setState] = useState({
+  const [state, setState] = useState({
     comname: "",
     comtype: "",
     worktype: "",
@@ -28,9 +28,9 @@ function FormA2() {
     pdf16: "",
     pdf17: "",
     workarea: "",
-  })
+  });
 
-  const handlePDFChange = (event,num) => {
+  const handlePDFChange = (event, num) => {
     const file = event.target.files[0];
     setState({ ...state, [`pdf${num}`]: file });
   };
@@ -90,25 +90,29 @@ function FormA2() {
       }
     }
     return true;
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (checkValidity()) { 
+    if (checkValidity()) {
       postA2();
     }
   };
 
   const printA2 = (e) => {
     e.preventDefault();
-    Object.keys(state).forEach(key => {
+    Object.keys(state).forEach((key) => {
       console.log(`${key}: ${state[key]}`);
     });
   };
 
   return (
     <div className="container border shadow rcorners2 mt-3 mb-5">
-      <form className="row row-cols-auto g-3 top-row needs-validation" noValidate onSubmit={handleSubmit}>
+      <form
+        className="row row-cols-auto g-3 top-row needs-validation"
+        noValidate
+        onSubmit={handleSubmit}
+      >
         <h2 className="center mtc mbc">
           คุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
         </h2>
@@ -120,71 +124,61 @@ function FormA2() {
           <select
             className="form-select"
             aria-label="Default select example"
-            onChange={(e) => setState({...state, comtype: e.target.value})}
+            onChange={(e) => setState({ ...state, comtype: e.target.value })}
             required
           >
             <option value="">กรุณาเลือกประเภท</option>
             <option value="ห้างหุ้นส่วนจำกัด">ห้างหุ้นส่วนจำกัด</option>
             <option value="บริษัทจำกัด">บริษัทจำกัด</option>
           </select>
-          <div className="invalid-feedback">
-              Please choose a username.
-          </div>
+          <div className="invalid-feedback">กรุณาเลือกประเภท</div>
         </div>
         <div className="col-md-8">
-          <label className="form-label">
-            ชื่อสถานประกอบการ
-          </label>
+          <label className="form-label">ชื่อสถานประกอบการ</label>
           <Input
             id={"inputComArea"}
             value={state.comname}
             type={"text"}
             placeholder={"ระบุสถานประกอบการ"}
-            invalid="Please choose a username."
-            setFunc={(e) => setState({...state, comname: e.target.value})}
+            invalid="กรุณาระบุชื่อ"
+            setFunc={(e) => setState({ ...state, comname: e.target.value })}
           ></Input>
         </div>
         <div className="col-md-4">
-            <label className="label">ประเภทของการรับงาน</label>
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              onChange={(e) => setState({...state, worktype: e.target.value})}
-              required
-            >
-              <option value="">กรุณาเลือกประเภทงาน</option>
-              <option value="งานก่อสร้าง">งานก่อสร้าง</option>
-              <option value="งานตกแต่ง/สถาปัตย์">งานตกแต่ง/สถาปัตย์</option>
-              <option value="งานระบบ(ไฟฟ้า)">งานระบบ(ไฟฟ้า)</option>
-            </select>
-            <div className="invalid-feedback">
-              Please choose a username.
-            </div>
+          <label className="label">ประเภทของการรับงาน</label>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            onChange={(e) => setState({ ...state, worktype: e.target.value })}
+            required
+          >
+            <option value="">กรุณาเลือกประเภทงาน</option>
+            <option value="งานก่อสร้าง">งานก่อสร้าง</option>
+            <option value="งานตกแต่ง/สถาปัตย์">งานตกแต่ง/สถาปัตย์</option>
+            <option value="งานระบบ(ไฟฟ้า)">งานระบบ(ไฟฟ้า)</option>
+          </select>
+          <div className="invalid-feedback">กรุณาเลือกประเภท</div>
         </div>
         <div className="col-md-4">
-          <label className="form-label">
-            ชื่อผู้สมัคร
-          </label>
+          <label className="form-label">ชื่อผู้สมัคร</label>
           <Input
             id={"inputComArea"}
             value={state.name}
             type={"text"}
             placeholder={"ระบุชื่อ"}
-            invalid="Please choose a username."
-            setFunc={(e) => setState({...state, name: e.target.value})}
+            invalid="กรุณาระบุชื่อ"
+            setFunc={(e) => setState({ ...state, name: e.target.value })}
           ></Input>
         </div>
         <div className="col-md-4">
-          <label className="form-label">
-            เบอร์โทรศัพท์
-          </label>
+          <label className="form-label">เบอร์โทรศัพท์</label>
           <Input
             id={"inputComArea"}
             value={state.phone}
             type={"text"}
             placeholder={"ระบุเบอร์โทรศัพท์"}
-            invalid="Please choose a username."
-            setFunc={(e) => setState({...state, phone: e.target.value})}
+            invalid="กรุณาระบุเบอร์โทรศัพท์"
+            setFunc={(e) => setState({ ...state, phone: e.target.value })}
           ></Input>
         </div>
         <div className="col-md-12 mt-5 mb-2">
@@ -197,7 +191,7 @@ function FormA2() {
           <Input
             name="pdf1"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 1)}
           ></Input>
         </div>
@@ -209,7 +203,7 @@ function FormA2() {
           <Input
             name="pdf2"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 2)}
           ></Input>
         </div>
@@ -221,7 +215,7 @@ function FormA2() {
           <Input
             name="pdf3"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 3)}
           ></Input>
         </div>
@@ -231,23 +225,22 @@ function FormA2() {
             4. หลักฐานอื่น เช่น หลักฐานการเปลี่ยนชื่อ/สกุล (ถ้ามี),
             หนังสือมอบอำนาจ (กรณีกรรมการผู้มีอำนาจไม่ได้ลงนามเอง){" "}
           </label>
-          
         </div>
         <div className="col-md-6 mt-1">
           <Input
             name="pdf4"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 4)}
           ></Input>
         </div>
-        <div className="col-md-6"/>
+        <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">5. หนังสือรักษาความลับ</label>
           <Input
             name="pdf5"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 5)}
           ></Input>
         </div>
@@ -260,7 +253,7 @@ function FormA2() {
           <Input
             name="pdf6"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 6)}
           ></Input>
         </div>
@@ -272,7 +265,7 @@ function FormA2() {
           <Input
             name="pdf7"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 7)}
           ></Input>
         </div>
@@ -285,7 +278,7 @@ function FormA2() {
           <Input
             name="pdf8"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 8)}
           ></Input>
         </div>
@@ -295,7 +288,7 @@ function FormA2() {
           <Input
             name="pdf9"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 9)}
           ></Input>
         </div>
@@ -305,7 +298,7 @@ function FormA2() {
           <Input
             name="pdf10"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 10)}
           ></Input>
         </div>
@@ -317,7 +310,7 @@ function FormA2() {
           <Input
             name="pdf11"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 11)}
           ></Input>
         </div>
@@ -327,7 +320,7 @@ function FormA2() {
           <Input
             name="pdf12"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 12)}
           ></Input>
         </div>
@@ -340,7 +333,7 @@ function FormA2() {
           <Input
             name="pdf13"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 13)}
           ></Input>
         </div>
@@ -356,11 +349,11 @@ function FormA2() {
           <Input
             name="pdf14"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 14)}
           ></Input>
         </div>
-        <div className="col-md-6"/>
+        <div className="col-md-6" />
         <div className="col-md-12">
           <label className="label">
             15. Project Reference ข้อมูลผลงานก่อสร้างในอดีต
@@ -371,11 +364,11 @@ function FormA2() {
           <Input
             name="pdf15"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 15)}
           ></Input>
         </div>
-        <div className="col-md-6"/>
+        <div className="col-md-6" />
         <div className="col-md-6">
           <label className="label">
             16. ชนิด และจำนวนเครื่องมือ/เครื่องจักร ในการทำงาน
@@ -383,7 +376,7 @@ function FormA2() {
           <Input
             name="pdf16"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 16)}
           ></Input>
         </div>
@@ -399,7 +392,7 @@ function FormA2() {
           <Input
             name="pdf17"
             type={"file"}
-            invalid="Please choose a username."
+            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 17)}
           ></Input>
         </div>
@@ -415,8 +408,8 @@ function FormA2() {
             value={state.workarea}
             type={"text"}
             placeholder={"ระบุพื้นที่"}
-            invalid="Please choose a username."
-            setFunc={(e) => setState({...state, workarea: e.target.value})}
+            invalid="กรุณาระบุพื้นที่"
+            setFunc={(e) => setState({ ...state, workarea: e.target.value })}
           ></Input>
         </div>
         <div className="col-md-6" />

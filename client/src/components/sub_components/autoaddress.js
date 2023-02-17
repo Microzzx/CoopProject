@@ -2,10 +2,10 @@ import InputAddress from "react-thailand-address-autocomplete";
 import React from "react";
 
 function Address(props) {
-  const {state, setState, onSelect} = props;
+  const { state, setState, onSelect } = props;
 
   return (
-      <div className="form-group row row-cols-auto g-3 top-row">
+    <div className="form-group row row-cols-auto g-3 top-row">
       <div className="md-0"></div>
       <div className="col-sm-1 width5">
         <label className="label mt-1">ตำบล</label>
@@ -16,8 +16,9 @@ function Address(props) {
           placeholder="แขวง / ตำบล"
           address="subdistrict"
           value={state.subdistrict}
+          required
           onChange={(e) => {
-            setState({...state,subdistrict:e.target.value});
+            setState({ ...state, subdistrict: e.target.value });
           }}
           onSelect={onSelect}
         />
@@ -27,12 +28,12 @@ function Address(props) {
       </div>
       <div className="col-sm-2 ">
         <InputAddress
-          
+          required
           placeholder="เขต / อำเภอ"
           address="district"
           value={state.district}
           onChange={(e) => {
-            setState({...state,district:e.target.value});
+            setState({ ...state, district: e.target.value });
           }}
           onSelect={onSelect}
         />
@@ -42,12 +43,12 @@ function Address(props) {
       </div>
       <div className="col-sm-2">
         <InputAddress
-          
+          required
           placeholder="จังหวัด"
           address="province"
           value={state.province}
           onChange={(e) => {
-            setState({...state,province:e.target.value});
+            setState({ ...state, province: e.target.value });
           }}
           onSelect={onSelect}
         />
@@ -57,12 +58,12 @@ function Address(props) {
       </div>
       <div className="col-sm-2">
         <InputAddress
-          
+          required
           placeholder="เลขไปรษณีย์"
           address="zipcode"
           value={state.zipcode}
           onChange={(e) => {
-            setState({...state,zipcode:e.target.value});
+            setState({ ...state, zipcode: e.target.value });
           }}
           onSelect={onSelect}
         />

@@ -23,8 +23,8 @@ export default function Modal(props) {
 
   return (
     <div>
-        {props.img ? (
-      <button className="btnsize mrc" onClick={handleClickOpen}>
+      {props.img ? (
+        <button className="btnsize mrc" onClick={handleClickOpen}>
           <img
             className="mrc"
             src={props.img}
@@ -32,13 +32,11 @@ export default function Modal(props) {
             width="40px"
             alt="delete_button"
           />
-      </button>
+        </button>
       ) : (
-        <button
-            className="btn btn-primary"
-            onClick={handleClickOpen}>
-            {props.text}
-          </button>
+        <button className="btn btn-primary" onClick={handleClickOpen}>
+          {props.text}
+        </button>
       )}
       <Dialog
         fullScreen={fullScreen}
