@@ -28,6 +28,7 @@ export default function Register() {
         password: data.get('password'),
         fname: data.get('firstName'),
         lname: data.get('lastName'),
+        phone: data.get('phone'),
       })
         .then((response) => {
           if(response.data.status == 'error'){
@@ -97,6 +98,16 @@ export default function Register() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="phone"
+                  label="Phone Number"
+                  name="phone"
+                  autoComplete="tel"
                 />
               </Grid>
               <Grid item xs={12}>

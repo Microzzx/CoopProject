@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../../css/datapage.css";
 import Modal from "../sub_components/modal";
-
+import Loading from "../loading";
 function TableA2() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -17,16 +17,12 @@ function TableA2() {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a1_get/${id}`).then((response) => {
         setData(response.data);
-        setState({ ...state, status: response.data.status });
+        setState(prevState => ({...prevState, comment: response.data[0].comment, status: response.data[0].status}));
         setLoading(false);
       });
     };
     fetchData(url.substring(url.lastIndexOf("/") + 1));
   }, [url]);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   const ConfirmA1 = (id) => {
     const token = localStorage.getItem("token");
@@ -45,18 +41,23 @@ function TableA2() {
       }
     )
       .then((response) => {
-        alert("Data Updated!");
+        alert(response.data.message);
         window.location.reload(false);
       })
       .catch((error) => {
-        alert("unsuccessful, error" + error);
+        alert("unsuccessful, " + error);
         console.log(error);
       });
   };
+
   const printA1 = (e) => {
     e.preventDefault();
     console.log(data[0]);
   };
+
+  if (loading) {
+    return <Loading/>;
+  }
   return (
     <div className="container border shadow rcorners2 mt-5 mb-5">
       <form className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">

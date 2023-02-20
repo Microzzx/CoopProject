@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Modal from "../sub_components/modal";
-
+import Loading from "../loading";
 const ViewA2 = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,6 +15,7 @@ const ViewA2 = () => {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a2_get/${id}`).then((response) => {
         setData(response.data); 
+        setState(prevState => ({...prevState, comment: response.data[0].comment, status: response.data[0].status}));
         setLoading(false);
       });
     };
@@ -38,11 +39,11 @@ const ViewA2 = () => {
       }
     )
       .then((response) => {
-        alert("Data Updated!");
+        alert(response.data.message);
         window.location.reload(false);
       })
       .catch((error) => {
-        alert("unsuccessful, error" + error);
+        alert("unsuccessful, " + error);
         console.log(error);
       });
   };
@@ -57,7 +58,7 @@ const ViewA2 = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading/>;
   }
   return (
     <div className="container border shadow rcorners2 mt-5 mb-5">
@@ -398,18 +399,6 @@ const ViewA2 = () => {
             </label>
           </div>
         </div>
-        {/* <div className="col-11" />
-        <div className="col-1">
-          <button
-            className="btn btn-primary"
-            onClick={(e) => {
-              e.preventDefault();
-              ConfirmA2(data[0].a2_id);
-            }}
-          >
-            Confirm
-          </button>
-        </div> */}
       </form>
       <div className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">
         <div className="col-11" />

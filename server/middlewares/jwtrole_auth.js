@@ -15,7 +15,7 @@ const authRole = (permission) => {
               }
               else if (permission.includes(users[0].role)){
                 req.user_id = users[0].user_id; 
-                // req.user_id = users[0].email;
+                req.role = users[0].role;
                 next(); 
               }
               else{

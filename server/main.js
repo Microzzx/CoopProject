@@ -18,6 +18,8 @@ app.use('/a2_get', require('./routes/a2_get'));
 app.use('/a2_input', require('./routes/a2_input'));
 app.use('/a2_edit', require('./routes/a2_edit'));
 app.use('/a2_delete', require('./routes/a2_delete'));
+app.use('/user_get', require('./routes/user_get'));
+app.use('/user_edit', require('./routes/user_edit'));
 app.use('/doc_status', require('./routes/doc_status'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));

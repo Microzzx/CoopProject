@@ -13,10 +13,11 @@ router.post("/", jsonParser, (req, res) => {
       const decoded = jwt.verify(token, TOKEN_SECRET);
       connection.query("SELECT * FROM users WHERE email=?", [decoded.email], (err, users) => {
         if (err) {
-          res.json({ status: "error", message: "User not found!" });
+          res.json({ status: "error", message: "User not found" });
           return;
         } else {
-          res.json({ status: "ok", user_id: users[0].user_id, role: users[0].role, email: users[0].email, user_status: users[0].status});
+          // send back userdata
+          res.json({ status: "ok", user_id: users[0].user_id, role: users[0].role, email: users[0].email , fname: users[0].fname, lname: users[0].lname, phone: users[0].phone });
           return;
         }
       });

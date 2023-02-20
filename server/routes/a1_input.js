@@ -65,7 +65,7 @@ router.post("/", authRole(["admin", "user"]), (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send({status: "success", message: "Status updated successfully!"});
+        res.send({status: "success", message: "Data has been sent"});
       }
     }
   );

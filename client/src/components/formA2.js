@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/formA2.css";
+import "../css/form.css";
 import Input from "./sub_components/input";
 import Axios from "axios";
 
@@ -71,12 +71,12 @@ function FormA2() {
         if (response.data.status === "error") {
           alert("Error: " + response.data.message);
         } else {
-          alert("Data Inserted!");
+          alert(response.data.message);
           window.location = "/document";
         }
       })
       .catch((error) => {
-        alert("Error: " + error);
+        alert("unsuccessful, " + error);
         console.log(error);
       });
   };
@@ -131,7 +131,6 @@ function FormA2() {
             <option value="ห้างหุ้นส่วนจำกัด">ห้างหุ้นส่วนจำกัด</option>
             <option value="บริษัทจำกัด">บริษัทจำกัด</option>
           </select>
-          <div className="invalid-feedback">กรุณาเลือกประเภท</div>
         </div>
         <div className="col-md-8">
           <label className="form-label">ชื่อสถานประกอบการ</label>
@@ -140,7 +139,6 @@ function FormA2() {
             value={state.comname}
             type={"text"}
             placeholder={"ระบุสถานประกอบการ"}
-            invalid="กรุณาระบุชื่อ"
             setFunc={(e) => setState({ ...state, comname: e.target.value })}
           ></Input>
         </div>
@@ -157,7 +155,6 @@ function FormA2() {
             <option value="งานตกแต่ง/สถาปัตย์">งานตกแต่ง/สถาปัตย์</option>
             <option value="งานระบบ(ไฟฟ้า)">งานระบบ(ไฟฟ้า)</option>
           </select>
-          <div className="invalid-feedback">กรุณาเลือกประเภท</div>
         </div>
         <div className="col-md-4">
           <label className="form-label">ชื่อผู้สมัคร</label>
@@ -166,7 +163,6 @@ function FormA2() {
             value={state.name}
             type={"text"}
             placeholder={"ระบุชื่อ"}
-            invalid="กรุณาระบุชื่อ"
             setFunc={(e) => setState({ ...state, name: e.target.value })}
           ></Input>
         </div>
@@ -177,7 +173,6 @@ function FormA2() {
             value={state.phone}
             type={"text"}
             placeholder={"ระบุเบอร์โทรศัพท์"}
-            invalid="กรุณาระบุเบอร์โทรศัพท์"
             setFunc={(e) => setState({ ...state, phone: e.target.value })}
           ></Input>
         </div>
@@ -191,7 +186,6 @@ function FormA2() {
           <Input
             name="pdf1"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 1)}
           ></Input>
         </div>
@@ -203,7 +197,6 @@ function FormA2() {
           <Input
             name="pdf2"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 2)}
           ></Input>
         </div>
@@ -215,7 +208,6 @@ function FormA2() {
           <Input
             name="pdf3"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 3)}
           ></Input>
         </div>
@@ -230,7 +222,6 @@ function FormA2() {
           <Input
             name="pdf4"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 4)}
           ></Input>
         </div>
@@ -240,7 +231,6 @@ function FormA2() {
           <Input
             name="pdf5"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 5)}
           ></Input>
         </div>
@@ -253,7 +243,6 @@ function FormA2() {
           <Input
             name="pdf6"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 6)}
           ></Input>
         </div>
@@ -265,7 +254,6 @@ function FormA2() {
           <Input
             name="pdf7"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 7)}
           ></Input>
         </div>
@@ -278,7 +266,6 @@ function FormA2() {
           <Input
             name="pdf8"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 8)}
           ></Input>
         </div>
@@ -288,7 +275,6 @@ function FormA2() {
           <Input
             name="pdf9"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 9)}
           ></Input>
         </div>
@@ -298,7 +284,6 @@ function FormA2() {
           <Input
             name="pdf10"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 10)}
           ></Input>
         </div>
@@ -310,7 +295,6 @@ function FormA2() {
           <Input
             name="pdf11"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 11)}
           ></Input>
         </div>
@@ -320,7 +304,6 @@ function FormA2() {
           <Input
             name="pdf12"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 12)}
           ></Input>
         </div>
@@ -333,7 +316,6 @@ function FormA2() {
           <Input
             name="pdf13"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 13)}
           ></Input>
         </div>
@@ -349,7 +331,6 @@ function FormA2() {
           <Input
             name="pdf14"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 14)}
           ></Input>
         </div>
@@ -364,7 +345,6 @@ function FormA2() {
           <Input
             name="pdf15"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 15)}
           ></Input>
         </div>
@@ -376,7 +356,6 @@ function FormA2() {
           <Input
             name="pdf16"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 16)}
           ></Input>
         </div>
@@ -392,7 +371,6 @@ function FormA2() {
           <Input
             name="pdf17"
             type={"file"}
-            invalid="กรุณาเลือกไฟล์"
             setFunc={(e) => handlePDFChange(e, 17)}
           ></Input>
         </div>
@@ -408,7 +386,6 @@ function FormA2() {
             value={state.workarea}
             type={"text"}
             placeholder={"ระบุพื้นที่"}
-            invalid="กรุณาระบุพื้นที่"
             setFunc={(e) => setState({ ...state, workarea: e.target.value })}
           ></Input>
         </div>

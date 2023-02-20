@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/formA1.css";
+import "../css/form.css";
 import Input from "./sub_components/input";
 import Textarea from "./sub_components/textarea";
 import AutoAddress from "./sub_components/autoaddress";
@@ -64,12 +64,12 @@ function FormA1() {
           alert("Error: " + response.data.message);
         } else {
           setComList([...comlist, state]);
-          alert("Data Inserted!");
+          alert(response.data.message);
           window.location = "/document";
         }
       })
       .catch((error) => {
-        alert("Error: " + error);
+        alert("unsuccessful, " + error);
         console.log(error);
       });
   };

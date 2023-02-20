@@ -1,16 +1,16 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./navbar/navbar_auth";
+import Navbar from "./navbar/navbar_route";
 import Footer from "./footer";
 
-const NavFoot = () => {
+export default function NavFoot() {
+  
+
   return (
     <div>
-      <Navbar />
-      <Outlet />
+      <Navbar/>
+      <Outlet/>
       <Footer />
     </div>
   );
-};
-
-export default NavFoot;
+}

@@ -16,7 +16,7 @@ router.put("/", authRole(["admin"]), (req, res) => {
       } else {
         res.send({
           status: "success",
-          message: "Status updated successfully!",
+          message: "Data updated successfully",
         });
       }
     }

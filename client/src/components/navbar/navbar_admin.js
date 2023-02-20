@@ -35,14 +35,14 @@ function Navbar_admin() {
             <NavLink to="/home" className="nav-item nav-link me-2">
               Home
             </NavLink>
+            <NavLink to="/document" className="nav-item nav-link me-2">
+              Document
+            </NavLink>
             <NavLink to="/formA1" className="nav-item nav-link me-2">
               FormA1
             </NavLink>
             <NavLink to="/formA2" className="nav-item nav-link me-2">
               FormA2
-            </NavLink>
-            <NavLink to="/document" className="nav-item nav-link me-2">
-              Document
             </NavLink>
             <NavLink to="/tableA1" className="nav-item nav-link me-2">
               DataA1
@@ -83,6 +83,9 @@ function Navbar_admin() {
                 </li>
                 <li>
                   <hr className="dropdown-divider" />
+                </li>
+                <li>
+                  <a className="dropdown-item" href="/profile" >Profile</a>
                 </li>
                 <button className="logoutbtn" onClick={handleLogout}>
                   Logout

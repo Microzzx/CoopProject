@@ -8,6 +8,7 @@ import FormA1 from "./components/formA1";
 import FormA2 from "./components/formA2";
 import NavFoot from "./components/navfoot";
 import Home from "./components/home";
+import Profile from "./components/profile";
 import TableA1 from "./components/datapageA1/tableA1";
 import ViewA1 from "./components/datapageA1/viewA1";
 import TableA2 from "./components/datapageA2/tableA2";
@@ -24,6 +25,7 @@ function Router() {
           <Route index element={<Home />} />
           <Route exact path="/home" element={<Home />} />
           <Route element={<PrivateUserRoutes />}>
+            <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/document" element={<Document />} />
             <Route element={<PrivateA1Routes />}>
               <Route exact path="/formA1" element={<FormA1 />} />

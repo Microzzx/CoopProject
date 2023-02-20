@@ -72,6 +72,9 @@ function Navbar_user() {
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
+                <li>
+                  <a className="dropdown-item" href="/profile" >Profile</a>
+                </li>
                 <button className="logoutbtn" onClick={handleLogout}>
                   Logout
                 </button>

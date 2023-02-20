@@ -14,7 +14,11 @@ const PrivateUserRoutes = () => {
         },
       })
       .then((response) => {
-        if (response.data.status === "ok" && response.data.a1_status !== "Pending" && response.data.a1_status !== "Approved" && response.data.a2_status !== "Pending" && response.data.a2_status !== "Approved" && response.data.a2_status !== "Declined") {
+        if (response.data.role === "admin"){
+          setIsAuthenticated(true);
+          console.log("Authenticated!");
+        }
+        else if (response.data.status === "ok" && response.data.a1_status !== "Pending" && response.data.a1_status !== "Approved" && response.data.a2_status !== "Pending" && response.data.a2_status !== "Approved" && response.data.a2_status !== "Declined") {
           setIsAuthenticated(true);
           console.log("Authenticated!");
         } else {

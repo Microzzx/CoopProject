@@ -39,10 +39,9 @@ router.post('/', authRole(["admin", "user"]), upload.fields(pdfFields), (req, re
   const sql = `INSERT INTO a2 (user_id, comname, comtype, worktype, name, phone, workarea, status, url1, url2, url3, url4, url5, url6, url7, url8, url9, url10, url11, url12, url13, url14, url15, url16, url17) VALUES ('${user_id}', '${comname}', '${comtype}', '${worktype}', '${name}', '${phone}', '${workarea}', '${status}', '${pdfUrls[0]}', '${pdfUrls[1]}', '${pdfUrls[2]}', '${pdfUrls[3]}', '${pdfUrls[4]}', '${pdfUrls[5]}', '${pdfUrls[6]}', '${pdfUrls[7]}', '${pdfUrls[8]}', '${pdfUrls[9]}', '${pdfUrls[10]}', '${pdfUrls[11]}', '${pdfUrls[12]}', '${pdfUrls[13]}', '${pdfUrls[14]}', '${pdfUrls[15]}', '${pdfUrls[16]}')`;
   connection.query(sql, (error, result) => {
     if (error) {
-      console.log(error);
-      return res.status(500).json({ message: 'Failed to save PDFs to database' });
+      return res.status(500).json({ message: 'Failed to save data' });
     }
-    res.status(200).json({ message: 'PDFs saved successfully' });
+    res.status(200).json({ message: 'Data has been sent' });
   });
 });
 
