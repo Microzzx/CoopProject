@@ -34,8 +34,15 @@ router.put("/", authRole(["admin"]), (req, res) => {
                     res.status(500).json({ error: "Internal server error" });
                   } else {
                     const email = result[0].email;
-                    sendEmail(email, status);
-                    res.send({ status: "success", message: "Data updated successfully" });
+                    const data = {
+                      status: status,
+                      form: "A1",
+                    };
+                    sendEmail(email, data);
+                    res.send({
+                      status: "success",
+                      message: "Data updated successfully",
+                    });
                   }
                 }
               );

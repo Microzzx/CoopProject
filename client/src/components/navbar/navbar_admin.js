@@ -51,7 +51,7 @@ function Navbar_admin() {
               DataA2
             </NavLink>
             <NavLink to="/about" className="nav-item nav-link me-2 disabled">
-              About Us
+              About Usbutton
             </NavLink>
             <NavLink to="/contact" className="nav-item nav-link me-2 disabled">
               Contact
@@ -85,7 +85,9 @@ function Navbar_admin() {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/profile" >Profile</a>
+                  <a className="dropdown-item" href="/profile">
+                    Profile
+                  </a>
                 </li>
                 <button className="logoutbtn" onClick={handleLogout}>
                   Logout

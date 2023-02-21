@@ -6,7 +6,7 @@ import img1 from "../../image/cpall.png";
 
 function Navbar_guest() {
   const [currentURL, setCurrentURL] = useState(window.location.pathname);
-  
+
   useEffect(() => {
     setCurrentURL(window.location.pathname);
   }, []);
@@ -58,12 +58,12 @@ function Navbar_guest() {
                 />
               </button>
               <ul className="dropdown-menu dropdown-menu-lg-end text-center">
-              <a className="dropdown-item" href="/login">
-                Login
-              </a>
-              <a className="dropdown-item" href="/register">
-                Signup
-              </a>
+                <a className="dropdown-item" href="/login">
+                  Login
+                </a>
+                <a className="dropdown-item" href="/register">
+                  Signup
+                </a>
               </ul>
             </div>
           </div>

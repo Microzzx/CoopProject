@@ -107,15 +107,18 @@ function FormA2() {
   };
 
   return (
-    <div className="container border shadow rcorners2 mt-3 mb-5">
+    <div className="container border shadow rcorners2 mt-5 mb-5">
       <form
         className="row row-cols-auto g-3 top-row needs-validation"
         noValidate
         onSubmit={handleSubmit}
       >
-        <h2 className="center mtc mbc">
-          คุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
-        </h2>
+        <div className="col-md-12 mb-2">
+          <h2 className="center mtc mbc">
+            คุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
+          </h2>
+        </div>
+
         <div className="col-md-12 mb-2">
           <h5 className="label">ข้อมูลทั่วไป</h5>
         </div>

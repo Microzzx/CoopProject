@@ -10,12 +10,16 @@ const ViewA2 = () => {
     status: "",
   });
   const url = window.location.pathname;
-  
+
   useEffect(() => {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a2_get/${id}`).then((response) => {
-        setData(response.data); 
-        setState(prevState => ({...prevState, comment: response.data[0].comment, status: response.data[0].status}));
+        setData(response.data);
+        setState((prevState) => ({
+          ...prevState,
+          comment: response.data[0].comment,
+          status: response.data[0].status,
+        }));
         setLoading(false);
       });
     };
@@ -40,7 +44,7 @@ const ViewA2 = () => {
     )
       .then((response) => {
         alert(response.data.message);
-        window.location.reload(false);
+        window.location = "/tableA2";
       })
       .catch((error) => {
         alert("unsuccessful, " + error);
@@ -58,7 +62,7 @@ const ViewA2 = () => {
   };
 
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <div className="container border shadow rcorners2 mt-5 mb-5">

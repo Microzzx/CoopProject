@@ -17,7 +17,11 @@ function TableA2() {
     const fetchData = (id) => {
       Axios.get(`http://localhost:3001/a1_get/${id}`).then((response) => {
         setData(response.data);
-        setState(prevState => ({...prevState, comment: response.data[0].comment, status: response.data[0].status}));
+        setState((prevState) => ({
+          ...prevState,
+          comment: response.data[0].comment,
+          status: response.data[0].status,
+        }));
         setLoading(false);
       });
     };
@@ -42,7 +46,7 @@ function TableA2() {
     )
       .then((response) => {
         alert(response.data.message);
-        window.location.reload(false);
+        window.location = "/tableA1";
       })
       .catch((error) => {
         alert("unsuccessful, " + error);
@@ -56,7 +60,7 @@ function TableA2() {
   };
 
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <div className="container border shadow rcorners2 mt-5 mb-5">
