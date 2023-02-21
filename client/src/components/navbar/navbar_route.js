@@ -5,7 +5,10 @@ import NavbarAdmin from "./navbar_admin";
 import NavbarUser from "./navbar_user";
 
 function Navbar() {
-  const [userRole, setUserRole] = useState("guest");
+  const [userData, setUserData] = useState({
+    role: "guest",
+    email: "d",
+  });
   useEffect(() => {
     const token = localStorage.getItem("token");
     Axios.post(
@@ -20,30 +23,34 @@ function Navbar() {
     )
       .then((response) => {
         if (response.data.status === "ok") {
-          setUserRole(response.data.role);
+          setUserData({
+            ...userData,
+            role: response.data.role,
+            email: response.data.email,
+          });
         } else if (
           response.data.status === "error" &&
           response.data.message === "Token has expired"
         ) {
           localStorage.removeItem("token");
-          setUserRole("guest");
+          setUserData({ ...userData, role: "guest" });
           alert("Your session has expired. Please log in.");
           window.location = "/login";
         } else {
           localStorage.removeItem("token");
-          setUserRole("guest");
+          setUserData({ ...userData, role: "guest" });
         }
       })
       .catch((error) => {
         localStorage.removeItem("token");
-        setUserRole("guest");
+        setUserData({ ...userData, role: "guest" });
       });
   }, []);
 
-  if (userRole === "admin") {
-    return <NavbarAdmin />;
-  } else if (userRole === "user") {
-    return <NavbarUser />;
+  if (userData.role === "admin") {
+    return <NavbarAdmin email={userData.email} />;
+  } else if (userData.role === "user") {
+    return <NavbarUser email={userData.email} />;
   } else {
     return <NavbarGuest />;
   }

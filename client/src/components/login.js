@@ -79,7 +79,7 @@ export default function Login() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              เข้าสู่ระบบ
             </Typography>
             <Box
               component="form"
@@ -92,7 +92,7 @@ export default function Login() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="อีเมลล์"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -102,7 +102,7 @@ export default function Login() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="รหัสผ่าน"
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -118,7 +118,7 @@ export default function Login() {
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"ยังไม่มีบัญชี? ลงทะเบียน"}
                   </Link>
                 </Grid>
               </Grid>

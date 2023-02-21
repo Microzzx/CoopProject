@@ -13,7 +13,7 @@ const ViewA2 = () => {
 
   useEffect(() => {
     const fetchData = (id) => {
-      Axios.get(`http://localhost:3001/a2_get/${id}`).then((response) => {
+      Axios.get(`http://localhost:3001/a2/get/${id}`).then((response) => {
         setData(response.data);
         setState((prevState) => ({
           ...prevState,
@@ -29,7 +29,7 @@ const ViewA2 = () => {
   const ConfirmA2 = (id) => {
     const token = localStorage.getItem("token");
     Axios.put(
-      "http://localhost:3001/a2_edit",
+      "http://localhost:3001/a2/edit",
       {
         comment: state.comment,
         status: state.status,

@@ -26,12 +26,13 @@ function TableA1() {
 
   useEffect(() => {
     const GetCompanies = () => {
-      Axios.get("http://localhost:3001/a1_get", {
+      Axios.get("http://localhost:3001/a1/get", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
+        console.table(response.data);
         let arr = response.data.map((v, i) => ({ index: i, ...v }));
         setComList(arr);
         //console.table(arr);
@@ -41,7 +42,7 @@ function TableA1() {
   }, []);
 
   const deleteCompany = (id) => {
-    Axios.delete(`http://localhost:3001/a1_delete/${id}`, {
+    Axios.delete(`http://localhost:3001/a1/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -97,7 +98,7 @@ function TableA1() {
   };
 
   return (
-    <Box component="main" sx={{ height: "86.5vh" }}>
+    <Box component="main" sx={{ height: "87.1vh" }}>
       <h2 style={{ padding: "50px" }} className="center">
         ตารางข้อมูลฟอร์ม A1
       </h2>

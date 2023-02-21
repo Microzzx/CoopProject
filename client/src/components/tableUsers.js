@@ -1,10 +1,9 @@
-//THIS PAGE MADE FOR ADMIN
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import "../../css/datapage.css";
-import delete_btn from "../../image/delete_icon.jpg";
+import "../css/datapage.css";
+import delete_btn from "../image/delete_icon.jpg";
 import Paper from "@mui/material/Paper";
-import Modal from "../sub_components/modal";
+import Modal from "./sub_components/modal";
 import Grid from "@mui/material/Grid";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
@@ -18,30 +17,30 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
 
-function TableA2() {
+function TableUser() {
   //new data set for render on table
-  const [comlist, setComList] = useState([]);
+  const [data, setData] = useState([]);
   const [sortkey, setSortKey] = useState("index");
   const [asc, setAsc] = useState(true);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const GetCompanies = () => {
-      Axios.get("http://localhost:3001/a2/get", {
+    const getUsers = () => {
+      Axios.get("http://localhost:3001/user/get/all", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
         let arr = response.data.map((v, i) => ({ index: i, ...v }));
-        setComList(arr);
+        setData(arr);
       });
     };
-    GetCompanies();
+    getUsers();
   }, []);
 
-  const deleteCompany = (id) => {
-    Axios.delete(`http://localhost:3001/a2/delete/${id}`, {
+  const deleteUsers = (id) => {
+    Axios.delete(`http://localhost:3001/user/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -51,8 +50,8 @@ function TableA2() {
         if (response.data.status === "error") {
           alert("Error: " + response.data.message);
         } else {
-          setComList(
-            comlist.filter((val) => {
+          setData(
+            data.filter((val) => {
               return val.id !== id;
             })
           );
@@ -66,18 +65,14 @@ function TableA2() {
       });
   };
 
-  const view = (id) => {
-    window.location = `/viewA2/${id}`;
-  };
-
   const handleSort = (key) => {
     setAsc(key === sortkey ? !asc : true);
     setSortKey(key);
-    let arr = comlist
+    let arr = data
       .slice()
       .sort((a, b) => a[key].toString().localeCompare(b[key].toString()));
     if (!asc) arr.reverse();
-    setComList(arr);
+    setData(arr);
   };
 
   const TableCol = (props) => {
@@ -99,78 +94,47 @@ function TableA2() {
   return (
     <Box component="main" sx={{ height: "87.1vh" }}>
       <h2 style={{ padding: "50px" }} className="center">
-        ตารางข้อมูลฟอร์ม A2
+        ตารางข้อมูลผู้ใช้งาน
       </h2>
       <TableContainer sx={{ maxHeight: 650 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCol width="11%" sortkey="index">
+              <TableCol width="15%" sortkey="index">
                 No.
               </TableCol>
-              <TableCol width="11%" sortkey="time">
-                Time
-              </TableCol>
-              <TableCol width="11%" sortkey="email">
+              <TableCol width="15%" sortkey="email">
                 Email
               </TableCol>
-              <TableCol width="11%" sortkey="comname">
+              <TableCol width="15%" sortkey="fname">
                 Name
               </TableCol>
-              <TableCol width="11%" sortkey="province">
+              <TableCol width="15%" sortkey="lname">
+                Surname
+              </TableCol>
+              <TableCol width="15%" sortkey="phone">
                 Phone
               </TableCol>
-              <TableCol width="11%" sortkey="worktype">
-                WorkType
-              </TableCol>
-              <TableCol width="11%" sortkey="status">
-                Status
-              </TableCol>
-              <TableCell align="center"></TableCell>
               <TableCell align="center"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {comlist.map((val, index) => (
+            {data.map((val, index) => (
               <TableRow key={index} className="center">
                 <TableCell scope="row" align="center">
                   {val.index + 1}
                 </TableCell>
-                <TableCell align="center">{val.time}</TableCell>
                 <TableCell align="center">{val.email}</TableCell>
-                <TableCell align="center">{val.name}</TableCell>
+                <TableCell align="center">{val.fname}</TableCell>
+                <TableCell align="center">{val.lname}</TableCell>
                 <TableCell align="center">{val.phone}</TableCell>
-                <TableCell align="center">{val.worktype}</TableCell>
-                <TableCell align="center">
-                  <span
-                    style={{
-                      color:
-                        val.status === "Approved"
-                          ? "green"
-                          : val.status === "Declined"
-                          ? "red"
-                          : "orange",
-                    }}
-                  >
-                    {val.status}
-                  </span>
-                </TableCell>
-                <TableCell align="center">
-                  <IconButton
-                    onClick={() => {
-                      view(val.a2_id);
-                    }}
-                  >
-                    <VisibilityIcon />
-                  </IconButton>
-                </TableCell>
                 <TableCell align="center">
                   <Modal
                     title="ลบข้อมูล"
                     context="คุณแน่ใจที่จะลบรายการนี้หรือไม่?"
                     img={delete_btn}
                     setFunc={() => {
-                      deleteCompany(val.a2_id);
+                      deleteUsers(val.user_id);
                     }}
                   ></Modal>
                 </TableCell>
@@ -182,5 +146,5 @@ function TableA2() {
     </Box>
   );
 }
-//
-export default TableA2;
+
+export default TableUser;

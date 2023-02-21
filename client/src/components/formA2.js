@@ -61,7 +61,7 @@ function FormA2() {
     formData.append("pdf16", state.pdf16);
     formData.append("pdf17", state.pdf17);
     formData.append("workarea", state.workarea);
-    Axios.post("http://localhost:3001/a2_input", formData, {
+    Axios.post("http://localhost:3001/a2/input", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,

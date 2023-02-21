@@ -4,7 +4,7 @@ import "../../css/navbar.css";
 import status_image from "../../image/admin.png";
 import img1 from "../../image/cpall.png";
 
-function Navbar_admin() {
+function Navbar_admin(props) {
   const [currentURL, setCurrentURL] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -17,10 +17,10 @@ function Navbar_admin() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav className="navbar navbar-expand-xl navbar-light bg-light shadow">
       <div className="container-fluid">
         <a href="/home" className="navbar-brand">
-          <img src={img1} weight="50" height="50" alt="Logo" />
+          <img src={img1} weight="44" height="41" alt="Logo" />
         </a>
         <button
           type="button"
@@ -33,31 +33,35 @@ function Navbar_admin() {
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav nav-pills">
             <NavLink to="/home" className="nav-item nav-link me-2">
-              Home
+              หน้าแรก
             </NavLink>
             <NavLink to="/document" className="nav-item nav-link me-2">
-              Document
+              เอกสาร
             </NavLink>
             <NavLink to="/formA1" className="nav-item nav-link me-2">
-              FormA1
+              ฟอร์มA1
             </NavLink>
             <NavLink to="/formA2" className="nav-item nav-link me-2">
-              FormA2
+              ฟอร์มA2
             </NavLink>
             <NavLink to="/tableA1" className="nav-item nav-link me-2">
-              DataA1
+              ตารางA1
             </NavLink>
             <NavLink to="/tableA2" className="nav-item nav-link me-2">
-              DataA2
+              ตารางA2
+            </NavLink>
+            <NavLink to="/tableUsers" className="nav-item nav-link me-2">
+              ตารางUsers
             </NavLink>
             <NavLink to="/about" className="nav-item nav-link me-2 disabled">
-              About Usbutton
+              เกี่ยวกับเรา
             </NavLink>
             <NavLink to="/contact" className="nav-item nav-link me-2 disabled">
-              Contact
+              ติดต่อ
             </NavLink>
           </div>
           <div className="navbar-nav ms-auto">
+            <span class="navbar-text center me-2">{props.email}</span>
             <div className="btn-group">
               <button
                 type="button"
@@ -79,7 +83,9 @@ function Navbar_admin() {
               </button>
               <ul className="dropdown-menu dropdown-menu-lg-end text-center">
                 <li>
-                  <a className="dropdown-item">Sign in as Admin</a>
+                  <a className="dropdown-item" style={{ fontWeight: "bold" }}>
+                    Sign in as Admin
+                  </a>
                 </li>
                 <li>
                   <hr className="dropdown-divider" />
@@ -89,7 +95,10 @@ function Navbar_admin() {
                     Profile
                   </a>
                 </li>
-                <button className="logoutbtn" onClick={handleLogout}>
+                <button
+                  className="dropdown-item logoutbtn"
+                  onClick={handleLogout}
+                >
                   Logout
                 </button>
               </ul>

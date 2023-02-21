@@ -15,7 +15,7 @@ function Navbar_guest() {
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
       <div className="container-fluid">
         <a href="/home" className="navbar-brand">
-          <img src={img1} weight="50" height="50" alt="Logo" />
+          <img src={img1} weight="44" height="41" alt="Logo" />
         </a>
         <button
           type="button"
@@ -28,44 +28,22 @@ function Navbar_guest() {
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav nav-pills">
             <NavLink to="/home" className="nav-item nav-link me-2">
-              Home
+              หน้าแรก
             </NavLink>
             <NavLink to="/about" className="nav-item nav-link me-2 disabled">
-              About Us
+              เกี่ยวกับเรา
             </NavLink>
             <NavLink to="/contact" className="nav-item nav-link me-2 disabled">
-              Contact
+              ติดต่อ
             </NavLink>
           </div>
           <div className="navbar-nav ms-auto">
-            <div className="btn-group">
-              <button
-                type="button"
-                className="btn dropdown-toggle"
-                data-bs-toggle="dropdown"
-                data-bs-display="static"
-                aria-expanded="false"
-              >
-                <img
-                  src={
-                    localStorage.getItem("profilePic")
-                      ? localStorage.getItem("profilePic")
-                      : status_image
-                  }
-                  className="rounded-circle"
-                  width="40"
-                  height="40"
-                />
-              </button>
-              <ul className="dropdown-menu dropdown-menu-lg-end text-center">
-                <a className="dropdown-item" href="/login">
-                  Login
-                </a>
-                <a className="dropdown-item" href="/register">
-                  Signup
-                </a>
-              </ul>
-            </div>
+            <NavLink to="/login" className="nav-item nav-link me-2">
+              เข้าสู่ระบบ
+            </NavLink>
+            <NavLink to="/register" className="nav-item nav-link me-2">
+              ลงทะเบียน
+            </NavLink>
           </div>
         </div>
       </div>

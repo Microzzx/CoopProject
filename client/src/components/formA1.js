@@ -53,7 +53,7 @@ function FormA1() {
 
   const postA1 = () => {
     const token = localStorage.getItem("token");
-    Axios.post("http://localhost:3001/a1_input", state, {
+    Axios.post("http://localhost:3001/a1/input", state, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -199,7 +199,9 @@ function FormA1() {
         </div>
         <div className="col-md-6" />
         <div className="col-md-12">
-          <label className="label">7. มีพนักงานประจำทั้งหมดที่คน *ไม่มีให้กรอก0</label>
+          <label className="label">
+            7. มีพนักงานประจำทั้งหมดที่คน *ไม่มีให้กรอก0
+          </label>
           <Employee
             joblist={state.fulltime}
             onChange={(data) =>

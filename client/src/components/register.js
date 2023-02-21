@@ -1,21 +1,21 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 const theme = createTheme({
   typography: {
-    fontFamily: 'Prompt'
+    fontFamily: "Prompt",
   },
 });
 
@@ -24,29 +24,25 @@ export default function Register() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     Axios.post("http://localhost:3001/register", {
-        email: data.get('email'),
-        password: data.get('password'),
-        fname: data.get('firstName'),
-        lname: data.get('lastName'),
-        phone: data.get('phone'),
+      email: data.get("email"),
+      password: data.get("password"),
+      fname: data.get("firstName"),
+      lname: data.get("lastName"),
+      phone: data.get("phone"),
+    })
+      .then((response) => {
+        if (response.data.status == "error") {
+          alert("error: " + response.data.message);
+          window.location.reload(false);
+        } else {
+          alert("register success!");
+          window.location = "/login";
+        }
       })
-        .then((response) => {
-          if(response.data.status == 'error'){
-            alert("error: "+response.data.message);
-            window.location.reload(false);
-          }
-          else{
-            alert("register success!");
-            window.location = '/login'
-          }
-          
-        })
-        .catch((error) => {
-          alert("unsuccessful, error" + error);
-          console.log(error);
-        });
-
-
+      .catch((error) => {
+        alert("unsuccessful, error" + error);
+        console.log(error);
+      });
   };
 
   return (
@@ -56,18 +52,23 @@ export default function Register() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            ลงทะเบียน
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -76,7 +77,7 @@ export default function Register() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="ชื่อ"
                   autoFocus
                 />
               </Grid>
@@ -85,7 +86,7 @@ export default function Register() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="นามสกุล"
                   name="lastName"
                   autoComplete="family-name"
                 />
@@ -95,7 +96,7 @@ export default function Register() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="อีเมลล์"
                   name="email"
                   autoComplete="email"
                 />
@@ -105,7 +106,7 @@ export default function Register() {
                   required
                   fullWidth
                   id="phone"
-                  label="Phone Number"
+                  label="เบอร์โทรศัพท์"
                   name="phone"
                   autoComplete="tel"
                 />
@@ -115,13 +116,12 @@ export default function Register() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="รหัสผ่าน"
                   type="password"
                   id="password"
                   autoComplete="new-password"
                 />
               </Grid>
-        
             </Grid>
             <Button
               type="submit"
@@ -134,7 +134,7 @@ export default function Register() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  มีบัญชีอยู่แล้ว? เข้าสู่ระบบ
                 </Link>
               </Grid>
             </Grid>

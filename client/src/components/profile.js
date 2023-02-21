@@ -19,7 +19,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchData = () => {
       const token = localStorage.getItem("token");
-      Axios.get("http://localhost:3001/user_get", {
+      Axios.get("http://localhost:3001/user/get", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ export default function Profile() {
     console.log(state);
     const token = localStorage.getItem("token");
     Axios.put(
-      "http://localhost:3001/user_edit",
+      "http://localhost:3001/user/edit",
       {
         fname: state.fname,
         lname: state.lname,
@@ -69,7 +69,7 @@ export default function Profile() {
   const Edit2 = () => {
     const token = localStorage.getItem("token");
     Axios.put(
-      "http://localhost:3001/user_edit/password",
+      "http://localhost:3001/user/edit/password",
       {
         pre_password: state.pre_password,
         new_password: state.new_password,
@@ -97,7 +97,7 @@ export default function Profile() {
   }
 
   return (
-    <Grid container component="main" sx={{ height: "86.5vh" }}>
+    <Grid container component="main" sx={{ height: "87.1vh" }}>
       <div className="container border shadow rcorners2 mt-5 mb-5">
         <div className="row mt-3 mb-5">
           <div className="col-md-12">

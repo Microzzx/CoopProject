@@ -13,6 +13,7 @@ import TableA1 from "./components/datapageA1/tableA1";
 import ViewA1 from "./components/datapageA1/viewA1";
 import TableA2 from "./components/datapageA2/tableA2";
 import ViewA2 from "./components/datapageA2/viewA2";
+import TableUsers from "./components/tableUsers";
 import Login from "./components/login";
 import Document from "./components/document";
 import Register from "./components/register";
@@ -30,7 +31,7 @@ function Router() {
             <Route element={<PrivateA1Routes />}>
               <Route exact path="/formA1" element={<FormA1 />} />
             </Route>
-            <Route element={<PrivateA2Routes />}> 
+            <Route element={<PrivateA2Routes />}>
               <Route exact path="/formA2" element={<FormA2 />} />
             </Route>
             <Route element={<PrivateAdminRoutes />}>
@@ -38,6 +39,7 @@ function Router() {
               <Route exact path="/viewA1/:id" element={<ViewA1 />} />
               <Route exact path="/tableA2" element={<TableA2 />} />
               <Route exact path="/viewA2/:id" element={<ViewA2 />} />
+              <Route exact path="/tableUsers" element={<TableUsers />} />
             </Route>
           </Route>
         </Route>

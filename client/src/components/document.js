@@ -28,7 +28,7 @@ function Document() {
   }, []);
 
   return (
-    <Grid container component="main" sx={{ height: "86.5vh" }}>
+    <Grid container component="main" sx={{ height: "87.1vh" }}>
       <div className="container border shadow rcorners2 mt-5 mb-5">
         <div className="row  mt-3 mb-5">
           <div className="col-md-12 mb-3">
@@ -77,9 +77,7 @@ function Document() {
                   alt="image"
                 />
                 <h5 className="card-title">Form A1</h5>
-                <p className="card-text">
-                  แบบสอบถามประวัติผู้รับเหมารายใหม่
-                </p>
+                <p className="card-text">แบบสอบถามประวัติผู้รับเหมารายใหม่</p>
                 <a
                   href="/formA1"
                   className={
