@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import { NavLink } from "react-router-dom";
 import "../../css/navbar.css";
 import img1 from "../../image/cpall.png";
@@ -10,10 +11,27 @@ function Navbar_user(props) {
     setCurrentURL(window.location.pathname);
   }, []);
 
-  function handleLogout() {
-    localStorage.removeItem("token");
-    window.location = "/home";
-  }
+  const handleLogout = () => {
+    const token = localStorage.getItem("token");
+    Axios.post(
+      "http://localhost:3001/logout",
+      {},
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((response) => {
+        alert(response.data.message);
+        localStorage.removeItem("token");
+        window.location = "/home";
+      })
+      .catch((error) => {
+        alert("unsuccessful, error" + error);
+      });
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">

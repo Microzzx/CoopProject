@@ -16,6 +16,7 @@ app.use("/user", require("./routes/user"));
 app.use("/doc_status", require("./routes/doc_status"));
 app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
+app.use("/logout", require("./routes/logout"));
 app.use("/jwtauth", require("./routes/jwtauth"));
 
 app.use("/static", express.static(path.join(__dirname, "public")));

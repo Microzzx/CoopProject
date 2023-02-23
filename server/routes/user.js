@@ -31,7 +31,7 @@ router.get("/get", authRole(["admin", "user"]), (req, res) => {
 
 router.get("/get/all", authRole(["admin"]), (req, res) => {
   connection.query(
-    "SELECT user_id, email, fname, lname, phone, role FROM users",
+    "SELECT user_id, email, fname, lname, phone, role, last_login FROM users",
     (err, result) => {
       if (err) {
         console.log(err);

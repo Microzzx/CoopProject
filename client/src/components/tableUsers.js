@@ -116,6 +116,9 @@ function TableUser() {
               <TableCol width="15%" sortkey="phone">
                 Phone
               </TableCol>
+              <TableCol width="15%" sortkey="phone">
+                Last Login
+              </TableCol>
               <TableCell align="center"></TableCell>
             </TableRow>
           </TableHead>
@@ -129,6 +132,7 @@ function TableUser() {
                 <TableCell align="center">{val.fname}</TableCell>
                 <TableCell align="center">{val.lname}</TableCell>
                 <TableCell align="center">{val.phone}</TableCell>
+                <TableCell align="center">{val.last_login}</TableCell>
                 <TableCell align="center">
                   <Modal
                     title="ลบข้อมูล"

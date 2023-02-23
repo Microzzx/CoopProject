@@ -77,12 +77,11 @@ export default function Profile() {
       }
     )
       .then((response) => {
-        alert("Data Updated!");
+        alert(response.data.message);
         window.location.reload(false);
       })
       .catch((error) => {
         alert("unsuccessful, error" + error);
-        console.log(error);
         window.location.reload(false);
       });
   };
