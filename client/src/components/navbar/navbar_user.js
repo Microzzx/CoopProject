@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../../css/navbar.css";
-import status_image from "../../image/user.png";
 import img1 from "../../image/cpall.png";
 
 function Navbar_user(props) {
@@ -46,7 +45,7 @@ function Navbar_user(props) {
             </NavLink>
           </div>
           <div className="navbar-nav ms-auto">
-            <span class="navbar-text center me-2">{props.email}</span>
+            <span className="navbar-text center me-2">{props.email}</span>
             <div className="btn-group">
               <button
                 type="button"
@@ -56,14 +55,11 @@ function Navbar_user(props) {
                 aria-expanded="false"
               >
                 <img
-                  src={
-                    localStorage.getItem("profilePic")
-                      ? localStorage.getItem("profilePic")
-                      : status_image
-                  }
-                  className="rounded-circle"
+                  className="miniprofilepic__image miniprofilepic"
+                  src={props.picture_url}
                   width="40"
                   height="40"
+                  alt="Profile Picture"
                 />
               </button>
               <ul className="dropdown-menu dropdown-menu-lg-end text-center">

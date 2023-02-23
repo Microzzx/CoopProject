@@ -2,11 +2,13 @@ const express = require("express");
 const router = express.Router();
 const connection = require("../connection");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
+const path = require("path");
 const { authRole } = require("../middlewares/jwtrole_auth");
 
 router.get("/get", authRole(["admin", "user"]), (req, res) => {
   connection.query(
-    "SELECT email, fname, lname, phone, role FROM users WHERE user_id = ?",
+    "SELECT email, fname, lname, phone, picture_url, role FROM users WHERE user_id = ?",
     [req.user_id],
     (err, result) => {
       if (err) {
@@ -19,6 +21,7 @@ router.get("/get", authRole(["admin", "user"]), (req, res) => {
           fname: result[0].fname,
           lname: result[0].lname,
           phone: result[0].phone,
+          picture_url: `http://localhost:3001/static${result[0].picture_url}`,
           role: result[0].role,
         });
       }
@@ -28,7 +31,7 @@ router.get("/get", authRole(["admin", "user"]), (req, res) => {
 
 router.get("/get/all", authRole(["admin"]), (req, res) => {
   connection.query(
-    "SELECT email, fname, lname, phone, role FROM users",
+    "SELECT user_id, email, fname, lname, phone, role FROM users",
     (err, result) => {
       if (err) {
         console.log(err);
@@ -127,6 +130,60 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
             }
           });
         }
+      }
+    }
+  );
+});
+
+router.post("/edit/picture", authRole(["admin", "user"]), (req, res) => {
+  const email = req.email;
+  const base64Image = req.body.image.split(";base64,").pop();
+  const PictureName = `${email}.png`;
+  const profilePicPath = path.join(
+    __dirname,
+    "..",
+    "public",
+    "profile_pics",
+    PictureName
+  );
+  fs.writeFile(profilePicPath, base64Image, { encoding: "base64" }, (err) => {
+    if (err) {
+      return res.status(500).json({ error: "Failed to save picture" });
+    } else {
+      res.json({ status: "ok", message: "Success to save picture" });
+    }
+  });
+});
+
+router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
+  const id = req.params.id;
+  connection.query(
+    "SELECT picture_url FROM users WHERE user_id = ?",
+    id,
+    (err, result) => {
+      if (err) {
+        res.status(500).send({ message: "Error deleting data" });
+      } else if (result.length === 0) {
+        res.status(404).send({ message: "User not found" });
+      } else {
+        const pictureUrl = result[0].picture_url;
+        const picturePath = path.join(__dirname, "..", "public", pictureUrl);
+        fs.unlink(picturePath, (err) => {
+          if (err) {
+            console.error(err);
+          }
+          connection.query(
+            "DELETE FROM users WHERE user_id = ?",
+            id,
+            (err, result) => {
+              if (err) {
+                res.status(500).send({ message: "Error deleting data" });
+              } else {
+                res.sendStatus(204);
+              }
+            }
+          );
+        });
       }
     }
   );

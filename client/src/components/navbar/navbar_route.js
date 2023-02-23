@@ -7,7 +7,8 @@ import NavbarUser from "./navbar_user";
 function Navbar() {
   const [userData, setUserData] = useState({
     role: "guest",
-    email: "d",
+    email: "",
+    picture_url: "",
   });
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -27,6 +28,7 @@ function Navbar() {
             ...userData,
             role: response.data.role,
             email: response.data.email,
+            picture_url: response.data.picture_url,
           });
         } else if (
           response.data.status === "error" &&
@@ -48,9 +50,13 @@ function Navbar() {
   }, []);
 
   if (userData.role === "admin") {
-    return <NavbarAdmin email={userData.email} />;
+    return (
+      <NavbarAdmin email={userData.email} picture_url={userData.picture_url} />
+    );
   } else if (userData.role === "user") {
-    return <NavbarUser email={userData.email} />;
+    return (
+      <NavbarUser email={userData.email} picture_url={userData.picture_url} />
+    );
   } else {
     return <NavbarGuest />;
   }

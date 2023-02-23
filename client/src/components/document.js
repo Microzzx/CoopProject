@@ -3,7 +3,6 @@ import Axios from "axios";
 import a1 from "../image/a1.jpg";
 import a2 from "../image/a2.jpg";
 import "../css/document.css";
-import Grid from "@mui/material/Grid";
 function Document() {
   //check user status
   const [state, setState] = useState({
@@ -28,10 +27,13 @@ function Document() {
   }, []);
 
   return (
-    <Grid container component="main" sx={{ height: "87.1vh" }}>
+    <div
+      className="container-fluid fixed-height"
+      style={{ minHeight: "796px" }}
+    >
       <div className="container border shadow rcorners2 mt-5 mb-5">
-        <div className="row  mt-3 mb-5">
-          <div className="col-md-12 mb-3">
+        <div className="row mt-3 mb-5">
+          <div className="col-lg-12 mb-3">
             <div
               className={
                 state.a2_status === "Approved"
@@ -66,7 +68,7 @@ function Document() {
                 : "กรุณากรอกข้อมูลแบบฟอร์ม A1"}
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-lg-6 mb-4">
             <div className="card h-100">
               <div className="card-body ms-2">
                 <img
@@ -92,7 +94,7 @@ function Document() {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-lg-6 mb-4">
             <div className="card h-100">
               <div className="card-body ms-2">
                 <img
@@ -123,7 +125,7 @@ function Document() {
           </div>
         </div>
       </div>
-    </Grid>
+    </div>
   );
 }
 //

@@ -2,11 +2,11 @@
   background-color: rgb(255, 255, 255);
   border-bottom: 1px solid #bbbbbb;
 }
-.nav-item{
+.nav-item {
   color: #212529;
 }
-.navbar-nav .nav-link.active{
-  background-color:#212529 !important;
+.navbar-nav .nav-link.active {
+  background-color: #212529 !important;
   color: #ffffff;
 }
 
@@ -16,4 +16,18 @@
 
 .logoutbtn {
   border: none;
+}
+
+.miniprofilepic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.miniprofilepic__image {
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
 }

@@ -32,6 +32,7 @@ function TableUser() {
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
+        //console.table(response.data);
         let arr = response.data.map((v, i) => ({ index: i, ...v }));
         setData(arr);
       });

@@ -61,24 +61,20 @@ function Navbar_admin(props) {
             </NavLink>
           </div>
           <div className="navbar-nav ms-auto">
-            <span class="navbar-text center me-2">{props.email}</span>
+            <span className="navbar-text center me-2">{props.email}</span>
             <div className="btn-group">
               <button
                 type="button"
                 className="btn dropdown-toggle"
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
-                aria-expanded="false"
               >
                 <img
-                  src={
-                    localStorage.getItem("profilePic")
-                      ? localStorage.getItem("profilePic")
-                      : status_image
-                  }
-                  className="rounded-circle"
+                  className="miniprofilepic__image miniprofilepic"
+                  src={props.picture_url}
                   width="40"
                   height="40"
+                  alt="Profile Picture"
                 />
               </button>
               <ul className="dropdown-menu dropdown-menu-lg-end text-center">
