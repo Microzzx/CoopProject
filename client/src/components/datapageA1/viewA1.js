@@ -332,15 +332,21 @@ function TableA2() {
       <div className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">
         <div className="col-11" />
         <div className="col-1">
-          <Modal
-            title="ยืนยันข้อมูล"
-            context="คุณต้องการอัพเดทรายการนี้หรือไม่?"
-            text="Confirm"
-            setFunc={(e) => {
-              e.preventDefault();
-              ConfirmA1(data[0].a1_id);
-            }}
-          ></Modal>
+          {data[0].status === "Pending" || data[0].status === "Pending_ex" ? (
+            <Modal
+              title="ยืนยันข้อมูล"
+              context="คุณต้องการอัพเดทรายการนี้หรือไม่?"
+              text="Confirm"
+              setFunc={(e) => {
+                e.preventDefault();
+                ConfirmA1(data[0].a1_id);
+              }}
+            />
+          ) : (
+            <button className="btn btn-primary" disabled>
+              Confirm
+            </button>
+          )}
         </div>
       </div>
     </div>

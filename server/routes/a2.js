@@ -38,7 +38,6 @@ const fieldNames = [
   "pdf14",
   "pdf15",
   "pdf16",
-  "pdf17",
 ];
 const pdfFields = fieldNames.map((fieldName) => ({ name: fieldName }));
 
@@ -56,11 +55,29 @@ router.post(
     const user_id = req.user_id;
     const status = "Pending";
     const pdfUrls = [];
-    for (let i = 1; i <= 17; i++) {
+    for (let i = 1; i <= 16; i++) {
       const pdfUrl = `/pdfs/${req.files["pdf" + i][0].filename}`;
       pdfUrls.push(pdfUrl);
     }
-    const sql = `INSERT INTO a2 (user_id, comname, comtype, worktype, name, phone, workarea, status, url1, url2, url3, url4, url5, url6, url7, url8, url9, url10, url11, url12, url13, url14, url15, url16, url17) VALUES ('${user_id}', '${comname}', '${comtype}', '${worktype}', '${name}', '${phone}', '${workarea}', '${status}', '${pdfUrls[0]}', '${pdfUrls[1]}', '${pdfUrls[2]}', '${pdfUrls[3]}', '${pdfUrls[4]}', '${pdfUrls[5]}', '${pdfUrls[6]}', '${pdfUrls[7]}', '${pdfUrls[8]}', '${pdfUrls[9]}', '${pdfUrls[10]}', '${pdfUrls[11]}', '${pdfUrls[12]}', '${pdfUrls[13]}', '${pdfUrls[14]}', '${pdfUrls[15]}', '${pdfUrls[16]}')`;
+    const sql = `INSERT INTO a2 (user_id, comname, comtype, worktype, name, phone, workarea, status, url1, url2, url3, url4, url5, url6, url7, url8, url9, url10, url11, url12, url13, url14, url15, url16) VALUES ('${user_id}', '${comname}', '${comtype}', '${worktype}', '${name}', '${phone}', '${workarea}', '${status}', '${pdfUrls[0]}', '${pdfUrls[1]}', '${pdfUrls[2]}', '${pdfUrls[3]}', '${pdfUrls[4]}', '${pdfUrls[5]}', '${pdfUrls[6]}', '${pdfUrls[7]}', '${pdfUrls[8]}', '${pdfUrls[9]}', '${pdfUrls[10]}', '${pdfUrls[11]}', '${pdfUrls[12]}', '${pdfUrls[13]}', '${pdfUrls[14]}', '${pdfUrls[15]}')`;
+    connection.query(sql, (error, result) => {
+      if (error) {
+        return res.status(500).json({ message: "Failed to save data" });
+      }
+      res.status(200).json({ message: "Data has been sent" });
+    });
+  }
+);
+
+router.post(
+  "/input_ex",
+  authRole(["admin", "user"]),
+  upload.single("pdf17"),
+  (req, res) => {
+    const pdfUrl17 = `/pdfs/${req.file.filename}`;
+    const user_id = req.user_id;
+    const status = "Pending_ex";
+    const sql = `UPDATE a2 SET status='${status}', url17='${pdfUrl17}' WHERE user_id='${user_id}'`;
     connection.query(sql, (error, result) => {
       if (error) {
         return res.status(500).json({ message: "Failed to save data" });
@@ -178,6 +195,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
                     const data = {
                       status: status,
                       form: "A2",
+                      comment: comment,
                     };
                     sendEmail(email, data);
                     res.send({
@@ -196,6 +214,36 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
 });
 
 router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
+  const id = req.params.id;
+
+  connection.query("SELECT * FROM a2 WHERE a2_id = ?", id, (err, result) => {
+    if (err) {
+      res.status(500).json({ message: "Failed to delete row from database" });
+    } else {
+      const row = result[0];
+      const pdfUrls = Object.values(row)
+        .slice(9, 25)
+        .filter((url) => url !== null); // modify slice indices if URLs are located in different columns
+      connection.query("DELETE FROM a2 WHERE a2_id = ?", id, (err, result) => {
+        if (err) {
+          res
+            .status(500)
+            .json({ message: "Failed to delete row from database" });
+        } else {
+          pdfUrls.forEach((url) => {
+            const filePath = path.join(__dirname, "..", "public", url);
+            if (fs.existsSync(filePath)) {
+              fs.unlinkSync(filePath);
+            }
+          });
+          res.sendStatus(204);
+        }
+      });
+    }
+  });
+});
+
+router.delete("/deletefull/:id", authRole(["admin"]), (req, res) => {
   const id = req.params.id;
 
   connection.query("SELECT * FROM a2 WHERE a2_id = ?", id, (err, result) => {

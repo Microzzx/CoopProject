@@ -61,6 +61,9 @@ function Navbar_admin(props) {
             <NavLink to="/formA2" className="nav-item nav-link me-2">
               ฟอร์มA2
             </NavLink>
+            <NavLink to="/formEx" className="nav-item nav-link me-2">
+              ฟอร์มEx
+            </NavLink>
             <NavLink to="/tableA1" className="nav-item nav-link me-2">
               ตารางA1
             </NavLink>

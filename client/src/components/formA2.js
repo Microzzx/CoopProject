@@ -26,7 +26,6 @@ function FormA2() {
     pdf14: "",
     pdf15: "",
     pdf16: "",
-    pdf17: "",
     workarea: "",
   });
 
@@ -59,7 +58,6 @@ function FormA2() {
     formData.append("pdf14", state.pdf14);
     formData.append("pdf15", state.pdf15);
     formData.append("pdf16", state.pdf16);
-    formData.append("pdf17", state.pdf17);
     formData.append("workarea", state.workarea);
     Axios.post("http://localhost:3001/a2/input", formData, {
       headers: {
@@ -229,8 +227,11 @@ function FormA2() {
           ></Input>
         </div>
         <div className="col-md-6" />
+        <div className="col-md-12 mt-5 mb-2">
+          <h5 className="label">ข้อมูลทางด้านการเงินของผู้สมัคร</h5>
+        </div>
         <div className="col-md-6">
-          <label className="label">5. หนังสือรักษาความลับ</label>
+          <label className="label">5. งบการเงิน 2 ปีล่าสุด</label>
           <Input
             name="pdf5"
             type={"file"}
@@ -238,11 +239,10 @@ function FormA2() {
           ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-12 mt-5 mb-2">
-          <h5 className="label">ข้อมูลทางด้านการเงินของผู้สมัคร</h5>
-        </div>
         <div className="col-md-6">
-          <label className="label">6. งบการเงิน 2 ปีล่าสุด</label>
+          <label className="label">
+            6. Statement เงินฝากธนาคาร 6 เดือนย้อนหลัง
+          </label>
           <Input
             name="pdf6"
             type={"file"}
@@ -250,10 +250,11 @@ function FormA2() {
           ></Input>
         </div>
         <div className="col-md-6" />
+        <div className="col-md-12 mt-5 mb-2">
+          <h5 className="label">ข้อมูลทางด้านการบริหารองค์กร</h5>
+        </div>
         <div className="col-md-6">
-          <label className="label">
-            7. Statement เงินฝากธนาคาร 6 เดือนย้อนหลัง
-          </label>
+          <label className="label">7. แผนที่ต้งพร้อมภาพถ่ายสถานประกอบการ</label>
           <Input
             name="pdf7"
             type={"file"}
@@ -261,11 +262,8 @@ function FormA2() {
           ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-12 mt-5 mb-2">
-          <h5 className="label">ข้อมูลทางด้านการบริหารองค์กร</h5>
-        </div>
         <div className="col-md-6">
-          <label className="label">8. แผนที่ต้งพร้อมภาพถ่ายสถานประกอบการ</label>
+          <label className="label">8. แผนผังโครงสร้างองค์กร</label>
           <Input
             name="pdf8"
             type={"file"}
@@ -274,7 +272,7 @@ function FormA2() {
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
-          <label className="label">9. แผนผังโครงสร้างองค์กร</label>
+          <label className="label">9. จำนวนวิศวกร หรือวิศวกรที่ปรึกษา</label>
           <Input
             name="pdf9"
             type={"file"}
@@ -283,7 +281,9 @@ function FormA2() {
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
-          <label className="label">10. จำนวนวิศวกร หรือวิศวกรที่ปรึกษา</label>
+          <label className="label">
+            10. จำนวน และรายชื่อผู้ควบคุมงาน (Foreman)
+          </label>
           <Input
             name="pdf10"
             type={"file"}
@@ -292,9 +292,7 @@ function FormA2() {
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
-          <label className="label">
-            11. จำนวน และรายชื่อผู้ควบคุมงาน (Foreman)
-          </label>
+          <label className="label">11. จำนวนชุดช่างแรงงาน (Labour)</label>
           <Input
             name="pdf11"
             type={"file"}
@@ -303,7 +301,10 @@ function FormA2() {
         </div>
         <div className="col-md-6" />
         <div className="col-md-6">
-          <label className="label">12. จำนวนชุดช่างแรงงาน (Labour)</label>
+          <label className="label">
+            12. รายชื่อผู้รับเหมาช่วงงานเฉพาะทาง เช่น ผู้รับเหมาช่วงงานกระจก
+            งานเหล็ก
+          </label>
           <Input
             name="pdf12"
             type={"file"}
@@ -311,11 +312,14 @@ function FormA2() {
           ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-6">
+        <div className="col-md-12">
           <label className="label">
-            13. รายชื่อผู้รับเหมาช่วงงานเฉพาะทาง เช่น ผู้รับเหมาช่วงงานกระจก
-            งานเหล็ก
+            13.
+            รายชื่อร้านค้าที่ผู้รับเหมาสั่งซื้อวัสดุก่อสร้างเป็นประจำพร้อมระบุเงื่อนไขการซื้อ
+            เช่น เครดิต เงินสด
           </label>
+        </div>
+        <div className="col-md-6 mt-1">
           <Input
             name="pdf13"
             type={"file"}
@@ -325,9 +329,8 @@ function FormA2() {
         <div className="col-md-6" />
         <div className="col-md-12">
           <label className="label">
-            14.
-            รายชื่อร้านค้าที่ผู้รับเหมาสั่งซื้อวัสดุก่อสร้างเป็นประจำพร้อมระบุเงื่อนไขการซื้อ
-            เช่น เครดิต เงินสด
+            14. Project Reference ข้อมูลผลงานก่อสร้างในอดีต
+            (รูปถ่าย/มูลค่างาน/ระยะเวลาการก่อสร้าง)
           </label>
         </div>
         <div className="col-md-6 mt-1">
@@ -338,13 +341,10 @@ function FormA2() {
           ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-12">
+        <div className="col-md-6">
           <label className="label">
-            15. Project Reference ข้อมูลผลงานก่อสร้างในอดีต
-            (รูปถ่าย/มูลค่างาน/ระยะเวลาการก่อสร้าง)
+            15. ชนิด และจำนวนเครื่องมือ/เครื่องจักร ในการทำงาน
           </label>
-        </div>
-        <div className="col-md-6 mt-1">
           <Input
             name="pdf15"
             type={"file"}
@@ -352,10 +352,14 @@ function FormA2() {
           ></Input>
         </div>
         <div className="col-md-6" />
-        <div className="col-md-6">
+        <div className="col-md-12">
           <label className="label">
-            16. ชนิด และจำนวนเครื่องมือ/เครื่องจักร ในการทำงาน
+            16. นโยบายด้านความปลอดภัยเบื้องต้น (คนงานจะต้องสวมใส่ชุดของบริษัท,
+            ใส่หมวกแข็ง (Helmet) ใส่รองเท้าหุ้มส้น, ใช้ Safety Belt
+            ในกรณีทำงานในที่สูง)
           </label>
+        </div>
+        <div className="col-md-6 mt-1">
           <Input
             name="pdf16"
             type={"file"}
@@ -365,22 +369,7 @@ function FormA2() {
         <div className="col-md-6" />
         <div className="col-md-12">
           <label className="label">
-            17. นโยบายด้านความปลอดภัยเบื้องต้น (คนงานจะต้องสวมใส่ชุดของบริษัท,
-            ใส่หมวกแข็ง (Helmet) ใส่รองเท้าหุ้มส้น, ใช้ Safety Belt
-            ในกรณีทำงานในที่สูง)
-          </label>
-        </div>
-        <div className="col-md-6 mt-1">
-          <Input
-            name="pdf17"
-            type={"file"}
-            setFunc={(e) => handlePDFChange(e, 17)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12">
-          <label className="label">
-            18. กรุณาระบุพื้นที่ที่สะดวกในการดำเนินงานก่อสร้าง (เช่น
+            17. กรุณาระบุพื้นที่ที่สะดวกในการดำเนินงานก่อสร้าง (เช่น
             ระบุเป็นจังหวัด หรือภาคที่สะดวกในการดำเนินงาน)
           </label>
         </div>

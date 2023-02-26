@@ -133,6 +133,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
                     const data = {
                       status: status,
                       form: "A1",
+                      comment: comment,
                     };
                     sendEmail(email, data);
                     res.send({

@@ -74,9 +74,11 @@ const ViewA2 = () => {
               <span
                 style={{
                   color:
-                    data[0].status === "Approved"
+                    data[0].status === "Approved" ||
+                    data[0].status === "Approved_ex"
                       ? "green"
-                      : data[0].status === "Declined"
+                      : data[0].status === "Declined" ||
+                        data[0].status === "Declined_ex"
                       ? "red"
                       : "orange",
                 }}
@@ -186,18 +188,6 @@ const ViewA2 = () => {
             View PDF
           </button>
         </div>
-        <div className="col-md-5">
-          <label className="label">หนังสือรักษาความลับ :</label>
-        </div>
-        <div className="col-md-7">
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url5)}
-          >
-            View PDF
-          </button>
-        </div>
         <div className="col-12 mt-5 mb-2">
           <h5 className="label">
             <u>ข้อมูลทางด้านการเงินของผู้สมัคร</u>
@@ -210,7 +200,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url6)}
+            onClick={() => displayPDF(data[0].url5)}
           >
             View PDF
           </button>
@@ -224,7 +214,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url7)}
+            onClick={() => displayPDF(data[0].url6)}
           >
             View PDF
           </button>
@@ -241,7 +231,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url8)}
+            onClick={() => displayPDF(data[0].url7)}
           >
             View PDF
           </button>
@@ -253,7 +243,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url9)}
+            onClick={() => displayPDF(data[0].url8)}
           >
             View PDF
           </button>
@@ -265,7 +255,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url10)}
+            onClick={() => displayPDF(data[0].url9)}
           >
             View PDF
           </button>
@@ -279,7 +269,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url11)}
+            onClick={() => displayPDF(data[0].url10)}
           >
             View PDF
           </button>
@@ -291,7 +281,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url12)}
+            onClick={() => displayPDF(data[0].url11)}
           >
             View PDF
           </button>
@@ -303,7 +293,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url13)}
+            onClick={() => displayPDF(data[0].url12)}
           >
             View PDF
           </button>
@@ -317,7 +307,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url14)}
+            onClick={() => displayPDF(data[0].url13)}
           >
             View PDF
           </button>
@@ -331,7 +321,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url15)}
+            onClick={() => displayPDF(data[0].url14)}
           >
             View PDF
           </button>
@@ -345,7 +335,7 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url16)}
+            onClick={() => displayPDF(data[0].url15)}
           >
             View PDF
           </button>
@@ -357,10 +347,33 @@ const ViewA2 = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => displayPDF(data[0].url17)}
+            onClick={() => displayPDF(data[0].url16)}
           >
             View PDF
           </button>
+        </div>
+        <div className="col-12 mt-5 mb-2">
+          <h5 className="label">
+            <u>เอกสารเพิ่มเติม</u>
+          </h5>
+        </div>
+        <div className="col-md-5">
+          <label className="label">หนังสือรักษาความลับ :</label>
+        </div>
+        <div className="col-md-7">
+          {data[0].url17 != "http://localhost:3001/static" ? (
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => displayPDF(data[0].url17)}
+            >
+              View PDF
+            </button>
+          ) : (
+            <button type="button" className="btn btn-secondary" disabled>
+              No PDF Available
+            </button>
+          )}
         </div>
         <div className="col-12 mt-5 mb-2">
           <h5 className="label">
@@ -377,45 +390,87 @@ const ViewA2 = () => {
             onChange={(e) => setState({ ...state, comment: e.target.value })}
           />
         </div>
-        <div className="col-2">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              checked={state.status === "Approved"}
-              onChange={() => setState({ ...state, status: "Approved" })}
-            />
-            <label className="form-check-label" htmlFor="flexCheckDisabled">
-              Approve
-            </label>
-          </div>
-        </div>
-        <div className="col-10">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              checked={state.status === "Declined"}
-              onChange={() => setState({ ...state, status: "Declined" })}
-            />
-            <label className="form-check-label" htmlFor="flexCheckDisabled">
-              Decline
-            </label>
-          </div>
-        </div>
+
+        {data[0].status === "Pending_ex" ||
+        data[0].status === "Declined_ex" ||
+        data[0].status === "Approved_ex" ? (
+          <>
+            <div className="col-2">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  checked={state.status === "Approved_ex"}
+                  onChange={() => setState({ ...state, status: "Approved_ex" })}
+                />
+                <label className="form-check-label" htmlFor="flexCheckDisabled">
+                  Approve_ex
+                </label>
+              </div>
+            </div>
+            <div className="col-10">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  checked={state.status === "Declined_ex"}
+                  onChange={() => setState({ ...state, status: "Declined_ex" })}
+                />
+                <label className="form-check-label" htmlFor="flexCheckDisabled">
+                  Decline_ex
+                </label>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="col-2">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  checked={state.status === "Approved"}
+                  onChange={() => setState({ ...state, status: "Approved" })}
+                />
+                <label className="form-check-label" htmlFor="flexCheckDisabled">
+                  Approve
+                </label>
+              </div>
+            </div>
+            <div className="col-10">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  checked={state.status === "Declined"}
+                  onChange={() => setState({ ...state, status: "Declined" })}
+                />
+                <label className="form-check-label" htmlFor="flexCheckDisabled">
+                  Decline
+                </label>
+              </div>
+            </div>
+          </>
+        )}
       </form>
       <div className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">
         <div className="col-11" />
         <div className="col-1">
-          <Modal
-            title="ยืนยันข้อมูล"
-            context="คุณต้องการอัพเดทรายการนี้หรือไม่?"
-            text="Confirm"
-            setFunc={(e) => {
-              e.preventDefault();
-              ConfirmA2(data[0].a2_id);
-            }}
-          ></Modal>
+          {data[0].status === "Pending" || data[0].status === "Pending_ex" ? (
+            <Modal
+              title="ยืนยันข้อมูล"
+              context="คุณต้องการอัพเดทรายการนี้หรือไม่?"
+              text="Confirm"
+              setFunc={(e) => {
+                e.preventDefault();
+                ConfirmA2(data[0].a2_id);
+              }}
+            />
+          ) : (
+            <button className="btn btn-primary" disabled>
+              Confirm
+            </button>
+          )}
         </div>
       </div>
     </div>

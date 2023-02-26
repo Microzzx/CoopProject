@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import a1 from "../image/a1.jpg";
 import a2 from "../image/a2.jpg";
+import ex from "../image/ex.jpg";
 import "../css/document.css";
 function Document() {
   //check user status
@@ -36,7 +37,13 @@ function Document() {
           <div className="col-lg-12 mb-3">
             <div
               className={
-                state.a2_status === "Approved"
+                state.a2_status === "Approved_ex"
+                  ? "alert alert-success"
+                  : state.a2_status === "Declined_ex"
+                  ? "alert alert-danger"
+                  : state.a2_status === "Pending_ex"
+                  ? "alert alert-warning"
+                  : state.a2_status === "Approved"
                   ? "alert alert-success"
                   : state.a2_status === "Declined"
                   ? "alert alert-danger"
@@ -53,8 +60,14 @@ function Document() {
               role="alert"
             >
               <strong>Status : </strong>
-              {state.a2_status === "Approved"
-                ? "แบบฟอร์ม A2 ถูกอนุมัติเรียบร้อยแล้ว กรุณารอการแจ้งเตือนผ่านทาง email พร้อมติดต่อเจ้าหน้าที่เพื่อดำเนินการในขั้นตอนต่อไป"
+              {state.a2_status === "Approved_ex"
+                ? "เอกสารเพิ่มเติมถูกอนุมัติเรียบร้อยแล้ว กรุณาติดต่อเจ้าหน้าที่เพื่อดำเนินกระบวนการต่อไป"
+                : state.a2_status === "Declined_ex"
+                ? "เอกสารเพิ่มเติมถูกปฏิเสธ กรุณาติดต่อเจ้าหน้าที่ และแก้ไขใหม่อีกครั้ง"
+                : state.a2_status === "Pending_ex"
+                ? "ได้รับเอกสารเพิ่มเติมของคุณแล้ว กรุณารอการแจ้งเตือนผ่านทาง email ในภายหลัง"
+                : state.a2_status === "Approved"
+                ? "แบบฟอร์ม A2 ถูกอนุมัติเรียบร้อยแล้ว กรุณากรอกข้อมูลเอกสารเพิ่มเติม"
                 : state.a2_status === "Declined"
                 ? "แบบฟอร์ม A2 ถูกปฏิเสธ กรุณาติดต่อเจ้าหน้าที่ และแก้ไขใหม่อีกครั้ง"
                 : state.a2_status === "Pending"
@@ -68,7 +81,7 @@ function Document() {
                 : "กรุณากรอกข้อมูลแบบฟอร์ม A1"}
             </div>
           </div>
-          <div className="col-lg-6 mb-4">
+          <div className="col-lg-12 mb-4">
             <div className="card h-100">
               <div className="card-body ms-2">
                 <img
@@ -94,7 +107,7 @@ function Document() {
               </div>
             </div>
           </div>
-          <div className="col-lg-6 mb-4">
+          <div className="col-lg-12 mb-4">
             <div className="card h-100">
               <div className="card-body ms-2">
                 <img
@@ -123,10 +136,40 @@ function Document() {
               </div>
             </div>
           </div>
+
+          <div className="col-lg-12 mb-4">
+            <div className="card h-100">
+              <div className="card-body ms-2">
+                <img
+                  src={ex}
+                  className="rounded-circle mb-3"
+                  height="50px"
+                  width="50px"
+                  alt="avatar"
+                />
+                <h5 className="card-title">เอกสารเพิ่มเติม</h5>
+                <p className="card-text">
+                  ส่งเอกสารเพิ่มเติมหลังจากผ่านการอนุมัติจากคณะกรรมการ
+                </p>
+                <a
+                  href="/formEx"
+                  className={
+                    state.a1_status === "Approved" &&
+                    (state.a2_status === "Approved" ||
+                      state.a2_status === "Declined_ex")
+                      ? "btn btn-primary"
+                      : "btn btn-primary disabled"
+                  }
+                >
+                  Extra
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-//
+
 export default Document;

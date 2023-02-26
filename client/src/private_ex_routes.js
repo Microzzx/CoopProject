@@ -19,8 +19,8 @@ const PrivateUserRoutes = () => {
         } else if (
           response.data.status === "ok" &&
           response.data.a1_status === "Approved" &&
-          (response.data.a2_status === "" ||
-            response.data.a2_status === "Declined")
+          (response.data.a2_status === "Approved" ||
+            response.data.a2_status === "Declined_ex")
         ) {
           setIsAuthenticated(true);
           console.log("Authenticated!");

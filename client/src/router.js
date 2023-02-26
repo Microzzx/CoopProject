@@ -4,8 +4,10 @@ import PrivateAdminRoutes from "./private_admin_routes";
 import PrivateUserRoutes from "./private_user_routes";
 import PrivateA1Routes from "./private_a1_routes";
 import PrivateA2Routes from "./private_a2_routes";
+import PrivateExRoutes from "./private_ex_routes";
 import FormA1 from "./components/formA1";
 import FormA2 from "./components/formA2";
+import FormEx from "./components/formEx";
 import NavFoot from "./components/navfoot";
 import Home from "./components/home";
 import Profile from "./components/profile";
@@ -33,6 +35,9 @@ function Router() {
             </Route>
             <Route element={<PrivateA2Routes />}>
               <Route exact path="/formA2" element={<FormA2 />} />
+            </Route>
+            <Route element={<PrivateExRoutes />}>
+              <Route exact path="/formEx" element={<FormEx />} />
             </Route>
             <Route element={<PrivateAdminRoutes />}>
               <Route exact path="/tableA1" element={<TableA1 />} />

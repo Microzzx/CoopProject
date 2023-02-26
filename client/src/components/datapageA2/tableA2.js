@@ -145,9 +145,11 @@ function TableA2() {
                   <span
                     style={{
                       color:
-                        val.status === "Approved"
+                        val.status === "Approved" ||
+                        val.status === "Approved_ex"
                           ? "green"
-                          : val.status === "Declined"
+                          : val.status === "Declined" ||
+                            val.status === "Declined_ex"
                           ? "red"
                           : "orange",
                     }}

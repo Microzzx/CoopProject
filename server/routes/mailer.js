@@ -39,7 +39,11 @@ module.exports = (email, data) => {
             text-align: center;
           }
           .status {
-            color: ${data.status === "Approved" ? "green" : "red"};
+            color: ${
+              data.status === "Approved" || data.status === "Approved_ex"
+                ? "green"
+                : "red"
+            };
           }
         </style>
       </head>
@@ -49,13 +53,23 @@ module.exports = (email, data) => {
     <p>Your document ${
       data.form
     } status has been updated to <span class="status">${data.status}</span>.</p>
-    <p>${
-      data.status === "Approved"
-        ? data.form === "A1"
-          ? "A2 form is now available please continue your process."
-          : "You have completed the process."
-        : "Please contract admin and proceed again."
-    }</p>
+    <p>
+  ${
+    data.status === "Approved" && data.form === "A1"
+      ? "A2 form is now available please continue your process."
+      : data.status === "Declined" && data.form === "A1"
+      ? `${data.comment} Please contract admin and proceed again.`
+      : data.status === "Approved" && data.form === "A2"
+      ? "A2 extra document is now available please continue your process."
+      : data.status === "Declined" && data.form === "A2"
+      ? `${data.comment} Please contract admin and proceed again.`
+      : data.status === "Approved_ex" && data.form === "A2"
+      ? "You have completed the process."
+      : data.status === "Declined_ex" && data.form === "A2"
+      ? `${data.comment} Please contract admin and proceed again.`
+      : null
+  }
+</p>
   </div>
 </body>
     </html>
