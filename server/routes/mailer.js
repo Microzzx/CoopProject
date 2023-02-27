@@ -40,7 +40,7 @@ module.exports = (email, data) => {
           }
           .status {
             color: ${
-              data.status === "Approved" || data.status === "Approved_ex"
+              data.status === "Approved" || data.status === "Approved_extra"
                 ? "green"
                 : "red"
             };
@@ -63,9 +63,9 @@ module.exports = (email, data) => {
       ? "A2 extra document is now available please continue your process."
       : data.status === "Declined" && data.form === "A2"
       ? `${data.comment} Please contract admin and proceed again.`
-      : data.status === "Approved_ex" && data.form === "A2"
+      : data.status === "Approved_extra" && data.form === "A2"
       ? "You have completed the process."
-      : data.status === "Declined_ex" && data.form === "A2"
+      : data.status === "Declined_extra" && data.form === "A2"
       ? `${data.comment} Please contract admin and proceed again.`
       : null
   }

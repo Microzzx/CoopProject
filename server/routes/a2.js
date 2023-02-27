@@ -69,15 +69,15 @@ router.post(
   }
 );
 
-router.post(
-  "/input_ex",
+router.put(
+  "/input_extra",
   authRole(["admin", "user"]),
   upload.single("pdf17"),
   (req, res) => {
     const pdfUrl17 = `/pdfs/${req.file.filename}`;
     const user_id = req.user_id;
-    const status = "Pending_ex";
-    const sql = `UPDATE a2 SET status='${status}', url17='${pdfUrl17}' WHERE user_id='${user_id}'`;
+    const status = "Pending_extra";
+    const sql = `UPDATE a2 SET status='${status}', url17='${pdfUrl17}' WHERE user_id='${user_id}' ORDER BY a2.time DESC LIMIT 1`;
     connection.query(sql, (error, result) => {
       if (error) {
         return res.status(500).json({ message: "Failed to save data" });

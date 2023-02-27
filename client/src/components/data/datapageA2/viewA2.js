@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import Modal from "../sub_components/modal";
-import Loading from "../loading";
+import Modal from "../../sub_components/modal";
+import Loading from "../../loading";
 const ViewA2 = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,7 +44,7 @@ const ViewA2 = () => {
     )
       .then((response) => {
         alert(response.data.message);
-        window.location = "/tableA2";
+        window.location = "/data/tableA2";
       })
       .catch((error) => {
         alert("unsuccessful, " + error);
@@ -391,20 +391,22 @@ const ViewA2 = () => {
           />
         </div>
 
-        {data[0].status === "Pending_ex" ||
-        data[0].status === "Declined_ex" ||
-        data[0].status === "Approved_ex" ? (
+        {data[0].status === "Pending_extra" ||
+        data[0].status === "Declined_extra" ||
+        data[0].status === "Approved_extra" ? (
           <>
             <div className="col-2">
               <div className="form-check">
                 <input
                   className="form-check-input"
                   type="radio"
-                  checked={state.status === "Approved_ex"}
-                  onChange={() => setState({ ...state, status: "Approved_ex" })}
+                  checked={state.status === "Approved_extra"}
+                  onChange={() =>
+                    setState({ ...state, status: "Approved_extra" })
+                  }
                 />
                 <label className="form-check-label" htmlFor="flexCheckDisabled">
-                  Approve_ex
+                  Approve_extra
                 </label>
               </div>
             </div>
@@ -413,11 +415,13 @@ const ViewA2 = () => {
                 <input
                   className="form-check-input"
                   type="radio"
-                  checked={state.status === "Declined_ex"}
-                  onChange={() => setState({ ...state, status: "Declined_ex" })}
+                  checked={state.status === "Declined_extra"}
+                  onChange={() =>
+                    setState({ ...state, status: "Declined_extra" })
+                  }
                 />
                 <label className="form-check-label" htmlFor="flexCheckDisabled">
-                  Decline_ex
+                  Decline_extra
                 </label>
               </div>
             </div>
@@ -456,7 +460,8 @@ const ViewA2 = () => {
       <div className="row row-cols-auto g-3 top-row ms-5 me-5 mb-3">
         <div className="col-11" />
         <div className="col-1">
-          {data[0].status === "Pending" || data[0].status === "Pending_ex" ? (
+          {data[0].status === "Pending" ||
+          data[0].status === "Pending_extra" ? (
             <Modal
               title="ยืนยันข้อมูล"
               context="คุณต้องการอัพเดทรายการนี้หรือไม่?"

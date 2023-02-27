@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import "../css/datapage.css";
-import delete_btn from "../image/delete_icon.jpg";
+import "../../css/datapage.css";
+import delete_btn from "../../image/delete_icon.jpg";
 import Paper from "@mui/material/Paper";
-import Modal from "./sub_components/modal";
+import Modal from "../sub_components/modal";
 import Grid from "@mui/material/Grid";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
@@ -102,22 +102,22 @@ function TableUser() {
           <TableHead>
             <TableRow>
               <TableCol width="15%" sortkey="index">
-                No.
+                <b>ลำดับ</b>
               </TableCol>
               <TableCol width="15%" sortkey="email">
-                Email
+                <b>อีเมลล์</b>
               </TableCol>
               <TableCol width="15%" sortkey="fname">
-                Name
+                <b>ชื่อ</b>
               </TableCol>
               <TableCol width="15%" sortkey="lname">
-                Surname
+                <b>นามสกุล</b>
               </TableCol>
               <TableCol width="15%" sortkey="phone">
-                Phone
+                <b>หมายเลขโทรศัพท์</b>
               </TableCol>
               <TableCol width="15%" sortkey="phone">
-                Last Login
+                <b>เข้าสู่ระบบล่าสุด</b>
               </TableCol>
               <TableCell align="center"></TableCell>
             </TableRow>

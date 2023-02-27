@@ -24,6 +24,11 @@ const PrivateUserRoutes = () => {
         ) {
           setIsAuthenticated(true);
           console.log("Authenticated!");
+        } else if (
+          response.data.status === "error" &&
+          response.data.message === "Token has expired"
+        ) {
+          window.location.reload();
         } else {
           setIsAuthenticated(false);
           console.log("Not authenticated!");

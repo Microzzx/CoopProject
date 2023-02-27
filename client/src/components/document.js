@@ -37,11 +37,11 @@ function Document() {
           <div className="col-lg-12 mb-3">
             <div
               className={
-                state.a2_status === "Approved_ex"
+                state.a2_status === "Approved_extra"
                   ? "alert alert-success"
-                  : state.a2_status === "Declined_ex"
+                  : state.a2_status === "Declined_extra"
                   ? "alert alert-danger"
-                  : state.a2_status === "Pending_ex"
+                  : state.a2_status === "Pending_extra"
                   ? "alert alert-warning"
                   : state.a2_status === "Approved"
                   ? "alert alert-success"
@@ -60,11 +60,11 @@ function Document() {
               role="alert"
             >
               <strong>Status : </strong>
-              {state.a2_status === "Approved_ex"
+              {state.a2_status === "Approved_extra"
                 ? "เอกสารเพิ่มเติมถูกอนุมัติเรียบร้อยแล้ว กรุณาติดต่อเจ้าหน้าที่เพื่อดำเนินกระบวนการต่อไป"
-                : state.a2_status === "Declined_ex"
+                : state.a2_status === "Declined_extra"
                 ? "เอกสารเพิ่มเติมถูกปฏิเสธ กรุณาติดต่อเจ้าหน้าที่ และแก้ไขใหม่อีกครั้ง"
-                : state.a2_status === "Pending_ex"
+                : state.a2_status === "Pending_extra"
                 ? "ได้รับเอกสารเพิ่มเติมของคุณแล้ว กรุณารอการแจ้งเตือนผ่านทาง email ในภายหลัง"
                 : state.a2_status === "Approved"
                 ? "แบบฟอร์ม A2 ถูกอนุมัติเรียบร้อยแล้ว กรุณากรอกข้อมูลเอกสารเพิ่มเติม"
@@ -94,7 +94,7 @@ function Document() {
                 <h5 className="card-title">Form A1</h5>
                 <p className="card-text">แบบสอบถามประวัติผู้รับเหมารายใหม่</p>
                 <a
-                  href="/formA1"
+                  href="/form/formA1"
                   className={
                     state.a1_status === "Approved" ||
                     state.a1_status === "Pending"
@@ -122,7 +122,7 @@ function Document() {
                   คุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
                 </p>
                 <a
-                  href="/formA2"
+                  href="/form/formA2"
                   className={
                     (state.a1_status === "Approved" &&
                       state.a2_status === "") ||
@@ -152,11 +152,11 @@ function Document() {
                   ส่งเอกสารเพิ่มเติมหลังจากผ่านการอนุมัติจากคณะกรรมการ
                 </p>
                 <a
-                  href="/formEx"
+                  href="/form/formExtra"
                   className={
                     state.a1_status === "Approved" &&
                     (state.a2_status === "Approved" ||
-                      state.a2_status === "Declined_ex")
+                      state.a2_status === "Declined_extra")
                       ? "btn btn-primary"
                       : "btn btn-primary disabled"
                   }

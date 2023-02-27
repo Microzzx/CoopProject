@@ -55,24 +55,58 @@ function Navbar_admin(props) {
             <NavLink to="/document" className="nav-item nav-link me-2">
               เอกสาร
             </NavLink>
-            <NavLink to="/formA1" className="nav-item nav-link me-2">
-              ฟอร์มA1
-            </NavLink>
-            <NavLink to="/formA2" className="nav-item nav-link me-2">
-              ฟอร์มA2
-            </NavLink>
-            <NavLink to="/formEx" className="nav-item nav-link me-2">
-              ฟอร์มEx
-            </NavLink>
-            <NavLink to="/tableA1" className="nav-item nav-link me-2">
-              ตารางA1
-            </NavLink>
-            <NavLink to="/tableA2" className="nav-item nav-link me-2">
-              ตารางA2
-            </NavLink>
-            <NavLink to="/tableUsers" className="nav-item nav-link me-2">
-              ตารางUsers
-            </NavLink>
+            <li className="nav-item dropdown">
+              <NavLink
+                to="/form"
+                className="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                ฟอร์ม
+              </NavLink>
+              <div className="dropdown-menu dropdown-menu-dark">
+                <li>
+                  <a class="dropdown-item" href="/form/formA1">
+                    ฟอร์มA1
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/form/formA2">
+                    ฟอร์มA2
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/form/formExtra">
+                    ฟอร์มEx
+                  </a>
+                </li>
+              </div>
+            </li>
+            <li className="nav-item dropdown">
+              <NavLink
+                to="/data"
+                className="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                ข้อมูล
+              </NavLink>
+              <div className="dropdown-menu dropdown-menu-dark">
+                <li>
+                  <a class="dropdown-item" href="/data/TableA1">
+                    ตาราง A1
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/data/TableA2">
+                    ตาราง A2
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/data/tableUsers">
+                    ตาราง Users
+                  </a>
+                </li>
+              </div>
+            </li>
             <NavLink to="/about" className="nav-item nav-link me-2 disabled">
               เกี่ยวกับเรา
             </NavLink>

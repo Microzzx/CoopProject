@@ -1,10 +1,10 @@
 //THIS PAGE MADE FOR ADMIN
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import "../../css/datapage.css";
-import delete_btn from "../../image/delete_icon.jpg";
+import "../../../css/datapage.css";
+import delete_btn from "../../../image/delete_icon.jpg";
 import Paper from "@mui/material/Paper";
-import Modal from "../sub_components/modal";
+import Modal from "../../sub_components/modal";
 import Grid from "@mui/material/Grid";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
@@ -67,7 +67,7 @@ function TableA2() {
   };
 
   const view = (id) => {
-    window.location = `/viewA2/${id}`;
+    window.location = `/data/viewA2/${id}`;
   };
 
   const handleSort = (key) => {
@@ -106,25 +106,25 @@ function TableA2() {
           <TableHead>
             <TableRow>
               <TableCol width="11%" sortkey="index">
-                No.
+                <b>ลำดับ</b>
               </TableCol>
               <TableCol width="11%" sortkey="time">
-                Time
+                <b>เวลา</b>
               </TableCol>
               <TableCol width="11%" sortkey="email">
-                Email
+                <b>อีเมลล์</b>
               </TableCol>
               <TableCol width="11%" sortkey="comname">
-                Name
+                <b>ชื่อบริษัท</b>
               </TableCol>
-              <TableCol width="11%" sortkey="province">
-                Phone
+              <TableCol width="11%" sortkey="phone">
+                <b>หมายเลขโทรศัพท์</b>
               </TableCol>
               <TableCol width="11%" sortkey="worktype">
-                WorkType
+                <b>ประเภทงาน</b>
               </TableCol>
               <TableCol width="11%" sortkey="status">
-                Status
+                <b>สถานะ</b>
               </TableCol>
               <TableCell align="center"></TableCell>
               <TableCell align="center"></TableCell>
@@ -146,10 +146,10 @@ function TableA2() {
                     style={{
                       color:
                         val.status === "Approved" ||
-                        val.status === "Approved_ex"
+                        val.status === "Approved_extra"
                           ? "green"
                           : val.status === "Declined" ||
-                            val.status === "Declined_ex"
+                            val.status === "Declined_extra"
                           ? "red"
                           : "orange",
                     }}

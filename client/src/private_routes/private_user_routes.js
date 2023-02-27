@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import Axios from "axios";
-const PrivateAdminRoutes = () => {
+const PrivateUserRoutes = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-
+  const [userinfo, setUserinfo] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("token");
     Axios.post(
-      "http://localhost:3001/jwtauth",{},
+      "http://localhost:3001/jwtauth",
+      {},
       {
         headers: {
           "Content-Type": "application/json",
@@ -16,9 +17,18 @@ const PrivateAdminRoutes = () => {
       }
     )
       .then((response) => {
-        if (response.data.status === "ok" && ["admin"].includes(response.data.role)) {
+        setUserinfo(response.data);
+        if (
+          response.data.status === "ok" &&
+          ["admin", "user"].includes(response.data.role)
+        ) {
           setIsAuthenticated(true);
           console.log("Authenticated!");
+        } else if (
+          response.data.status === "error" &&
+          response.data.message === "Token has expired"
+        ) {
+          window.location.reload();
         } else {
           setIsAuthenticated(false);
           console.log("Not authenticated!");
@@ -29,7 +39,11 @@ const PrivateAdminRoutes = () => {
         console.log("Error: ", error);
       });
   }, []);
-  return isAuthenticated ? <Outlet /> : <Navigate to="/home" />;
+  return isAuthenticated ? (
+    <Outlet context={userinfo} />
+  ) : (
+    <Navigate to="/home" />
+  );
 };
 
-export default PrivateAdminRoutes;
+export default PrivateUserRoutes;

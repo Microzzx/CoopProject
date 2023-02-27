@@ -36,6 +36,20 @@ router.post("/", jsonParser, (req, res) => {
       );
     } catch (err) {
       if (err instanceof jwt.TokenExpiredError) {
+        const decoded = jwt.decode(token, { complete: true });
+        const email = decoded.payload.email;
+        const current_time = new Date()
+          .toLocaleString("en-US", { timeZone: "Asia/Bangkok", hour12: false })
+          .replace(",", "");
+        connection.query(
+          "UPDATE users SET last_login=? WHERE email=?",
+          [current_time, email],
+          (err) => {
+            if (err) {
+              console.log(err);
+            }
+          }
+        );
         res.json({ status: "error", message: "Token has expired" });
         return;
       }

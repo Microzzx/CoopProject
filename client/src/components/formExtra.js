@@ -6,7 +6,7 @@ import AutoAddress from "./sub_components/autoaddress";
 import Employee from "./sub_components/employee";
 import Axios from "axios";
 
-function FormEx() {
+function FormExtra() {
   const [pdf, setPdf] = useState("");
   const handlePDFChange = (event) => {
     const file = event.target.files[0];
@@ -18,7 +18,7 @@ function FormEx() {
     const formData = new FormData();
     formData.append("pdf17", pdf);
 
-    Axios.post("http://localhost:3001/a2/input_ex", formData, {
+    Axios.put("http://localhost:3001/a2/input_extra", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
@@ -93,4 +93,4 @@ function FormEx() {
   );
 }
 
-export default FormEx;
+export default FormExtra;

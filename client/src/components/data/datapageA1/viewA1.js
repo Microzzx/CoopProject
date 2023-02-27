@@ -1,9 +1,9 @@
 //THIS PAGE MADE FOR ADMIN
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import "../../css/datapage.css";
-import Modal from "../sub_components/modal";
-import Loading from "../loading";
+import "../../../css/datapage.css";
+import Modal from "../../sub_components/modal";
+import Loading from "../../loading";
 function TableA2() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -46,7 +46,7 @@ function TableA2() {
     )
       .then((response) => {
         alert(response.data.message);
-        window.location = "/tableA1";
+        window.location = "/data/tableA1";
       })
       .catch((error) => {
         alert("unsuccessful, " + error);
