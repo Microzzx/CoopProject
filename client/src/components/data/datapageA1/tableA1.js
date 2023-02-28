@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../../../css/datapage.css";
 import delete_btn from "../../../image/delete_icon.jpg";
-import Paper from "@mui/material/Paper";
 import Modal from "../../sub_components/modal";
-import Grid from "@mui/material/Grid";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -25,20 +23,19 @@ function TableA1() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const GetCompanies = () => {
+    const GetA1 = () => {
       Axios.get("http://localhost:3001/a1/get", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
-        console.table(response.data);
+        //console.table(response.data);
         let arr = response.data.map((v, i) => ({ index: i, ...v }));
         setComList(arr);
-        //console.table(arr);
       });
     };
-    GetCompanies();
+    GetA1();
   }, []);
 
   const deleteCompany = (id) => {

@@ -64,7 +64,10 @@ router.post("/input", authRole(["admin", "user"]), (req, res) => {
     ],
     (err, result) => {
       if (err) {
-        console.log(err);
+        res.status(500).send({
+          status: "error",
+          message: "Error occurred while inserting data into the database",
+        });
       } else {
         res.send({ status: "success", message: "Data has been sent" });
       }
@@ -77,7 +80,10 @@ router.get("/get", authRole(["admin"]), (req, res) => {
     "SELECT a1.*, users.email FROM a1 JOIN users ON a1.user_id = users.user_id",
     (err, result) => {
       if (err) {
-        res.status(500).send("Error while retrieving infomation");
+        res.status(500).send({
+          status: "error",
+          message: "Error while retrieving infomation",
+        });
       } else {
         res.send(result);
       }
@@ -85,14 +91,17 @@ router.get("/get", authRole(["admin"]), (req, res) => {
   );
 });
 
-router.get("/get/:id", (req, res) => {
+router.get("/get/:id", authRole(["admin"]), (req, res) => {
   const { id } = req.params;
   connection.query(
     "SELECT a1.*, users.email FROM a1 JOIN users ON a1.user_id = users.user_id WHERE a1.a1_id = ?",
     [id],
     (err, result) => {
       if (err) {
-        res.status(500).send("Error while retrieving infomation");
+        res.status(500).send({
+          status: "error",
+          message: "Error while retrieving infomation",
+        });
       } else {
         res.send(result);
       }
@@ -109,16 +118,18 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
     [comment, status, a1_id],
     (err, result) => {
       if (err) {
-        console.log(err);
-        res.status(500).json({ error: "Internal server error" });
+        res
+          .status(500)
+          .send({ status: "error", message: "Internal server error" });
       } else {
         connection.query(
           "SELECT user_id FROM a1 WHERE a1_id = ?",
           [a1_id],
           (err, result) => {
             if (err) {
-              console.log(err);
-              res.status(500).json({ error: "Internal server error" });
+              res
+                .status(500)
+                .send({ status: "error", message: "Internal server error" });
             } else {
               const user_id = result[0].user_id;
               connection.query(
@@ -126,8 +137,10 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
                 [user_id],
                 (err, result) => {
                   if (err) {
-                    console.log(err);
-                    res.status(500).json({ error: "Internal server error" });
+                    res.status(500).send({
+                      status: "error",
+                      message: "Internal server error",
+                    });
                   } else {
                     const email = result[0].email;
                     const data = {
@@ -155,7 +168,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
   const id = req.params.id;
   connection.query("DELETE FROM a1 WHERE a1_id = ?", id, (err, result) => {
     if (err) {
-      res.status(500).send({ message: "Error deleting data" });
+      res.status(500).send({ status: "error", message: "Error deleting data" });
     } else {
       res.sendStatus(204);
     }

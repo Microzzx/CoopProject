@@ -70,11 +70,26 @@ function FormExtra() {
           <div className="col-md-12 mb-2">
             <h2 className="center mtc mbc">เอกสารเพิ่มเติม</h2>
           </div>
+          <div className="col-md-12 mb-1">
+            <h5 className="label">
+              กรุณาดาวน์โหลดแบบฟอร์ม และกรอกข้อมูลให้ครบถ้วน
+            </h5>
+          </div>
+          <div className="col-md-12 mb-3">
+            - Confidentiality.pdf &nbsp;
+            <a href="http://localhost:3001/static/pdfs/example.pdf" download>
+              Download
+            </a>
+          </div>
+          <div className="col-md-12 mb-2">
+            <h5 className="label">อัพโหลดเอกสารเพิ่มเติม</h5>
+          </div>
           <div className="col-md-6">
             <label className="label">1. หนังสือรักษาความลับ</label>
             <Input
               name="pdf"
               type={"file"}
+              accept="application/pdf"
               setFunc={(e) => handlePDFChange(e)}
             ></Input>
           </div>
@@ -84,10 +99,6 @@ function FormExtra() {
             </button>
           </div>
         </form>
-        <iframe src="http://localhost:3001/static/pdfs/example.pdf"></iframe>
-        <a href="http://localhost:3001/static/pdfs/example.pdf" download>
-          Download PDF
-        </a>
       </div>
     </div>
   );

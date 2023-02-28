@@ -161,7 +161,7 @@ export default function Profile() {
       className="container-fluid fixed-height"
       style={{ minHeight: "796px" }}
     >
-      <div className="container border shadow rcorners2 mt-5 mb-5">
+      <div className="container border shadow rcorners2 mt-5 mb-5 container-c">
         <div className="row mt-3">
           <div className="col-md-12 ms-2 mb-4">
             <h3 className="custom-heading">
@@ -176,12 +176,12 @@ export default function Profile() {
             </h3>
           </div>
           <div className="col-md-12 mb-2">
-            <div className="card mb-3" style={{ maxwidth: "540px" }}>
+            <div className="card card-c mb-3">
               <div className="row g-0">
-                <div className="col-lg-3">
-                  <div className="profilepic mt-3 mb-3 ms-5">
+                <div className="col-lg-3 d-flex flex-column align-items-center text-center p-3 py-5 bg-c ">
+                  <div className="profilepic">
                     <img
-                      className="profilepic__image"
+                      className="profilepic__image d-flex"
                       src={data.picture_url}
                       width="200"
                       height="200"
@@ -225,66 +225,48 @@ export default function Profile() {
                   </DialogActions>
                 </Dialog>
                 <div className="col-lg-9">
-                  <div className="card-body ms-4">
-                    <h5 className="card-title mb-4">User Information</h5>
-                    <div className="card-text">
+                  <div className="card-body mt-3 ms-4">
+                    <h5 className="card-title">ข้อมูลผู้ใช้</h5>
+                    <hr />
+                    <div className="card-text mt-4">
                       <form className="row">
-                        <div className="col-lg-6 mb-4">
-                          <div className="input-group flex-nowrap">
-                            <span
-                              className="input-group-text"
-                              id="addon-wrapping"
-                            >
-                              ชื่อ
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Firstname"
-                              defaultValue={data.fname}
-                              onChange={(e) =>
-                                setState({ ...state, fname: e.target.value })
-                              }
-                            />
-                          </div>
+                        <div class="col-lg-6 mb-4">
+                          <label class="labels label-input">ชื่อ</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Firstname"
+                            defaultValue={data.fname}
+                            onChange={(e) =>
+                              setState({ ...state, fname: e.target.value })
+                            }
+                          />
                         </div>
-                        <div className="col-lg-6 mb-4">
-                          <div className="input-group flex-nowrap">
-                            <span
-                              className="input-group-text"
-                              id="addon-wrapping"
-                            >
-                              นามสกุล
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Lastname"
-                              defaultValue={data.lname}
-                              onChange={(e) =>
-                                setState({ ...state, lname: e.target.value })
-                              }
-                            />
-                          </div>
+                        <div class="col-lg-6 mb-4">
+                          <label class="labels label-input">นามสกุล</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Lastname"
+                            defaultValue={data.lname}
+                            onChange={(e) =>
+                              setState({ ...state, lname: e.target.value })
+                            }
+                          />
                         </div>
-                        <div className="col-lg-6 mb-4">
-                          <div className="input-group flex-nowrap">
-                            <span
-                              className="input-group-text"
-                              id="addon-wrapping"
-                            >
-                              หมายเลขโทรศัพท์
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="PhoneNumber"
-                              defaultValue={data.phone}
-                              onChange={(e) =>
-                                setState({ ...state, phone: e.target.value })
-                              }
-                            />
-                          </div>
+                        <div class="col-lg-6 mb-4">
+                          <label class="labels label-input">
+                            หมายเลขโทรศัพท์
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="PhoneNumber"
+                            defaultValue={data.phone}
+                            onChange={(e) =>
+                              setState({ ...state, phone: e.target.value })
+                            }
+                          />
                         </div>
                       </form>
                       <div className="row">
@@ -292,7 +274,7 @@ export default function Profile() {
                           <Modal
                             title="ยืนยันข้อมูล"
                             context="คุณต้องการอัพเดทข้อมูลหรือไม่?"
-                            text="Edit"
+                            text="Save"
                             setFunc={(e) => {
                               e.preventDefault();
                               Edit1();
@@ -308,39 +290,32 @@ export default function Profile() {
           </div>
           <div className="col-lg-12">
             <div className="card h-90 mt-4">
-              <div className="card-body ms-2">
-                <h5 className="card-title mb-4">Change Password</h5>
+              <div className="card-body mt-3 ms-2">
+                <h5 className="card-title">เปลี่ยนรหัสผ่าน</h5>
+                <hr />
                 <div className="card-text">
                   <form className="row">
                     <div className="col-lg-6 mb-4">
-                      <div className="input-group flex-nowrap">
-                        <span className="input-group-text" id="addon-wrapping">
-                          Previous Password
-                        </span>
-                        <input
-                          type="password"
-                          className="form-control"
-                          placeholder="Previous Password"
-                          onChange={(e) =>
-                            setState({ ...state, pre_password: e.target.value })
-                          }
-                        />
-                      </div>
+                      <label class="labels label-input">รหัสผ่านเดิม</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Previous Password"
+                        onChange={(e) =>
+                          setState({ ...state, pre_password: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="col-lg-6 mb-4">
-                      <div className="input-group flex-nowrap">
-                        <span className="input-group-text" id="addon-wrapping">
-                          New Password
-                        </span>
-                        <input
-                          type="password"
-                          className="form-control"
-                          placeholder="New Password"
-                          onChange={(e) =>
-                            setState({ ...state, new_password: e.target.value })
-                          }
-                        />
-                      </div>
+                      <label class="labels label-input">รหัสผ่านใหม่</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="New Password"
+                        onChange={(e) =>
+                          setState({ ...state, new_password: e.target.value })
+                        }
+                      />
                     </div>
                   </form>
                   <div className="row">
@@ -348,7 +323,7 @@ export default function Profile() {
                       <Modal
                         title="ยืนยันข้อมูล"
                         context="คุณต้องการเปลี่ยนรหัสผ่านหรือไม่?"
-                        text="Edit"
+                        text="Save"
                         setFunc={(e) => {
                           e.preventDefault();
                           Edit2();

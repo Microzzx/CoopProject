@@ -95,7 +95,7 @@ function FormA1() {
   };
 
   return (
-    <div className="container border shadow rcorners2 mt-5 mb-5">
+    <div className="container border shadow rcorners2 mt-5 mb-5 ">
       <form
         className="row row-cols-auto g-3 top-row needs-validation"
         noValidate
@@ -200,7 +200,7 @@ function FormA1() {
         <div className="col-md-6" />
         <div className="col-md-12">
           <label className="label">
-            7. มีพนักงานประจำทั้งหมดที่คน *ไม่มีให้กรอก0
+            7. มีพนักงานประจำทั้งหมดที่คน (ไม่มีให้กรอก 0)
           </label>
           <Employee
             joblist={state.fulltime}
@@ -275,9 +275,6 @@ function FormA1() {
             Submit
           </button>
         </div>
-        {/* {warning===true ? (<div className="col-sm-4 mt-5">
-          <div className="alert alert-danger center" role="alert">กรุณากรอกข้อมูลให้ครบถ้วน</div>
-        </div>):null} */}
       </form>
     </div>
   );

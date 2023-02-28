@@ -50,7 +50,7 @@ br {
 }
 
 .mtc {
-  margin-top: 39px;
+  margin-top: 10px;
 }
 
 .mbc {
@@ -73,3 +73,6 @@ br {
   float: left;
 }
 
+.input-group-text {
+  border-radius: 0 5px 5px 0;
+}

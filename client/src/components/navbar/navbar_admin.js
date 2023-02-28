@@ -63,7 +63,7 @@ function Navbar_admin(props) {
               >
                 ฟอร์ม
               </NavLink>
-              <div className="dropdown-menu dropdown-menu-dark">
+              <div className="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="/form/formA1">
                     ฟอร์มA1
@@ -89,7 +89,7 @@ function Navbar_admin(props) {
               >
                 ข้อมูล
               </NavLink>
-              <div className="dropdown-menu dropdown-menu-dark">
+              <div className="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="/data/TableA1">
                     ตาราง A1
@@ -114,6 +114,7 @@ function Navbar_admin(props) {
               ติดต่อ
             </NavLink>
           </div>
+
           <div className="navbar-nav ms-auto">
             <span className="navbar-text center me-2">{props.email}</span>
             <div className="btn-group">

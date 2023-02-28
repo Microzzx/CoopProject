@@ -64,6 +64,14 @@ body {
   cursor: pointer;
 }
 
-.custom-heading .badge {
-  margin-left: 10px;
+.container-c {
+  background: linear-gradient(to right, #faf8f9, #f0eff0);
+}
+
+.card-cd {
+  border-radius: 5px 5px 5px 5px;
+}
+
+.label-input {
+  padding-bottom: 10px;
 }

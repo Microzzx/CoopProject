@@ -187,6 +187,7 @@ function FormA2() {
           <Input
             name="pdf1"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 1)}
           ></Input>
         </div>
@@ -198,6 +199,7 @@ function FormA2() {
           <Input
             name="pdf2"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 2)}
           ></Input>
         </div>
@@ -209,6 +211,7 @@ function FormA2() {
           <Input
             name="pdf3"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 3)}
           ></Input>
         </div>
@@ -223,6 +226,7 @@ function FormA2() {
           <Input
             name="pdf4"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 4)}
           ></Input>
         </div>
@@ -235,6 +239,7 @@ function FormA2() {
           <Input
             name="pdf5"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 5)}
           ></Input>
         </div>
@@ -246,6 +251,7 @@ function FormA2() {
           <Input
             name="pdf6"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 6)}
           ></Input>
         </div>
@@ -258,6 +264,7 @@ function FormA2() {
           <Input
             name="pdf7"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 7)}
           ></Input>
         </div>
@@ -267,6 +274,7 @@ function FormA2() {
           <Input
             name="pdf8"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 8)}
           ></Input>
         </div>
@@ -276,6 +284,7 @@ function FormA2() {
           <Input
             name="pdf9"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 9)}
           ></Input>
         </div>
@@ -287,6 +296,7 @@ function FormA2() {
           <Input
             name="pdf10"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 10)}
           ></Input>
         </div>
@@ -296,6 +306,7 @@ function FormA2() {
           <Input
             name="pdf11"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 11)}
           ></Input>
         </div>
@@ -308,6 +319,7 @@ function FormA2() {
           <Input
             name="pdf12"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 12)}
           ></Input>
         </div>
@@ -323,6 +335,7 @@ function FormA2() {
           <Input
             name="pdf13"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 13)}
           ></Input>
         </div>
@@ -337,6 +350,7 @@ function FormA2() {
           <Input
             name="pdf14"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 14)}
           ></Input>
         </div>
@@ -348,6 +362,7 @@ function FormA2() {
           <Input
             name="pdf15"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 15)}
           ></Input>
         </div>
@@ -363,6 +378,7 @@ function FormA2() {
           <Input
             name="pdf16"
             type={"file"}
+            accept="application/pdf"
             setFunc={(e) => handlePDFChange(e, 16)}
           ></Input>
         </div>

@@ -12,10 +12,16 @@ function TableA2() {
     comment: "",
     status: "",
   });
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchData = (id) => {
-      Axios.get(`http://localhost:3001/a1/get/${id}`).then((response) => {
+      Axios.get(`http://localhost:3001/a1/get/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((response) => {
         setData(response.data);
         setState((prevState) => ({
           ...prevState,
