@@ -1,6 +1,9 @@
 import * as React from "react";
 import "../css/home.css";
-import img1 from "../image/skyscraper.jpg";
+
+import img1 from "../image/cpbanner.png";
+import img2 from "../image/skyscraper.jpg";
+import img3 from "../image/skyscraper.jpg";
 
 export default function Home() {
   return (
@@ -38,9 +41,9 @@ export default function Home() {
               alt="..."
             />
             <div className="container">
-              <div className="carousel-caption text-start">
-                <h1>เกี่ยวกับ ซีพี ออลล์</h1>
-                <p>
+              <div className="carousel-caption text-end">
+                <h1 style={{ color: "black" }}>เกี่ยวกับ ซีพี ออลล์</h1>
+                <p style={{ color: "black" }}>
                   บริษัท ซีพี ออลล์ จํากัด (มหาชน) ก่อตั้งขึ้นเมื่อปี 2531
                   โดยบริษัทในกลุ่มเครือเจริญโภคภัณฑ์ ประกอบธุรกิจหลัก คือ
                   ธุรกิจค้าปลีกประเภทร้านค้าสะดวกซื้อภายใต้เครื่องหมายการค้า
@@ -48,24 +51,19 @@ export default function Home() {
                   เครื่องหมายการค้าดังกล่าวจาก 7-Eleven, Inc. สหรัฐอเมริกา
                   และได้เปิดร้านสาขาแรกที่ซอยพัฒน์พงษ์ เมื่อปี 2532
                 </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="/register">
-                    Sign up
-                  </a>
-                </p>
               </div>
             </div>
           </div>
           <div className="carousel-item">
             <img
-              src={img1}
+              src={img2}
               className="bd-placeholder-img"
               width="100%"
               height="100%"
               alt="..."
             />
             <div className="container">
-              <div className="carousel-caption">
+              <div className="carousel-caption text-start">
                 <h1>เกี่ยวกับ ซีพี ออลล์</h1>
                 <p>
                   บริษัท ซีพี ออลล์ จํากัด (มหาชน) ก่อตั้งขึ้นเมื่อปี 2531
@@ -78,33 +76,6 @@ export default function Home() {
                 <p>
                   <a className="btn btn-lg btn-primary" href="#">
                     Learn more
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img
-              src={img1}
-              className="bd-placeholder-img"
-              width="100%"
-              height="100%"
-              alt="..."
-            />
-            <div className="container">
-              <div className="carousel-caption text-end">
-                <h1>เกี่ยวกับ ซีพี ออลล์</h1>
-                <p>
-                  บริษัท ซีพี ออลล์ จํากัด (มหาชน) ก่อตั้งขึ้นเมื่อปี 2531
-                  โดยบริษัทในกลุ่มเครือเจริญโภคภัณฑ์ ประกอบธุรกิจหลัก คือ
-                  ธุรกิจค้าปลีกประเภทร้านค้าสะดวกซื้อภายใต้เครื่องหมายการค้า
-                  “7-Eleven” ในประเทศไทย โดยบริษัทฯ ได้รับสิทธิการใช้
-                  เครื่องหมายการค้าดังกล่าวจาก 7-Eleven, Inc. สหรัฐอเมริกา
-                  และได้เปิดร้านสาขาแรกที่ซอยพัฒน์พงษ์ เมื่อปี 2532
-                </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#">
-                    Browse gallery
                   </a>
                 </p>
               </div>

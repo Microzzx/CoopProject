@@ -91,7 +91,7 @@ router.put(
   }
 );
 
-router.get("/get", authRole(["admin", "user"]), (req, res) => {
+router.get("/get", authRole(["admin"]), (req, res) => {
   const sql =
     "SELECT a2.*, users.email FROM a2 JOIN users ON a2.user_id = users.user_id";
   connection.query(sql, (error, result) => {
@@ -117,7 +117,7 @@ router.get("/get", authRole(["admin", "user"]), (req, res) => {
         url17: row.url17,
       };
     });
-    res.send({ status: "success", message: "Data has been get" });
+    res.status(200).json(data);
   });
 });
 
@@ -164,7 +164,7 @@ router.get("/get/:id", authRole(["admin"]), (req, res) => {
         url17: `http://localhost:3001/static${row.url17}`,
       };
     });
-    res.send({ status: "success", message: "Data has been get" });
+    res.status(200).json(data);
   });
 });
 
