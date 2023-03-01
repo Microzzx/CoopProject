@@ -1,4 +1,3 @@
-//THIS PAGE MADE FOR ADMIN
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../../../css/datapage.css";
@@ -17,7 +16,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
 
 function TableA2() {
-  //new data set for render on table
   const [a2list, setA2List] = useState([]);
   const [sortkey, setSortKey] = useState("index");
   const [asc, setAsc] = useState(true);

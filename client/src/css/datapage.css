@@ -34,11 +34,11 @@
   width: 40px;
 }
 
-.tableheader{
+.tableheader {
   height: 40px;
 }
 
-.mcal_small{
+.mcal_small {
   width: 5px;
 }
 
@@ -56,5 +56,12 @@ table {
   overflow-y: auto;
 }
 
-.tableFixHead thead         { overflow: auto; height: 60px; }
-.tableFixHead thead th { position: sticky; top: 0; z-index: 100; }
+.tableFixHead thead {
+  overflow: auto;
+  height: 60px;
+}
+.tableFixHead thead th {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}

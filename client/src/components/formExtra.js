@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "../css/form.css";
 import Input from "./sub_components/input";
-import Textarea from "./sub_components/textarea";
-import AutoAddress from "./sub_components/autoaddress";
-import Employee from "./sub_components/employee";
 import Axios from "axios";
 
 function FormExtra() {

@@ -1,16 +1,16 @@
 .bgcolor {
-    background-color: rgb(114, 129, 148);
-  }
+  background-color: rgb(114, 129, 148);
+}
 .container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 @media (min-width: 1200px) {
-  .container{
-      max-width: 1400px;
+  .container {
+    max-width: 1400px;
   }
 }
 
@@ -24,14 +24,11 @@
   padding: 40px 0 25px;
   margin-top: 50px;
 }
-.blank-col1{
+.blank-col1 {
   background-color: rgb(140, 138, 138);
   height: 800px;
 }
-.imgsize{
+.imgsize {
   width: 50px;
   height: 50px;
 }
-
-
-

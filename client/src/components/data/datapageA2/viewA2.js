@@ -71,11 +71,6 @@ const ViewA2 = () => {
     window.open(url, "_blank");
   };
 
-  // const printA2 = (e) => {
-  //   e.preventDefault();
-  //   console.log(data[0]);
-  // };
-
   if (loading) {
     return <Loading />;
   }

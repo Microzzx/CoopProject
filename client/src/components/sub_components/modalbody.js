@@ -1,13 +1,9 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "../../css/datapage.css";
-import Input from "./input";
-import Axios from "axios";
 
 function Mdbody(props) {
-  const {
-    modalinfo
-  } = props;
-  
+  const { modalinfo } = props;
+
   return (
     <div>
       <div className="row">
@@ -21,7 +17,8 @@ function Mdbody(props) {
       <div className="row">
         <div className="col-sm-3">ที่อยู่ :</div>
         <div className="col-sm-6">
-          ต.{modalinfo.subdistrict} อ.{modalinfo.district} จ.{modalinfo.province} {modalinfo.zipcode}
+          ต.{modalinfo.subdistrict} อ.{modalinfo.district} จ.
+          {modalinfo.province} {modalinfo.zipcode}
         </div>
       </div>
       <div className="row">
