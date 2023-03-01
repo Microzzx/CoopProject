@@ -13,7 +13,10 @@ router.post("/", authRole(["admin", "user"]), (req, res) => {
     [current_time, user_id],
     (err, result) => {
       if (err) {
-        console.log(err);
+        res.status(500).json({
+          status: "error",
+          message: "Internal server error",
+        });
       }
     }
   );

@@ -16,7 +16,10 @@ router.post("/", jsonParser, (req, res) => {
         [decoded.email],
         (err, users) => {
           if (err) {
-            res.json({ status: "error", message: "User not found" });
+            res.status(500).send({
+              status: "error",
+              message: "User not found",
+            });
             return;
           } else {
             // send back userdata
@@ -46,7 +49,10 @@ router.post("/", jsonParser, (req, res) => {
           [current_time, email],
           (err) => {
             if (err) {
-              console.log(err);
+              res.status(500).json({
+                status: "error",
+                message: "Internal server error",
+              });
             }
           }
         );

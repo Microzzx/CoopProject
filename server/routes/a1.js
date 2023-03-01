@@ -170,7 +170,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
     if (err) {
       res.status(500).send({ status: "error", message: "Error deleting data" });
     } else {
-      res.sendStatus(204);
+      res.send({ status: "success", message: "Data deleted" });
     }
   });
 });

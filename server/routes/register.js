@@ -28,11 +28,11 @@ router.post("/", jsonParser, (req, res) => {
     [email],
     (err, users) => {
       if (err) {
-        res.json({ status: "error", message: "Error" });
+        res.status(500).json({ status: "error", message: "Error" });
         return;
       }
       if (users.length > 0) {
-        res.json({ status: "error", message: "Same username" });
+        res.status(409).json({ status: "error", message: "Same username" });
         return;
       }
       bcrypt.hash(password, 10, function (err, hash) {
@@ -42,7 +42,9 @@ router.post("/", jsonParser, (req, res) => {
           (err, result) => {
             if (err) {
               console.log(err);
-              res.json({ status: "error", message: "Register failed" });
+              res
+                .status(500)
+                .json({ status: "error", message: "Register failed" });
             } else {
               const defaultImagePath = path.join(
                 __dirname,

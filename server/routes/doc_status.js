@@ -9,8 +9,10 @@ router.get("/", authRole(["admin", "user"]), (req, res) => {
     [req.user_id],
     (err, result) => {
       if (err) {
-        console.log(err);
-        res.status(500).send("Error while retrieving information");
+        res.status(500).send({
+          status: "error",
+          message: "Error while retrieving information",
+        });
       } else {
         if (!result[0].a1_status) {
           // if no data in both a1 and a2, return empty string for both

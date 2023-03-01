@@ -30,7 +30,10 @@ router.post("/", jsonParser, (req, res) => {
         [current_time, user_id],
         (err) => {
           if (err) {
-            console.log(err);
+            res.status(500).json({
+              status: "error",
+              message: "Internal server error",
+            });
           } else {
             bcrypt.compare(
               req.body.password,

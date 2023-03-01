@@ -3,9 +3,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../../../css/datapage.css";
 import delete_btn from "../../../image/delete_icon.jpg";
-import Paper from "@mui/material/Paper";
 import Modal from "../../sub_components/modal";
-import Grid from "@mui/material/Grid";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -20,28 +18,40 @@ import Box from "@mui/material/Box";
 
 function TableA2() {
   //new data set for render on table
-  const [comlist, setComList] = useState([]);
+  const [a2list, setA2List] = useState([]);
   const [sortkey, setSortKey] = useState("index");
   const [asc, setAsc] = useState(true);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const GetCompanies = () => {
+    const GetA2 = () => {
       Axios.get("http://localhost:3001/a2/get", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }).then((response) => {
-        let arr = response.data.map((v, i) => ({ index: i, ...v }));
-        setComList(arr);
-      });
+      })
+        .then((response) => {
+          if (response.data.status === "error") {
+            alert("Error: " + response.data.message);
+          } else {
+            let arr = response.data.map((v, i) => ({ index: i, ...v }));
+            setA2List(arr);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
-    GetCompanies();
+    GetA2();
   }, []);
 
-  const deleteCompany = (id) => {
-    Axios.delete(`http://localhost:3001/a2/delete/${id}`, {
+  const DeleteA2 = (id) => {
+    let obj = a2list.find((obj) => obj.a2_id === id);
+    const deleteUrl = obj.url17
+      ? `http://localhost:3001/a2/deletefull/${id}`
+      : `http://localhost:3001/a2/delete/${id}`;
+    Axios.delete(deleteUrl, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -51,33 +61,32 @@ function TableA2() {
         if (response.data.status === "error") {
           alert("Error: " + response.data.message);
         } else {
-          setComList(
-            comlist.filter((val) => {
+          setA2List(
+            a2list.filter((val) => {
               return val.id !== id;
             })
           );
-          alert("Data Deleted!");
+          alert(response.data.message);
         }
         window.location.reload();
       })
       .catch((error) => {
-        alert("Error: " + error);
         console.log(error);
       });
   };
 
-  const view = (id) => {
+  const View = (id) => {
     window.location = `/data/viewA2/${id}`;
   };
 
   const handleSort = (key) => {
     setAsc(key === sortkey ? !asc : true);
     setSortKey(key);
-    let arr = comlist
+    let arr = a2list
       .slice()
       .sort((a, b) => a[key].toString().localeCompare(b[key].toString()));
     if (!asc) arr.reverse();
-    setComList(arr);
+    setA2List(arr);
   };
 
   const TableCol = (props) => {
@@ -131,7 +140,7 @@ function TableA2() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {comlist.map((val, index) => (
+            {a2list.map((val, index) => (
               <TableRow key={index} className="center">
                 <TableCell scope="row" align="center">
                   {val.index + 1}
@@ -160,7 +169,7 @@ function TableA2() {
                 <TableCell align="center">
                   <IconButton
                     onClick={() => {
-                      view(val.a2_id);
+                      View(val.a2_id);
                     }}
                   >
                     <VisibilityIcon />
@@ -172,7 +181,7 @@ function TableA2() {
                     context="คุณแน่ใจที่จะลบรายการนี้หรือไม่?"
                     img={delete_btn}
                     setFunc={() => {
-                      deleteCompany(val.a2_id);
+                      DeleteA2(val.a2_id);
                     }}
                   ></Modal>
                 </TableCell>

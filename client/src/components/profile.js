@@ -230,8 +230,8 @@ export default function Profile() {
                     <hr />
                     <div className="card-text mt-4">
                       <form className="row">
-                        <div class="col-lg-6 mb-4">
-                          <label class="labels label-input">ชื่อ</label>
+                        <div className="col-lg-6 mb-4">
+                          <label className="labels label-input">ชื่อ</label>
                           <input
                             type="text"
                             className="form-control"
@@ -242,8 +242,8 @@ export default function Profile() {
                             }
                           />
                         </div>
-                        <div class="col-lg-6 mb-4">
-                          <label class="labels label-input">นามสกุล</label>
+                        <div className="col-lg-6 mb-4">
+                          <label className="labels label-input">นามสกุล</label>
                           <input
                             type="text"
                             className="form-control"
@@ -254,8 +254,8 @@ export default function Profile() {
                             }
                           />
                         </div>
-                        <div class="col-lg-6 mb-4">
-                          <label class="labels label-input">
+                        <div className="col-lg-6 mb-4">
+                          <label className="labels label-input">
                             หมายเลขโทรศัพท์
                           </label>
                           <input
@@ -296,7 +296,7 @@ export default function Profile() {
                 <div className="card-text">
                   <form className="row">
                     <div className="col-lg-6 mb-4">
-                      <label class="labels label-input">รหัสผ่านเดิม</label>
+                      <label className="labels label-input">รหัสผ่านเดิม</label>
                       <input
                         type="password"
                         className="form-control"
@@ -307,7 +307,7 @@ export default function Profile() {
                       />
                     </div>
                     <div className="col-lg-6 mb-4">
-                      <label class="labels label-input">รหัสผ่านใหม่</label>
+                      <label className="labels label-input">รหัสผ่านใหม่</label>
                       <input
                         type="password"
                         className="form-control"

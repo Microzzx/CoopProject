@@ -12,8 +12,10 @@ router.get("/get", authRole(["admin", "user"]), (req, res) => {
     [req.user_id],
     (err, result) => {
       if (err) {
-        console.log(err);
-        res.status(500).send("Error while retrieving information");
+        res.status(500).send({
+          status: "error",
+          message: "Error while retrieving information",
+        });
       } else {
         res.send({
           status: "ok",
@@ -34,8 +36,10 @@ router.get("/get/all", authRole(["admin"]), (req, res) => {
     "SELECT user_id, email, fname, lname, phone, role, last_login FROM users",
     (err, result) => {
       if (err) {
-        console.log(err);
-        res.status(500).send("Error while retrieving information");
+        res.status(500).send({
+          status: "error",
+          message: "Error while retrieving information",
+        });
       } else {
         res.send(result);
       }
@@ -53,7 +57,10 @@ router.put("/edit", authRole(["admin", "user"]), (req, res) => {
     [fname, lname, phone, user_id],
     (err, result) => {
       if (err) {
-        console.log(err);
+        res.status(500).send({
+          status: "error",
+          message: "Error while retrieving information",
+        });
       } else {
         res.send({
           status: "success",
@@ -73,7 +80,6 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
     [user_id],
     (err, result) => {
       if (err) {
-        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Something went wrong",
@@ -88,7 +94,6 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
           const hashedPassword = result[0].password;
           bcrypt.compare(pre_password, hashedPassword, (err, isMatch) => {
             if (err) {
-              console.log(err);
               res.status(500).send({
                 status: "error",
                 message: "Something went wrong",
@@ -101,7 +106,6 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
             } else {
               bcrypt.hash(new_password, 10, (err, hashedNewPassword) => {
                 if (err) {
-                  console.log(err);
                   res.status(500).send({
                     status: "error",
                     message: "Something went wrong",
@@ -112,7 +116,6 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
                     [hashedNewPassword, user_id],
                     (err, result) => {
                       if (err) {
-                        console.log(err);
                         res.status(500).send({
                           status: "error",
                           message: "Something went wrong",
@@ -148,9 +151,12 @@ router.post("/edit/picture", authRole(["admin", "user"]), (req, res) => {
   );
   fs.writeFile(profilePicPath, base64Image, { encoding: "base64" }, (err) => {
     if (err) {
-      return res.status(500).json({ error: "Failed to save picture" });
+      return res.status(500).send({
+        status: "error",
+        message: "Failed to save picture",
+      });
     } else {
-      res.json({ status: "ok", message: "Success to save picture" });
+      res.send({ status: "ok", message: "Success to save picture" });
     }
   });
 });
@@ -162,22 +168,33 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
     id,
     (err, result) => {
       if (err) {
-        res.status(500).send({ message: "Error deleting data" });
+        res.status(500).send({
+          status: "error",
+          message: "Error deleting data",
+        });
       } else if (result.length === 0) {
-        res.status(404).send({ message: "User not found" });
+        res.status(404).send({
+          status: "error",
+          message: "User not found",
+        });
       } else {
         const pictureUrl = result[0].picture_url;
         const picturePath = path.join(__dirname, "..", "public", pictureUrl);
         fs.unlink(picturePath, (err) => {
           if (err) {
-            console.error(err);
+            res.status(500).send({
+              status: "error",
+              message: "Error deleting data",
+            });
           }
           connection.query(
             "DELETE FROM users WHERE user_id = ?",
             id,
             (err, result) => {
               if (err) {
-                res.status(500).send({ message: "Error deleting data" });
+                res
+                  .status(500)
+                  .send({ status: "error", message: "Error deleting data" });
               } else {
                 res.sendStatus(204);
               }

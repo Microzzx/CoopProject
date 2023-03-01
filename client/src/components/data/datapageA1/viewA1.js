@@ -1,4 +1,3 @@
-//THIS PAGE MADE FOR ADMIN
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../../../css/datapage.css";
@@ -6,12 +5,12 @@ import Modal from "../../sub_components/modal";
 import Loading from "../../loading";
 function TableA2() {
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
-  const url = window.location.pathname;
   const [state, setState] = useState({
     comment: "",
     status: "",
   });
+  const [loading, setLoading] = useState(true);
+  const url = window.location.pathname;
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -21,21 +20,28 @@ function TableA2() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }).then((response) => {
-        setData(response.data);
-        setState((prevState) => ({
-          ...prevState,
-          comment: response.data[0].comment,
-          status: response.data[0].status,
-        }));
-        setLoading(false);
-      });
+      })
+        .then((response) => {
+          if (response.data.status === "error") {
+            alert("Error: " + response.data.message);
+          } else {
+            setData(response.data);
+            setState((prevState) => ({
+              ...prevState,
+              comment: response.data[0].comment,
+              status: response.data[0].status,
+            }));
+            setLoading(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
     fetchData(url.substring(url.lastIndexOf("/") + 1));
   }, [url]);
 
   const ConfirmA1 = (id) => {
-    const token = localStorage.getItem("token");
     Axios.put(
       "http://localhost:3001/a1/edit",
       {
@@ -51,19 +57,22 @@ function TableA2() {
       }
     )
       .then((response) => {
-        alert(response.data.message);
-        window.location = "/data/tableA1";
+        if (response.data.status === "error") {
+          alert("Error: " + response.data.message);
+        } else {
+          alert(response.data.message);
+          window.location = "/data/tableA1";
+        }
       })
       .catch((error) => {
         alert("unsuccessful, " + error);
-        console.log(error);
       });
   };
 
-  const printA1 = (e) => {
-    e.preventDefault();
-    console.log(data[0]);
-  };
+  // const printA1 = (e) => {
+  //   e.preventDefault();
+  //   console.log(data[0]);
+  // };
 
   if (loading) {
     return <Loading />;

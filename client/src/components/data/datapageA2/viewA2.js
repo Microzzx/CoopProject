@@ -10,24 +10,36 @@ const ViewA2 = () => {
     status: "",
   });
   const url = window.location.pathname;
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = (id) => {
-      Axios.get(`http://localhost:3001/a2/get/${id}`).then((response) => {
-        setData(response.data);
-        setState((prevState) => ({
-          ...prevState,
-          comment: response.data[0].comment,
-          status: response.data[0].status,
-        }));
-        setLoading(false);
-      });
+      Axios.get(`http://localhost:3001/a2/get/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (response.data.status === "error") {
+            alert("Error: " + response.data.message);
+          } else {
+            setData(response.data);
+            setState((prevState) => ({
+              ...prevState,
+              comment: response.data[0].comment,
+              status: response.data[0].status,
+            }));
+            setLoading(false);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
     fetchData(url.substring(url.lastIndexOf("/") + 1));
   }, [url]);
 
   const ConfirmA2 = (id) => {
-    const token = localStorage.getItem("token");
     Axios.put(
       "http://localhost:3001/a2/edit",
       {
@@ -43,12 +55,15 @@ const ViewA2 = () => {
       }
     )
       .then((response) => {
-        alert(response.data.message);
-        window.location = "/data/tableA2";
+        if (response.data.status === "error") {
+          alert("Error: " + response.data.message);
+        } else {
+          alert(response.data.message);
+          window.location = "/data/tableA2";
+        }
       })
       .catch((error) => {
         alert("unsuccessful, " + error);
-        console.log(error);
       });
   };
 
@@ -56,10 +71,10 @@ const ViewA2 = () => {
     window.open(url, "_blank");
   };
 
-  const printA2 = (e) => {
-    e.preventDefault();
-    console.log(data[0]);
-  };
+  // const printA2 = (e) => {
+  //   e.preventDefault();
+  //   console.log(data[0]);
+  // };
 
   if (loading) {
     return <Loading />;

@@ -107,11 +107,11 @@ function TableUser() {
               <TableCol width="15%" sortkey="email">
                 <b>อีเมลล์</b>
               </TableCol>
+              <TableCol width="15%" sortkey="role">
+                <b>ตำแหน่ง</b>
+              </TableCol>
               <TableCol width="15%" sortkey="fname">
                 <b>ชื่อ</b>
-              </TableCol>
-              <TableCol width="15%" sortkey="lname">
-                <b>นามสกุล</b>
               </TableCol>
               <TableCol width="15%" sortkey="phone">
                 <b>หมายเลขโทรศัพท์</b>
@@ -129,8 +129,8 @@ function TableUser() {
                   {val.index + 1}
                 </TableCell>
                 <TableCell align="center">{val.email}</TableCell>
+                <TableCell align="center">{val.role}</TableCell>
                 <TableCell align="center">{val.fname}</TableCell>
-                <TableCell align="center">{val.lname}</TableCell>
                 <TableCell align="center">{val.phone}</TableCell>
                 <TableCell align="center">{val.last_login}</TableCell>
                 <TableCell align="center">

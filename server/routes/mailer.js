@@ -56,17 +56,17 @@ module.exports = (email, data) => {
     <p>
   ${
     data.status === "Approved" && data.form === "A1"
-      ? "A2 form is now available please continue your process."
+      ? "ฟอร์ม A2 พร้อมใช้งานแล้วโปรดดำเนินการต่อ"
       : data.status === "Declined" && data.form === "A1"
-      ? `${data.comment} Please contract admin and proceed again.`
+      ? `${data.comment}<br>กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
       : data.status === "Approved" && data.form === "A2"
-      ? "A2 extra document is now available please continue your process."
+      ? "ฟอร์มเอกสารเพิ่มเติม พร้อมใช้งานแล้วโปรดดำเนินการต่อ"
       : data.status === "Declined" && data.form === "A2"
-      ? `${data.comment} Please contract admin and proceed again.`
+      ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
       : data.status === "Approved_extra" && data.form === "A2"
-      ? "You have completed the process."
+      ? "คุณได้ดำเนินการทั้งหมดเสร็จสิ้น"
       : data.status === "Declined_extra" && data.form === "A2"
-      ? `${data.comment} Please contract admin and proceed again.`
+      ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
       : null
   }
 </p>

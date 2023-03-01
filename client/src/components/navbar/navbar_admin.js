@@ -58,53 +58,45 @@ function Navbar_admin(props) {
             <li className="nav-item dropdown">
               <NavLink
                 to="/form"
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle me-2"
                 data-bs-toggle="dropdown"
               >
                 ฟอร์ม
               </NavLink>
               <div className="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="/form/formA1">
-                    ฟอร์มA1
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/form/formA2">
-                    ฟอร์มA2
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/form/formExtra">
-                    ฟอร์มEx
-                  </a>
-                </li>
+                <a className="dropdown-item" href="/form/formA1">
+                  ฟอร์มA1
+                </a>
+
+                <a className="dropdown-item" href="/form/formA2">
+                  ฟอร์มA2
+                </a>
+
+                <a className="dropdown-item" href="/form/formExtra">
+                  ฟอร์มEx
+                </a>
               </div>
             </li>
             <li className="nav-item dropdown">
               <NavLink
                 to="/data"
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle me-2"
                 data-bs-toggle="dropdown"
               >
                 ข้อมูล
               </NavLink>
               <div className="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="/data/TableA1">
-                    ตาราง A1
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/data/TableA2">
-                    ตาราง A2
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/data/tableUsers">
-                    ตาราง Users
-                  </a>
-                </li>
+                <a className="dropdown-item" href="/data/TableA1">
+                  ตาราง A1
+                </a>
+
+                <a className="dropdown-item" href="/data/TableA2">
+                  ตาราง A2
+                </a>
+
+                <a className="dropdown-item" href="/data/tableUsers">
+                  ตาราง Users
+                </a>
               </div>
             </li>
             <NavLink to="/about" className="nav-item nav-link me-2 disabled">

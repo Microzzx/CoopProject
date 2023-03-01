@@ -16,8 +16,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
 
 function TableA1() {
-  //new data set for render on table
-  const [comlist, setComList] = useState([]);
+  const [a1list, setA1List] = useState([]);
   const [sortkey, setSortKey] = useState("index");
   const [asc, setAsc] = useState(true);
   const token = localStorage.getItem("token");
@@ -29,16 +28,23 @@ function TableA1() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }).then((response) => {
-        //console.table(response.data);
-        let arr = response.data.map((v, i) => ({ index: i, ...v }));
-        setComList(arr);
-      });
+      })
+        .then((response) => {
+          if (response.data.status === "error") {
+            alert("Error: " + response.data.message);
+          } else {
+            let arr = response.data.map((v, i) => ({ index: i, ...v }));
+            setA1List(arr);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     };
     GetA1();
   }, []);
 
-  const deleteCompany = (id) => {
+  const DeleteA1 = (id) => {
     Axios.delete(`http://localhost:3001/a1/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -49,33 +55,32 @@ function TableA1() {
         if (response.data.status === "error") {
           alert("Error: " + response.data.message);
         } else {
-          setComList(
-            comlist.filter((val) => {
+          setA1List(
+            a1list.filter((val) => {
               return val.id !== id;
             })
           );
-          alert("Data Deleted!");
+          alert(response.data.message);
         }
         window.location.reload();
       })
       .catch((error) => {
-        alert("Error: " + error);
         console.log(error);
       });
   };
 
-  const view = (id) => {
+  const View = (id) => {
     window.location = `/data/viewA1/${id}`;
   };
 
   const handleSort = (key) => {
     setAsc(key === sortkey ? !asc : true);
     setSortKey(key);
-    let arr = comlist
+    let arr = a1list
       .slice()
       .sort((a, b) => a[key].toString().localeCompare(b[key].toString()));
     if (!asc) arr.reverse();
-    setComList(arr);
+    setA1List(arr);
   };
 
   const TableCol = (props) => {
@@ -129,7 +134,7 @@ function TableA1() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {comlist.map((val, index) => (
+            {a1list.map((val, index) => (
               <TableRow key={index} className="center">
                 <TableCell scope="row" align="center">
                   {val.index + 1}
@@ -156,7 +161,7 @@ function TableA1() {
                 <TableCell align="center">
                   <IconButton
                     onClick={() => {
-                      view(val.a1_id);
+                      View(val.a1_id);
                     }}
                   >
                     <VisibilityIcon />
@@ -168,7 +173,7 @@ function TableA1() {
                     context="คุณแน่ใจที่จะลบรายการนี้หรือไม่?"
                     img={delete_btn}
                     setFunc={() => {
-                      deleteCompany(val.a1_id);
+                      DeleteA1(val.a1_id);
                     }}
                   ></Modal>
                 </TableCell>
