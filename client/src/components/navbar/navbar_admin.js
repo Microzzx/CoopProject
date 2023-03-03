@@ -34,7 +34,7 @@ function Navbar_admin(props) {
   };
 
   return (
-    <nav className="navbar navbar-expand-xl navbar-light bg-light shadow">
+    <nav className="navbar navbar-expand-lg bg-light fixed-top">
       <div className="container-fluid">
         <a href="/home" className="navbar-brand">
           <img src={img1} weight="44" height="41" alt="Logo" />
@@ -99,20 +99,14 @@ function Navbar_admin(props) {
                 </a>
               </div>
             </li>
-            <NavLink to="/about" className="nav-item nav-link me-2 disabled">
-              เกี่ยวกับเรา
-            </NavLink>
-            <NavLink to="/contact" className="nav-item nav-link me-2 disabled">
-              ติดต่อ
-            </NavLink>
           </div>
 
-          <div className="navbar-nav ms-auto">
+          <div className="ms-auto">
             <span className="navbar-text center me-2">{props.email}</span>
             <div className="btn-group">
               <button
                 type="button"
-                className="btn dropdown-toggle"
+                className="btn dropdown-toggle "
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
               >

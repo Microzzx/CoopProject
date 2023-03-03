@@ -56,7 +56,7 @@ function FormExtra() {
   return (
     <div
       className="container-fluid fixed-height"
-      style={{ minHeight: "796px" }}
+      style={{ minHeight: "915px", paddingTop: "68px" }}
     >
       <div className="container border shadow rcorners2 mt-5 mb-5">
         <form
@@ -74,7 +74,10 @@ function FormExtra() {
           </div>
           <div className="col-md-12 mb-3">
             - Confidentiality.pdf &nbsp;
-            <a href="http://localhost:3001/static/pdfs/example.pdf" download>
+            <a
+              href="http://localhost:3001/static/pdfs/Confidentiality.pdf"
+              download
+            >
               Download
             </a>
           </div>

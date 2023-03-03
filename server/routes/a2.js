@@ -79,14 +79,31 @@ router.put(
     const pdfUrl17 = `/pdfs/${req.file.filename}`;
     const user_id = req.user_id;
     const status = "Pending_extra";
-    const sql = `UPDATE a2 SET status='${status}', url17='${pdfUrl17}' WHERE user_id='${user_id}' ORDER BY a2.time DESC LIMIT 1`;
+    const sql = `SELECT url17 FROM a2 WHERE user_id='${user_id}' ORDER BY a2.time DESC LIMIT 1`;
     connection.query(sql, (error, result) => {
       if (error) {
         return res
           .status(500)
-          .send({ status: "error", message: "Failed to save data" });
+          .send({ status: "error", message: "Failed to update data" });
       }
-      res.send({ status: "success", message: "Data has been sent" });
+      const row = result[0];
+      const currentUrl17 = row.url17;
+      if (currentUrl17) {
+        // Delete the current file if it exists
+        const filePath = path.join(__dirname, "..", "public", currentUrl17);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+      }
+      const updateSql = `UPDATE a2 SET status='${status}', url17='${pdfUrl17}' WHERE user_id='${user_id}' ORDER BY a2.time DESC LIMIT 1`;
+      connection.query(updateSql, (error, result) => {
+        if (error) {
+          return res
+            .status(500)
+            .send({ status: "error", message: "Failed to update data" });
+        }
+        res.send({ status: "success", message: "Data has been sent" });
+      });
     });
   }
 );

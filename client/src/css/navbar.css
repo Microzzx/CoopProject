@@ -5,8 +5,9 @@
 .nav-item {
   color: #000000;
 }
+
 .navbar-nav .nav-link.active {
-  background-color: #212529 !important;
+  background-color: #006aff !important;
   color: #ffffff;
 }
 

@@ -100,7 +100,7 @@ function TableA1() {
   };
 
   return (
-    <Box component="main" sx={{ height: "87.1vh" }}>
+    <Box component="main" sx={{ height: "94.3vh", paddingTop: "60px" }}>
       <h2 style={{ padding: "50px" }} className="center">
         ตารางข้อมูลฟอร์ม A1
       </h2>

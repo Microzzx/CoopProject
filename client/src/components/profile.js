@@ -159,7 +159,7 @@ export default function Profile() {
   return (
     <div
       className="container-fluid fixed-height"
-      style={{ minHeight: "796px" }}
+      style={{ paddingTop: "70px" }}
     >
       <div className="container border shadow rcorners2 mt-5 mb-5 container-c">
         <div className="row mt-3">

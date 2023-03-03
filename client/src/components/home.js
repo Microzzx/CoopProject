@@ -1,13 +1,21 @@
 import * as React from "react";
 import "../css/home.css";
 
-import img1 from "../image/cpbanner.png";
-import img2 from "../image/skyscraper.jpg";
-import img3 from "../image/skyscraper.jpg";
+import img1 from "../image/sme1.png";
+import img2 from "../image/cpall.png";
+import card1 from "../image/card1.png";
+import card2 from "../image/card2.png";
+import card3 from "../image/card3.png";
+import red from "../image/red.png";
+import skyblue from "../image/skyblue.png";
+import green from "../image/green.png";
+import blue from "../image/blue.png";
 
 export default function Home() {
   return (
     <>
+      {/* ----- */}
+      <div style={{ paddingTop: "68px" }} />
       <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-indicators">
           <button
@@ -40,46 +48,24 @@ export default function Home() {
               height="100%"
               alt="..."
             />
-            <div className="container">
-              <div className="carousel-caption text-end">
-                <h1 style={{ color: "black" }}>เกี่ยวกับ ซีพี ออลล์</h1>
-                <p style={{ color: "black" }}>
-                  บริษัท ซีพี ออลล์ จํากัด (มหาชน) ก่อตั้งขึ้นเมื่อปี 2531
-                  โดยบริษัทในกลุ่มเครือเจริญโภคภัณฑ์ ประกอบธุรกิจหลัก คือ
-                  ธุรกิจค้าปลีกประเภทร้านค้าสะดวกซื้อภายใต้เครื่องหมายการค้า
-                  “7-Eleven” ในประเทศไทย โดยบริษัทฯ ได้รับสิทธิการใช้
-                  เครื่องหมายการค้าดังกล่าวจาก 7-Eleven, Inc. สหรัฐอเมริกา
-                  และได้เปิดร้านสาขาแรกที่ซอยพัฒน์พงษ์ เมื่อปี 2532
-                </p>
-              </div>
-            </div>
           </div>
           <div className="carousel-item">
             <img
-              src={img2}
+              src={img1}
               className="bd-placeholder-img"
               width="100%"
               height="100%"
               alt="..."
             />
-            <div className="container">
-              <div className="carousel-caption text-start">
-                <h1>เกี่ยวกับ ซีพี ออลล์</h1>
-                <p>
-                  บริษัท ซีพี ออลล์ จํากัด (มหาชน) ก่อตั้งขึ้นเมื่อปี 2531
-                  โดยบริษัทในกลุ่มเครือเจริญโภคภัณฑ์ ประกอบธุรกิจหลัก คือ
-                  ธุรกิจค้าปลีกประเภทร้านค้าสะดวกซื้อภายใต้เครื่องหมายการค้า
-                  “7-Eleven” ในประเทศไทย โดยบริษัทฯ ได้รับสิทธิการใช้
-                  เครื่องหมายการค้าดังกล่าวจาก 7-Eleven, Inc. สหรัฐอเมริกา
-                  และได้เปิดร้านสาขาแรกที่ซอยพัฒน์พงษ์ เมื่อปี 2532
-                </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#">
-                    Learn more
-                  </a>
-                </p>
-              </div>
-            </div>
+          </div>
+          <div className="carousel-item">
+            <img
+              src={img1}
+              className="bd-placeholder-img"
+              width="100%"
+              height="100%"
+              alt="..."
+            />
           </div>
         </div>
         <button
@@ -107,198 +93,239 @@ export default function Home() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
+      {/* ---- */}
+      <div class="container py-2">
+        <div class="row row_branchen">
+          <div class="col-lg-4 col-md-12">
+            <div class="card">
+              <div class="image__wrapper">
+                <div class="card__shadow--1"></div>
+                <img
+                  class="card-img-top"
+                  src={card1}
+                  alt="Angebote - Verkaufsautomaten"
+                />
+              </div>
+              <div class="card-body pb-5">
+                <h3 class="card-title">ปรัชญาองค์กร</h3>
+                <p class="card-text">
+                  เราปรารถนารอยยิ้มจากลูกค้า ด้วยทีมงานที่มีความสุข
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="card">
+              <div class="image__wrapper">
+                <div class="card__shadow--1"></div>
+                <img
+                  class="card-img-top"
+                  src={card2}
+                  alt="Angebote - Verkaufsautomaten"
+                />
+              </div>
+              <div class="card-body pb-5">
+                <h3 class="card-title">วิสัยทัศน์</h3>
+                <p class="card-text">เราให้บริการความสะดวกกับทุกชุมชน</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="card">
+              <div class="image__wrapper">
+                <div class="card__shadow--1"></div>
+                <img
+                  class="card-img-top"
+                  src={card3}
+                  alt="Angebote - Verkaufsautomaten"
+                />
+              </div>
+              <div class="card-body pb-4">
+                <h3 class="card-title">พันธกิจ</h3>
+                <p class="card-text">
+                  สร้างความผูกพันกับลูกค้า
+                  ด้วยสินค้าและบริการที่เปี่ยมด้วยนวัตกรรม
+                  มุ่งสู่องค์กรคุณภาพและมีความยั่งยืน
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr className="featurette-divider" />
+      </div>
+
+      {/* ----- */}
       <div className="container marketing">
-        <div className="row">
-          <div className="col-lg-4">
-            <svg
-              className="bd-placeholder-img rounded-circle"
-              width="140"
-              height="140"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 140x140"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#777" />
-              <text x="50%" y="50%" fill="#777" dy=".3em">
-                140x140
-              </text>
-            </svg>
-
-            <h2>Heading</h2>
-            <p>
-              Some representative placeholder content for the three columns of
-              text below the carousel. This is the first column.
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
-          <div className="col-lg-4">
-            <svg
-              className="bd-placeholder-img rounded-circle"
-              width="140"
-              height="140"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 140x140"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#777" />
-              <text x="50%" y="50%" fill="#777" dy=".3em">
-                140x140
-              </text>
-            </svg>
-
-            <h2>Heading</h2>
-            <p>
-              Another exciting bit of representative placeholder content. This
-              time, we've moved on to the second column.
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
-          <div className="col-lg-4">
-            <svg
-              className="bd-placeholder-img rounded-circle"
-              width="140"
-              height="140"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 140x140"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#777" />
-              <text x="50%" y="50%" fill="#777" dy=".3em">
-                140x140
-              </text>
-            </svg>
-
-            <h2>Heading</h2>
-            <p>
-              And lastly this, the third column of representative placeholder
-              content.
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
-        </div>
-        <hr className="featurette-divider" />
-
         <div className="row featurette">
-          <div className="col-md-7">
+          <div className="col-md-12 mb-2">
+            <div className="container d-flex justify-content-center align-items-center">
+              <img width="100" height="70" src={img2} alt="" loading="lazy" />
+            </div>
+          </div>
+          <div className="col-md-12">
+            <div className="header">
+              <h1>ตราสัญลักษณ์องค์กร</h1>
+            </div>
+          </div>
+          <div className="col-lg-7">
             <h2 className="featurette-heading">
-              First featurette heading.{" "}
-              <span className="text-muted">It’ll blow your mind.</span>
+              สีแดง <span className="text-muted">The Sincere Bright Red</span>
             </h2>
             <p className="lead">
-              Some great placeholder content for the first featurette here.
-              Imagine some exciting prose here.
+              สีแห่งความรักและความจริงใจที่ CP-ALL
+              มอบให้กับกลุ่มผู้มีส่วนได้ส่วนเสียทุกกลุ่ม
             </p>
           </div>
-          <div className="col-md-5">
-            <svg
-              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" />
-              <text x="50%" y="50%" fill="#aaa" dy=".3em">
-                500x500
-              </text>
-            </svg>
+          <div className="col-lg-5">
+            <div className="container d-flex rounded-circle">
+              <img
+                width="300"
+                height="300"
+                src={red}
+                className="img-responsive rounded-circle"
+                alt=""
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
 
         <hr className="featurette-divider" />
 
         <div className="row featurette">
-          <div className="col-md-7 order-md-2">
+          <div className="col-lg-7 order-lg-2">
             <h2 className="featurette-heading">
-              Oh yeah, it’s that good.{" "}
-              <span className="text-muted">See for yourself.</span>
+              สีฟ้า <span className="text-muted">The Creative Sky Blue</span>
             </h2>
             <p className="lead">
-              Another featurette? Of course. More placeholder content here to
-              give you an idea of how this layout would work with some actual
-              real-world content in place.
+              สีแห่งความคิดสร้างสรรค์ทางความคิด การขยายตัวทางธุรกิจ
+              และก้าวไปข้างหน้า
             </p>
           </div>
-          <div className="col-md-5 order-md-1">
-            <svg
-              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" />
-              <text x="50%" y="50%" fill="#aaa" dy=".3em">
-                500x500
-              </text>
-            </svg>
+          <div className="col-lg-5 order-lg-1">
+            <div className="container d-flex">
+              <img
+                width="300"
+                height="300"
+                src={skyblue}
+                className="img-responsive rounded-circle"
+                alt=""
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
-
         <hr className="featurette-divider" />
 
         <div className="row featurette">
-          <div className="col-md-7">
+          <div className="col-lg-7">
             <h2 className="featurette-heading">
-              And lastly, this one.{" "}
-              <span className="text-muted">Checkmate.</span>
+              สีเขียว{" "}
+              <span className="text-muted">The Caring Gentle Green</span>
             </h2>
             <p className="lead">
-              And yes, this is the last block of representative placeholder
-              content. Again, not really intended to be actually read, simply
-              here to give you a better view of what this would look like with
-              some actual content. Your content.
+              ความสงบสุข การดูแลเอาใจใส่ให้ได้รับความสุข
+              ความสะดวกสบายความปลอดภัย
             </p>
           </div>
-          <div className="col-md-5">
-            <svg
-              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" />
-              <text x="50%" y="50%" fill="#aaa" dy=".3em">
-                500x500
-              </text>
-            </svg>
+          <div className="col-lg-5">
+            <div className="container d-flex">
+              <img
+                width="300"
+                height="300"
+                src={green}
+                className="img-responsive rounded-circle"
+                alt=""
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
+        <hr className="featurette-divider" />
+        <div className="row featurette">
+          <div className="col-lg-7 order-lg-2">
+            <h2 className="featurette-heading">
+              สีน้ำเงินสด{" "}
+              <span className="text-muted">
+                The Sustainable Bright Blue for CP ALL
+              </span>
+            </h2>
+            <p className="lead">ความมั่นคง ความยั่งยืนขององค์กร CP-ALL</p>
+          </div>
+          <div className="col-lg-5 order-lg-1">
+            <div className="container d-flex ">
+              <img
+                width="300"
+                height="300"
+                src={blue}
+                className="img-responsive rounded-circle"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+        <hr className="featurette-divider" />
 
+        <div className="row featurette">
+          <div className="col-md-12">
+            <div className="header">
+              <h1>Contact</h1>
+            </div>
+          </div>
+
+          <div className="col-md-12 mb-5">
+            <div className="container d-flex">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d968.238824276296!2d100.53123949815043!3d13.901620203929323!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2839922ac7d55%3A0x47fb5dcc3deeedd0!2sTHE%20TARA%20CP%20ALL!5e0!3m2!1sth!2sth!4v1677745021495!5m2!1sth!2sth"
+                width="1280"
+                height="500"
+                style={{ border: "0" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="row gy-4" style={{ textAlign: "center" }}>
+          <div class="col-md-6">
+            <div class="info-item">
+              <div>
+                <h3 style={{ paddingBottom: "8px" }}>ที่อยู่</h3>
+                <p className="lead">
+                  58/28 อาคาร เดอะ ธารา ชั้น 19 หมู่ 2 ถ.แจ้งวัฒนะ
+                  <br />
+                  ต.บางตลาด อ.ปากเกร็ด จ.นนทบุรี 11120
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-item">
+              <div>
+                <h3 style={{ paddingBottom: "8px" }}>Email</h3>
+                <p className="lead">natnareesir@cpall.co.th</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-item">
+              <div>
+                <h3 style={{ paddingBottom: "8px" }}>Tel.</h3>
+                <p className="lead">091-004-9465</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-item">
+              <div>
+                <h3 style={{ paddingBottom: "8px" }}>Mobile.</h3>
+                <p className="lead">089-141-0193</p>
+              </div>
+            </div>
+          </div>
+        </div>
         <hr className="featurette-divider" />
       </div>
     </>

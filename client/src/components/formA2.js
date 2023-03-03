@@ -105,305 +105,309 @@ function FormA2() {
   };
 
   return (
-    <div className="container border shadow rcorners2 mt-5 mb-5">
-      <form
-        className="row row-cols-auto g-3 top-row needs-validation"
-        noValidate
-        onSubmit={handleSubmit}
-      >
-        <div className="col-md-12 mb-2">
-          <h2 className="center mtc mbc">
-            คุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
-          </h2>
-        </div>
+    <div style={{ paddingTop: "68px" }}>
+      <div className="container border shadow rcorners2 mt-5 mb-5">
+        <form
+          className="row row-cols-auto g-3 top-row needs-validation"
+          noValidate
+          onSubmit={handleSubmit}
+        >
+          <div className="col-md-12 mb-2">
+            <h2 className="center mtc mbc">
+              คุณสมบัติเบื้องต้นของผู้รับเหมาเพื่อพิจารณาเข้าร่วมโครงการฯ
+            </h2>
+          </div>
 
-        <div className="col-md-12 mb-2">
-          <h5 className="label">ข้อมูลทั่วไป</h5>
-        </div>
-        <div className="col-md-4 ">
-          <label className="label">ประเภทของผู้รับเหมา</label>
-          <select
-            className="form-select"
-            aria-label="Default select example"
-            onChange={(e) => setState({ ...state, comtype: e.target.value })}
-            required
-          >
-            <option value="">กรุณาเลือกประเภท</option>
-            <option value="ห้างหุ้นส่วนจำกัด">ห้างหุ้นส่วนจำกัด</option>
-            <option value="บริษัทจำกัด">บริษัทจำกัด</option>
-          </select>
-        </div>
-        <div className="col-md-8">
-          <label className="form-label">ชื่อสถานประกอบการ</label>
-          <Input
-            id={"inputComArea"}
-            value={state.comname}
-            type={"text"}
-            placeholder={"ระบุสถานประกอบการ"}
-            setFunc={(e) => setState({ ...state, comname: e.target.value })}
-          ></Input>
-        </div>
-        <div className="col-md-4">
-          <label className="label">ประเภทของการรับงาน</label>
-          <select
-            className="form-select"
-            aria-label="Default select example"
-            onChange={(e) => setState({ ...state, worktype: e.target.value })}
-            required
-          >
-            <option value="">กรุณาเลือกประเภทงาน</option>
-            <option value="งานก่อสร้าง">งานก่อสร้าง</option>
-            <option value="งานตกแต่ง/สถาปัตย์">งานตกแต่ง/สถาปัตย์</option>
-            <option value="งานระบบ(ไฟฟ้า)">งานระบบ(ไฟฟ้า)</option>
-          </select>
-        </div>
-        <div className="col-md-4">
-          <label className="form-label">ชื่อผู้สมัคร</label>
-          <Input
-            id={"inputComArea"}
-            value={state.name}
-            type={"text"}
-            placeholder={"ระบุชื่อ"}
-            setFunc={(e) => setState({ ...state, name: e.target.value })}
-          ></Input>
-        </div>
-        <div className="col-md-4">
-          <label className="form-label">เบอร์โทรศัพท์</label>
-          <Input
-            id={"inputComArea"}
-            value={state.phone}
-            type={"text"}
-            placeholder={"ระบุเบอร์โทรศัพท์"}
-            setFunc={(e) => setState({ ...state, phone: e.target.value })}
-          ></Input>
-        </div>
-        <div className="col-md-12 mt-5 mb-2">
-          <h5 className="label">ข้อมูลผู้สมัครเข้าร่วมโครงการ</h5>
-        </div>
-        <div className="col-md-6">
-          <label className="label">
-            1. หนังสือรับรอง (อายุไม่เกิน 3 เดือน)
-          </label>
-          <Input
-            name="pdf1"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 1)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">
-            2. ภพ.20 (หนังสือจดทะเบียนภาษีมูลค่าเพิ่ม)
-          </label>
-          <Input
-            name="pdf2"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 2)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">
-            3. บัญชีรายชื่อผู้ถือหุ้น บมจ.006 หรือ บอจ.5 (ยกเว้น หจก.)
-          </label>
-          <Input
-            name="pdf3"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 3)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12">
-          <label className="label">
-            4. หลักฐานอื่น เช่น หลักฐานการเปลี่ยนชื่อ/สกุล (ถ้ามี),
-            หนังสือมอบอำนาจ (กรณีกรรมการผู้มีอำนาจไม่ได้ลงนามเอง){" "}
-          </label>
-        </div>
-        <div className="col-md-6 mt-1">
-          <Input
-            name="pdf4"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 4)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12 mt-5 mb-2">
-          <h5 className="label">ข้อมูลทางด้านการเงินของผู้สมัคร</h5>
-        </div>
-        <div className="col-md-6">
-          <label className="label">5. งบการเงิน 2 ปีล่าสุด</label>
-          <Input
-            name="pdf5"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 5)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">
-            6. Statement เงินฝากธนาคาร 6 เดือนย้อนหลัง
-          </label>
-          <Input
-            name="pdf6"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 6)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12 mt-5 mb-2">
-          <h5 className="label">ข้อมูลทางด้านการบริหารองค์กร</h5>
-        </div>
-        <div className="col-md-6">
-          <label className="label">7. แผนที่ต้งพร้อมภาพถ่ายสถานประกอบการ</label>
-          <Input
-            name="pdf7"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 7)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">8. แผนผังโครงสร้างองค์กร</label>
-          <Input
-            name="pdf8"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 8)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">9. จำนวนวิศวกร หรือวิศวกรที่ปรึกษา</label>
-          <Input
-            name="pdf9"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 9)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">
-            10. จำนวน และรายชื่อผู้ควบคุมงาน (Foreman)
-          </label>
-          <Input
-            name="pdf10"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 10)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">11. จำนวนชุดช่างแรงงาน (Labour)</label>
-          <Input
-            name="pdf11"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 11)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">
-            12. รายชื่อผู้รับเหมาช่วงงานเฉพาะทาง เช่น ผู้รับเหมาช่วงงานกระจก
-            งานเหล็ก
-          </label>
-          <Input
-            name="pdf12"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 12)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12">
-          <label className="label">
-            13.
-            รายชื่อร้านค้าที่ผู้รับเหมาสั่งซื้อวัสดุก่อสร้างเป็นประจำพร้อมระบุเงื่อนไขการซื้อ
-            เช่น เครดิต เงินสด
-          </label>
-        </div>
-        <div className="col-md-6 mt-1">
-          <Input
-            name="pdf13"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 13)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12">
-          <label className="label">
-            14. Project Reference ข้อมูลผลงานก่อสร้างในอดีต
-            (รูปถ่าย/มูลค่างาน/ระยะเวลาการก่อสร้าง)
-          </label>
-        </div>
-        <div className="col-md-6 mt-1">
-          <Input
-            name="pdf14"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 14)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-6">
-          <label className="label">
-            15. ชนิด และจำนวนเครื่องมือ/เครื่องจักร ในการทำงาน
-          </label>
-          <Input
-            name="pdf15"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 15)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12">
-          <label className="label">
-            16. นโยบายด้านความปลอดภัยเบื้องต้น (คนงานจะต้องสวมใส่ชุดของบริษัท,
-            ใส่หมวกแข็ง (Helmet) ใส่รองเท้าหุ้มส้น, ใช้ Safety Belt
-            ในกรณีทำงานในที่สูง)
-          </label>
-        </div>
-        <div className="col-md-6 mt-1">
-          <Input
-            name="pdf16"
-            type={"file"}
-            accept="application/pdf"
-            setFunc={(e) => handlePDFChange(e, 16)}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12">
-          <label className="label">
-            17. กรุณาระบุพื้นที่ที่สะดวกในการดำเนินงานก่อสร้าง (เช่น
-            ระบุเป็นจังหวัด หรือภาคที่สะดวกในการดำเนินงาน)
-          </label>
-        </div>
-        <div className="col-md-6 mt-1">
-          <Input
-            value={state.workarea}
-            type={"text"}
-            placeholder={"ระบุพื้นที่"}
-            setFunc={(e) => setState({ ...state, workarea: e.target.value })}
-          ></Input>
-        </div>
-        <div className="col-md-6" />
-        <div className="col-md-12 mt-4">
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </div>
-      </form>
+          <div className="col-md-12 mb-2">
+            <h5 className="label">ข้อมูลทั่วไป</h5>
+          </div>
+          <div className="col-md-4 ">
+            <label className="label">ประเภทของผู้รับเหมา</label>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              onChange={(e) => setState({ ...state, comtype: e.target.value })}
+              required
+            >
+              <option value="">กรุณาเลือกประเภท</option>
+              <option value="ห้างหุ้นส่วนจำกัด">ห้างหุ้นส่วนจำกัด</option>
+              <option value="บริษัทจำกัด">บริษัทจำกัด</option>
+            </select>
+          </div>
+          <div className="col-md-8">
+            <label className="form-label">ชื่อสถานประกอบการ</label>
+            <Input
+              id={"inputComArea"}
+              value={state.comname}
+              type={"text"}
+              placeholder={"ระบุสถานประกอบการ"}
+              setFunc={(e) => setState({ ...state, comname: e.target.value })}
+            ></Input>
+          </div>
+          <div className="col-md-4">
+            <label className="label">ประเภทของการรับงาน</label>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              onChange={(e) => setState({ ...state, worktype: e.target.value })}
+              required
+            >
+              <option value="">กรุณาเลือกประเภทงาน</option>
+              <option value="งานก่อสร้าง">งานก่อสร้าง</option>
+              <option value="งานตกแต่ง/สถาปัตย์">งานตกแต่ง/สถาปัตย์</option>
+              <option value="งานระบบ(ไฟฟ้า)">งานระบบ(ไฟฟ้า)</option>
+            </select>
+          </div>
+          <div className="col-md-4">
+            <label className="form-label">ชื่อผู้สมัคร</label>
+            <Input
+              id={"inputComArea"}
+              value={state.name}
+              type={"text"}
+              placeholder={"ระบุชื่อ"}
+              setFunc={(e) => setState({ ...state, name: e.target.value })}
+            ></Input>
+          </div>
+          <div className="col-md-4">
+            <label className="form-label">เบอร์โทรศัพท์</label>
+            <Input
+              id={"inputComArea"}
+              value={state.phone}
+              type={"text"}
+              placeholder={"ระบุเบอร์โทรศัพท์"}
+              setFunc={(e) => setState({ ...state, phone: e.target.value })}
+            ></Input>
+          </div>
+          <div className="col-md-12 mt-5 mb-2">
+            <h5 className="label">ข้อมูลผู้สมัครเข้าร่วมโครงการ</h5>
+          </div>
+          <div className="col-md-6">
+            <label className="label">
+              1. หนังสือรับรอง (อายุไม่เกิน 3 เดือน)
+            </label>
+            <Input
+              name="pdf1"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 1)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">
+              2. ภพ.20 (หนังสือจดทะเบียนภาษีมูลค่าเพิ่ม)
+            </label>
+            <Input
+              name="pdf2"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 2)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">
+              3. บัญชีรายชื่อผู้ถือหุ้น บมจ.006 หรือ บอจ.5 (ยกเว้น หจก.)
+            </label>
+            <Input
+              name="pdf3"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 3)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12">
+            <label className="label">
+              4. หลักฐานอื่น เช่น หลักฐานการเปลี่ยนชื่อ/สกุล (ถ้ามี),
+              หนังสือมอบอำนาจ (กรณีกรรมการผู้มีอำนาจไม่ได้ลงนามเอง){" "}
+            </label>
+          </div>
+          <div className="col-md-6 mt-1">
+            <Input
+              name="pdf4"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 4)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12 mt-5 mb-2">
+            <h5 className="label">ข้อมูลทางด้านการเงินของผู้สมัคร</h5>
+          </div>
+          <div className="col-md-6">
+            <label className="label">5. งบการเงิน 2 ปีล่าสุด</label>
+            <Input
+              name="pdf5"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 5)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">
+              6. Statement เงินฝากธนาคาร 6 เดือนย้อนหลัง
+            </label>
+            <Input
+              name="pdf6"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 6)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12 mt-5 mb-2">
+            <h5 className="label">ข้อมูลทางด้านการบริหารองค์กร</h5>
+          </div>
+          <div className="col-md-6">
+            <label className="label">
+              7. แผนที่ต้งพร้อมภาพถ่ายสถานประกอบการ
+            </label>
+            <Input
+              name="pdf7"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 7)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">8. แผนผังโครงสร้างองค์กร</label>
+            <Input
+              name="pdf8"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 8)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">9. จำนวนวิศวกร หรือวิศวกรที่ปรึกษา</label>
+            <Input
+              name="pdf9"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 9)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">
+              10. จำนวน และรายชื่อผู้ควบคุมงาน (Foreman)
+            </label>
+            <Input
+              name="pdf10"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 10)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">11. จำนวนชุดช่างแรงงาน (Labour)</label>
+            <Input
+              name="pdf11"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 11)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">
+              12. รายชื่อผู้รับเหมาช่วงงานเฉพาะทาง เช่น ผู้รับเหมาช่วงงานกระจก
+              งานเหล็ก
+            </label>
+            <Input
+              name="pdf12"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 12)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12">
+            <label className="label">
+              13.
+              รายชื่อร้านค้าที่ผู้รับเหมาสั่งซื้อวัสดุก่อสร้างเป็นประจำพร้อมระบุเงื่อนไขการซื้อ
+              เช่น เครดิต เงินสด
+            </label>
+          </div>
+          <div className="col-md-6 mt-1">
+            <Input
+              name="pdf13"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 13)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12">
+            <label className="label">
+              14. Project Reference ข้อมูลผลงานก่อสร้างในอดีต
+              (รูปถ่าย/มูลค่างาน/ระยะเวลาการก่อสร้าง)
+            </label>
+          </div>
+          <div className="col-md-6 mt-1">
+            <Input
+              name="pdf14"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 14)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-6">
+            <label className="label">
+              15. ชนิด และจำนวนเครื่องมือ/เครื่องจักร ในการทำงาน
+            </label>
+            <Input
+              name="pdf15"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 15)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12">
+            <label className="label">
+              16. นโยบายด้านความปลอดภัยเบื้องต้น (คนงานจะต้องสวมใส่ชุดของบริษัท,
+              ใส่หมวกแข็ง (Helmet) ใส่รองเท้าหุ้มส้น, ใช้ Safety Belt
+              ในกรณีทำงานในที่สูง)
+            </label>
+          </div>
+          <div className="col-md-6 mt-1">
+            <Input
+              name="pdf16"
+              type={"file"}
+              accept="application/pdf"
+              setFunc={(e) => handlePDFChange(e, 16)}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12">
+            <label className="label">
+              17. กรุณาระบุพื้นที่ที่สะดวกในการดำเนินงานก่อสร้าง (เช่น
+              ระบุเป็นจังหวัด หรือภาคที่สะดวกในการดำเนินงาน)
+            </label>
+          </div>
+          <div className="col-md-6 mt-1">
+            <Input
+              value={state.workarea}
+              type={"text"}
+              placeholder={"ระบุพื้นที่"}
+              setFunc={(e) => setState({ ...state, workarea: e.target.value })}
+            ></Input>
+          </div>
+          <div className="col-md-6" />
+          <div className="col-md-12 mt-4">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

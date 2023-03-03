@@ -34,7 +34,7 @@ function Navbar_user(props) {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav className="navbar navbar-expand-lg bg-light fixed-top">
       <div className="container-fluid">
         <a href="/home" className="navbar-brand">
           <img src={img1} weight="44" height="41" alt="Logo" />
@@ -55,14 +55,8 @@ function Navbar_user(props) {
             <NavLink to="/document" className="nav-item nav-link me-2">
               เอกสาร
             </NavLink>
-            <NavLink to="/about" className="nav-item nav-link me-2 disabled">
-              เกี่ยวกับเรา
-            </NavLink>
-            <NavLink to="/contact" className="nav-item nav-link me-2 disabled">
-              ติดต่อ
-            </NavLink>
           </div>
-          <div className="navbar-nav ms-auto">
+          <div className="ms-auto">
             <span className="navbar-text center me-2">{props.email}</span>
             <div className="btn-group">
               <button
@@ -70,7 +64,6 @@ function Navbar_user(props) {
                 className="btn dropdown-toggle"
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
-                aria-expanded="false"
               >
                 <img
                   className="miniprofilepic__image miniprofilepic"

@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
+
 const theme = createTheme({
   typography: {
     fontFamily: "Prompt",
@@ -18,6 +19,15 @@ const theme = createTheme({
 });
 
 export default function Register() {
+  const [email, setEmail] = React.useState("");
+  const [isValid, setIsValid] = React.useState(false);
+
+  const validateEmail = (email) => {
+    // Regex for email validation
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,6 +51,15 @@ export default function Register() {
         alert("unsuccessful, error" + error);
         console.log(error);
       });
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    if (!validateEmail(event.target.value)) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
   };
 
   return (
@@ -97,6 +116,7 @@ export default function Register() {
                   label="อีเมลล์"
                   name="email"
                   autoComplete="email"
+                  onChange={handleEmailChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -126,6 +146,7 @@ export default function Register() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!isValid}
             >
               Sign Up
             </Button>
