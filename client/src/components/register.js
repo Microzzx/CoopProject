@@ -19,8 +19,11 @@ const theme = createTheme({
 });
 
 export default function Register() {
+  const [fname, setFname] = React.useState("");
+  const [lname, setLname] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [isValid, setIsValid] = React.useState(false);
+  const [phone, setPhone] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const validateEmail = (email) => {
     // Regex for email validation
@@ -30,35 +33,38 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    Axios.post("http://localhost:3001/register", {
-      email: data.get("email"),
-      password: data.get("password"),
-      fname: data.get("firstName"),
-      lname: data.get("lastName"),
-      phone: data.get("phone"),
-    })
-      .then((response) => {
-        if (response.data.status == "error") {
-          alert("error: " + response.data.message);
-          window.location.reload(false);
-        } else {
-          alert("register success!");
-          window.location = "/login";
-        }
+    if (
+      validateEmail(email) &&
+      fname != "" &&
+      lname != "" &&
+      phone != "" &&
+      password != ""
+    ) {
+      const data = new FormData(event.currentTarget);
+      Axios.post("http://localhost:3001/register", {
+        email: data.get("email"),
+        password: data.get("password"),
+        fname: data.get("firstName"),
+        lname: data.get("lastName"),
+        phone: data.get("phone"),
       })
-      .catch((error) => {
-        alert("unsuccessful, error" + error);
-        console.log(error);
-      });
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-    if (!validateEmail(event.target.value)) {
-      setIsValid(false);
+        .then((response) => {
+          if (response.data.status == "error") {
+            alert("error: " + response.data.message);
+            window.location.reload(false);
+          } else {
+            alert("register success!");
+            window.location = "/login";
+          }
+        })
+        .catch((error) => {
+          alert("unsuccessful, error" + error);
+          console.log(error);
+        });
+    } else if (!validateEmail(email)) {
+      alert("รูปแบบที่อยู่อีเมลล์ไม่ถูกต้อง");
     } else {
-      setIsValid(true);
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
   };
 
@@ -96,6 +102,9 @@ export default function Register() {
                   id="firstName"
                   label="ชื่อ"
                   autoFocus
+                  onChange={(event) => {
+                    setFname(event.target.value);
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -106,6 +115,9 @@ export default function Register() {
                   label="นามสกุล"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(event) => {
+                    setLname(event.target.value);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -116,7 +128,10 @@ export default function Register() {
                   label="อีเมลล์"
                   name="email"
                   autoComplete="email"
-                  onChange={handleEmailChange}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
+                  helperText={"กรุณากรอกอีเมลล์ให้ถูกต้อง"}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -127,6 +142,9 @@ export default function Register() {
                   label="เบอร์โทรศัพท์"
                   name="phone"
                   autoComplete="tel"
+                  onChange={(event) => {
+                    setPhone(event.target.value);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -138,6 +156,9 @@ export default function Register() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
                 />
               </Grid>
             </Grid>
@@ -146,7 +167,6 @@ export default function Register() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={!isValid}
             >
               Sign Up
             </Button>
