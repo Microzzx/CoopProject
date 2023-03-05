@@ -28,6 +28,7 @@ router.post("/", jsonParser, (req, res) => {
     [email],
     (err, users) => {
       if (err) {
+        console.log(err);
         res.status(500).json({ status: "error", message: "Error" });
         return;
       }

@@ -62,6 +62,7 @@ router.post(
     const sql = `INSERT INTO a2 (user_id, comname, comtype, worktype, name, phone, workarea, status, url1, url2, url3, url4, url5, url6, url7, url8, url9, url10, url11, url12, url13, url14, url15, url16) VALUES ('${user_id}', '${comname}', '${comtype}', '${worktype}', '${name}', '${phone}', '${workarea}', '${status}', '${pdfUrls[0]}', '${pdfUrls[1]}', '${pdfUrls[2]}', '${pdfUrls[3]}', '${pdfUrls[4]}', '${pdfUrls[5]}', '${pdfUrls[6]}', '${pdfUrls[7]}', '${pdfUrls[8]}', '${pdfUrls[9]}', '${pdfUrls[10]}', '${pdfUrls[11]}', '${pdfUrls[12]}', '${pdfUrls[13]}', '${pdfUrls[14]}', '${pdfUrls[15]}')`;
     connection.query(sql, (error, result) => {
       if (error) {
+        console.log(error);
         return res
           .status(500)
           .send({ status: "error", message: "Failed to save data" });
@@ -82,6 +83,7 @@ router.put(
     const sql = `SELECT url17 FROM a2 WHERE user_id='${user_id}' ORDER BY a2.time DESC LIMIT 1`;
     connection.query(sql, (error, result) => {
       if (error) {
+        console.log(err);
         return res
           .status(500)
           .send({ status: "error", message: "Failed to update data" });
@@ -98,6 +100,7 @@ router.put(
       const updateSql = `UPDATE a2 SET status='${status}', url17='${pdfUrl17}' WHERE user_id='${user_id}' ORDER BY a2.time DESC LIMIT 1`;
       connection.query(updateSql, (error, result) => {
         if (error) {
+          console.log(error);
           return res
             .status(500)
             .send({ status: "error", message: "Failed to update data" });
@@ -113,6 +116,7 @@ router.get("/get", authRole(["admin"]), (req, res) => {
     "SELECT a2.*, users.email FROM a2 JOIN users ON a2.user_id = users.user_id";
   connection.query(sql, (error, result) => {
     if (error) {
+      console.log(error);
       return res
         .status(500)
         .send({ status: "error", message: "Failed to get data" });
@@ -144,6 +148,7 @@ router.get("/get/:id", authRole(["admin"]), (req, res) => {
     "SELECT a2.*, users.email FROM a2 JOIN users ON a2.user_id = users.user_id WHERE a2.a2_id = ?";
   connection.query(sql, [id], (error, result) => {
     if (error) {
+      console.log(error);
       return res
         .status(500)
         .send({ status: "error", message: "Failed to get data" });
@@ -162,23 +167,23 @@ router.get("/get/:id", authRole(["admin"]), (req, res) => {
         status: row.status,
         comment: row.comment,
         email: row.email,
-        url1: `http://localhost:3001/static${row.url1}`,
-        url2: `http://localhost:3001/static${row.url2}`,
-        url3: `http://localhost:3001/static${row.url3}`,
-        url4: `http://localhost:3001/static${row.url4}`,
-        url5: `http://localhost:3001/static${row.url5}`,
-        url6: `http://localhost:3001/static${row.url6}`,
-        url7: `http://localhost:3001/static${row.url7}`,
-        url8: `http://localhost:3001/static${row.url8}`,
-        url9: `http://localhost:3001/static${row.url9}`,
-        url10: `http://localhost:3001/static${row.url10}`,
-        url11: `http://localhost:3001/static${row.url11}`,
-        url12: `http://localhost:3001/static${row.url12}`,
-        url13: `http://localhost:3001/static${row.url13}`,
-        url14: `http://localhost:3001/static${row.url14}`,
-        url15: `http://localhost:3001/static${row.url15}`,
-        url16: `http://localhost:3001/static${row.url16}`,
-        url17: `http://localhost:3001/static${row.url17}`,
+        url1: `${process.env.server_url}/static${row.url1}`,
+        url2: `${process.env.server_url}/static${row.url2}`,
+        url3: `${process.env.server_url}/static${row.url3}`,
+        url4: `${process.env.server_url}/static${row.url4}`,
+        url5: `${process.env.server_url}/static${row.url5}`,
+        url6: `${process.env.server_url}/static${row.url6}`,
+        url7: `${process.env.server_url}/static${row.url7}`,
+        url8: `${process.env.server_url}/static${row.url8}`,
+        url9: `${process.env.server_url}/static${row.url9}`,
+        url10: `${process.env.server_url}/static${row.url10}`,
+        url11: `${process.env.server_url}/static${row.url11}`,
+        url12: `${process.env.server_url}/static${row.url12}`,
+        url13: `${process.env.server_url}/static${row.url13}`,
+        url14: `${process.env.server_url}/static${row.url14}`,
+        url15: `${process.env.server_url}/static${row.url15}`,
+        url16: `${process.env.server_url}/static${row.url16}`,
+        url17: `${process.env.server_url}/static${row.url17}`,
       };
     });
     res.status(200).json(data);
@@ -194,6 +199,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
     [comment, status, a2_id],
     (err, result) => {
       if (err) {
+        console.log(err);
         res
           .status(500)
           .send({ status: "error", message: "Internal server error" });
@@ -203,6 +209,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
           [a2_id],
           (err, result) => {
             if (err) {
+              console.log(err);
               res
                 .status(500)
                 .send({ status: "error", message: "Internal server error" });
@@ -213,6 +220,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
                 [user_id],
                 (err, result) => {
                   if (err) {
+                    console.log(err);
                     res.status(500).send({
                       status: "error",
                       message: "Internal server error",
@@ -245,6 +253,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
 
   connection.query("SELECT * FROM a2 WHERE a2_id = ?", id, (err, result) => {
     if (err) {
+      console.log(err);
       res.status(500).send({
         status: "error",
         message: "Failed to delete row from database",
@@ -256,6 +265,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
         .filter((url) => url !== null); // modify slice indices if URLs are located in different columns
       connection.query("DELETE FROM a2 WHERE a2_id = ?", id, (err, result) => {
         if (err) {
+          console.log(err);
           res.status(500).send({
             status: "error",
             message: "Failed to delete row from database",
@@ -279,6 +289,7 @@ router.delete("/deletefull/:id", authRole(["admin"]), (req, res) => {
 
   connection.query("SELECT * FROM a2 WHERE a2_id = ?", id, (err, result) => {
     if (err) {
+      console.log(err);
       res.status(500).send({
         status: "error",
         message: "Failed to delete row from database",
@@ -290,6 +301,7 @@ router.delete("/deletefull/:id", authRole(["admin"]), (req, res) => {
         .filter((url) => url !== null); // modify slice indices if URLs are located in different columns
       connection.query("DELETE FROM a2 WHERE a2_id = ?", id, (err, result) => {
         if (err) {
+          console.log(err);
           res.status(500).send({
             status: "error",
             message: "Failed to delete row from database",

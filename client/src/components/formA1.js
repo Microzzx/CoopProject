@@ -52,8 +52,9 @@ function FormA1() {
   const [comlist, setComList] = useState([]);
 
   const postA1 = () => {
+    console.log(state);
     const token = localStorage.getItem("token");
-    Axios.post("http://localhost:3001/a1/input", state, {
+    Axios.post(`${process.env.REACT_APP_API}/a1/input`, state, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

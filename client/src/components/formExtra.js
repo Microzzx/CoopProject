@@ -15,7 +15,7 @@ function FormExtra() {
     const formData = new FormData();
     formData.append("pdf17", pdf);
 
-    Axios.put("http://localhost:3001/a2/input_extra", formData, {
+    Axios.put(`${process.env.REACT_APP_API}/a2/input_extra`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ function FormExtra() {
           <div className="col-md-12 mb-3">
             - Confidentiality.pdf &nbsp;
             <a
-              href="http://localhost:3001/static/pdfs/Confidentiality.pdf"
+              href={`${process.env.REACT_APP_API}/static/pdfs/Confidentiality.pdf`}
               download
             >
               Download

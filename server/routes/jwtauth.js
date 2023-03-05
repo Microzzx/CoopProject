@@ -16,6 +16,7 @@ router.post("/", jsonParser, (req, res) => {
         [decoded.email],
         (err, users) => {
           if (err) {
+            console.log(err);
             res.status(500).send({
               status: "error",
               message: "User not found",
@@ -31,7 +32,7 @@ router.post("/", jsonParser, (req, res) => {
               fname: users[0].fname,
               lname: users[0].lname,
               phone: users[0].phone,
-              picture_url: `http://localhost:3001/static${users[0].picture_url}`,
+              picture_url: `${process.env.server_url}/static${users[0].picture_url}`,
             });
             return;
           }
@@ -49,6 +50,7 @@ router.post("/", jsonParser, (req, res) => {
           [current_time, email],
           (err) => {
             if (err) {
+              console.log(err);
               res.status(500).json({
                 status: "error",
                 message: "Internal server error",

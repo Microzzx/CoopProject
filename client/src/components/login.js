@@ -24,7 +24,7 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    Axios.post("http://localhost:3001/login", {
+    Axios.post(`${process.env.REACT_APP_API}/login`, {
       email: data.get("email"),
       password: data.get("password"),
     })

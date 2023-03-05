@@ -14,6 +14,7 @@ router.post("/", jsonParser, (req, res) => {
     [email],
     (err, users) => {
       if (err) {
+        console.log(err);
         res.json({ status: "error", message: "Database error" });
         return;
       }
@@ -30,6 +31,7 @@ router.post("/", jsonParser, (req, res) => {
         [current_time, user_id],
         (err) => {
           if (err) {
+            console.log(err);
             res.status(500).json({
               status: "error",
               message: "Internal server error",

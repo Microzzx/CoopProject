@@ -64,6 +64,7 @@ router.post("/input", authRole(["admin", "user"]), (req, res) => {
     ],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error occurred while inserting data into the database",
@@ -80,6 +81,7 @@ router.get("/get", authRole(["admin"]), (req, res) => {
     "SELECT a1.*, users.email FROM a1 JOIN users ON a1.user_id = users.user_id",
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error while retrieving infomation",
@@ -98,6 +100,7 @@ router.get("/get/:id", authRole(["admin"]), (req, res) => {
     [id],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error while retrieving infomation",
@@ -118,6 +121,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
     [comment, status, a1_id],
     (err, result) => {
       if (err) {
+        console.log(err);
         res
           .status(500)
           .send({ status: "error", message: "Internal server error" });
@@ -127,6 +131,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
           [a1_id],
           (err, result) => {
             if (err) {
+              console.log(err);
               res
                 .status(500)
                 .send({ status: "error", message: "Internal server error" });
@@ -137,6 +142,7 @@ router.put("/edit", authRole(["admin"]), (req, res) => {
                 [user_id],
                 (err, result) => {
                   if (err) {
+                    console.log(err);
                     res.status(500).send({
                       status: "error",
                       message: "Internal server error",
@@ -168,6 +174,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
   const id = req.params.id;
   connection.query("DELETE FROM a1 WHERE a1_id = ?", id, (err, result) => {
     if (err) {
+      console.log(err);
       res.status(500).send({ status: "error", message: "Error deleting data" });
     } else {
       res.send({ status: "success", message: "Data deleted" });

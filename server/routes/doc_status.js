@@ -9,6 +9,7 @@ router.get("/", authRole(["admin", "user"]), (req, res) => {
     [req.user_id],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error while retrieving information",

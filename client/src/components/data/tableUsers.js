@@ -22,7 +22,7 @@ function TableUser() {
 
   useEffect(() => {
     const getUsers = () => {
-      Axios.get("http://localhost:3001/user/get/all", {
+      Axios.get(`${process.env.REACT_APP_API}/user/get/all`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ function TableUser() {
   }, []);
 
   const deleteUsers = (id) => {
-    Axios.delete(`http://localhost:3001/user/delete/${id}`, {
+    Axios.delete(`${process.env.REACT_APP_API}/user/delete/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

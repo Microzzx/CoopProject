@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  mysqldb:
+    image: mariadb:10.4.27
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=$MARIADB_ROOT_PASSWORD
+      - MARIADB_DATABASE=$MARIADB_DATABASE
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+
+  server:
+    depends_on:
+      - mysqldb
+    build: ./server
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+    volumes:
+      - server_pdfs:/app/public/pdfs
+
+  client:
+    depends_on:
+      - server
+    build: ./client
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysqldb
+
+volumes:
+  db:
+  server_pdfs:

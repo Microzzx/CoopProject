@@ -12,6 +12,7 @@ import green from "../image/green.png";
 import blue from "../image/blue.png";
 
 export default function Home() {
+  console.log(process.env);
   return (
     <>
       {/* ----- */}

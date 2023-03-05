@@ -13,7 +13,7 @@ const ViewA2 = () => {
   const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = (id) => {
-      Axios.get(`http://localhost:3001/a2/get/${id}`, {
+      Axios.get(`${process.env.REACT_APP_API}/a2/get/${id}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ const ViewA2 = () => {
 
   const ConfirmA2 = (id) => {
     Axios.put(
-      "http://localhost:3001/a2/edit",
+      `${process.env.REACT_APP_API}/a2/edit`,
       {
         comment: state.comment,
         status: state.status,
@@ -374,7 +374,7 @@ const ViewA2 = () => {
             <label className="label">หนังสือรักษาความลับ :</label>
           </div>
           <div className="col-md-7">
-            {data[0].url17 != "http://localhost:3001/static" ? (
+            {data[0].url17 != `${process.env.REACT_APP_API}/static` ? (
               <button
                 type="button"
                 className="btn btn-secondary"

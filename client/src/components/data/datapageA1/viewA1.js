@@ -15,7 +15,7 @@ function TableA2() {
 
   useEffect(() => {
     const fetchData = (id) => {
-      Axios.get(`http://localhost:3001/a1/get/${id}`, {
+      Axios.get(`${process.env.REACT_APP_API}/a1/get/${id}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ function TableA2() {
 
   const ConfirmA1 = (id) => {
     Axios.put(
-      "http://localhost:3001/a1/edit",
+      `${process.env.REACT_APP_API}/a1/edit`,
       {
         comment: state.comment,
         status: state.status,

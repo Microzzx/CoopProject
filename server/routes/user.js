@@ -12,6 +12,7 @@ router.get("/get", authRole(["admin", "user"]), (req, res) => {
     [req.user_id],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error while retrieving information",
@@ -23,7 +24,7 @@ router.get("/get", authRole(["admin", "user"]), (req, res) => {
           fname: result[0].fname,
           lname: result[0].lname,
           phone: result[0].phone,
-          picture_url: `http://localhost:3001/static${result[0].picture_url}`,
+          picture_url: `${process.env.server_url}/static${result[0].picture_url}`,
           role: result[0].role,
         });
       }
@@ -36,6 +37,7 @@ router.get("/get/all", authRole(["admin"]), (req, res) => {
     "SELECT user_id, email, fname, lname, phone, role, last_login FROM users",
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error while retrieving information",
@@ -57,6 +59,7 @@ router.put("/edit", authRole(["admin", "user"]), (req, res) => {
     [fname, lname, phone, user_id],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error while retrieving information",
@@ -80,6 +83,7 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
     [user_id],
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Something went wrong",
@@ -94,6 +98,7 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
           const hashedPassword = result[0].password;
           bcrypt.compare(pre_password, hashedPassword, (err, isMatch) => {
             if (err) {
+              console.log(err);
               res.status(500).send({
                 status: "error",
                 message: "Something went wrong",
@@ -106,6 +111,7 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
             } else {
               bcrypt.hash(new_password, 10, (err, hashedNewPassword) => {
                 if (err) {
+                  console.log(err);
                   res.status(500).send({
                     status: "error",
                     message: "Something went wrong",
@@ -116,6 +122,7 @@ router.put("/edit/password", authRole(["admin", "user"]), (req, res) => {
                     [hashedNewPassword, user_id],
                     (err, result) => {
                       if (err) {
+                        console.log(err);
                         res.status(500).send({
                           status: "error",
                           message: "Something went wrong",
@@ -151,6 +158,7 @@ router.post("/edit/picture", authRole(["admin", "user"]), (req, res) => {
   );
   fs.writeFile(profilePicPath, base64Image, { encoding: "base64" }, (err) => {
     if (err) {
+      console.log(err);
       return res.status(500).send({
         status: "error",
         message: "Failed to save picture",
@@ -168,6 +176,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
     id,
     (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send({
           status: "error",
           message: "Error deleting data",
@@ -182,6 +191,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
         const picturePath = path.join(__dirname, "..", "public", pictureUrl);
         fs.unlink(picturePath, (err) => {
           if (err) {
+            console.log(err);
             res.status(500).send({
               status: "error",
               message: "Error deleting data",
@@ -192,6 +202,7 @@ router.delete("/delete/:id", authRole(["admin"]), (req, res) => {
             id,
             (err, result) => {
               if (err) {
+                console.log(err);
                 res
                   .status(500)
                   .send({ status: "error", message: "Error deleting data" });

@@ -59,7 +59,7 @@ function FormA2() {
     formData.append("pdf15", state.pdf15);
     formData.append("pdf16", state.pdf16);
     formData.append("workarea", state.workarea);
-    Axios.post("http://localhost:3001/a2/input", formData, {
+    Axios.post(`${process.env.REACT_APP_API}/a2/input`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,

@@ -40,7 +40,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchData = () => {
       const token = localStorage.getItem("token");
-      Axios.get("http://localhost:3001/user/get", {
+      Axios.get(`${process.env.REACT_APP_API}/user/get`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ export default function Profile() {
     console.log(state);
     const token = localStorage.getItem("token");
     Axios.put(
-      "http://localhost:3001/user/edit",
+      `${process.env.REACT_APP_API}/user/edit`,
       {
         fname: state.fname,
         lname: state.lname,
@@ -89,7 +89,7 @@ export default function Profile() {
   const Edit2 = () => {
     const token = localStorage.getItem("token");
     Axios.put(
-      "http://localhost:3001/user/edit/password",
+      `${process.env.REACT_APP_API}/user/edit/password`,
       {
         pre_password: state.pre_password,
         new_password: state.new_password,
@@ -132,7 +132,7 @@ export default function Profile() {
     console.log(state.image);
     const token = localStorage.getItem("token");
     Axios.post(
-      "http://localhost:3001/user/edit/picture",
+      `${process.env.REACT_APP_API}/user/edit/picture`,
       { image: state.image },
       {
         headers: {

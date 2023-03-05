@@ -23,7 +23,7 @@ function TableA2() {
 
   useEffect(() => {
     const GetA2 = () => {
-      Axios.get("http://localhost:3001/a2/get", {
+      Axios.get(`${process.env.REACT_APP_API}/a2/get`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -47,8 +47,8 @@ function TableA2() {
   const DeleteA2 = (id) => {
     let obj = a2list.find((obj) => obj.a2_id === id);
     const deleteUrl = obj.url17
-      ? `http://localhost:3001/a2/deletefull/${id}`
-      : `http://localhost:3001/a2/delete/${id}`;
+      ? `${process.env.REACT_APP_API}/a2/deletefull/${id}`
+      : `${process.env.REACT_APP_API}/a2/delete/${id}`;
     Axios.delete(deleteUrl, {
       headers: {
         "Content-Type": "application/json",

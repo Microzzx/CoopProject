@@ -6,7 +6,7 @@ const PrivateUserRoutes = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    Axios.get("http://localhost:3001/doc_status", {
+    Axios.get(`${process.env.REACT_APP_API}/doc_status`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

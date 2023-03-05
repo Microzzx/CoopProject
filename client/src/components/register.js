@@ -41,7 +41,7 @@ export default function Register() {
       password != ""
     ) {
       const data = new FormData(event.currentTarget);
-      Axios.post("http://localhost:3001/register", {
+      Axios.post(`${process.env.REACT_APP_API}/register`, {
         email: data.get("email"),
         password: data.get("password"),
         fname: data.get("firstName"),

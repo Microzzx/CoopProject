@@ -7,7 +7,7 @@ const PrivateUserRoutes = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     Axios.post(
-      "http://localhost:3001/jwtauth",
+      `${process.env.REACT_APP_API}/jwtauth`,
       {},
       {
         headers: {

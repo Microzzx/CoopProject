@@ -14,7 +14,7 @@ function Navbar_admin(props) {
   const handleLogout = () => {
     const token = localStorage.getItem("token");
     Axios.post(
-      "http://localhost:3001/logout",
+      `${process.env.REACT_APP_API}/logout`,
       {},
       {
         headers: {
