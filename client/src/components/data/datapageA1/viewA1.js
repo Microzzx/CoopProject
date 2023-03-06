@@ -69,11 +69,6 @@ function TableA2() {
       });
   };
 
-  // const printA1 = (e) => {
-  //   e.preventDefault();
-  //   console.log(data[0]);
-  // };
-
   if (loading) {
     return <Loading />;
   }

@@ -29,7 +29,7 @@ function Navbar_admin(props) {
         window.location = "/home";
       })
       .catch((error) => {
-        alert("unsuccessful, error" + error);
+        alert("unsuccessful, " + error);
       });
   };
 

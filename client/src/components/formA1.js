@@ -74,13 +74,11 @@ function FormA1() {
       });
   };
 
-  // const [warning, Setwarning] = useState(false);
   const checkValidity = () => {
     for (let key of Object.keys(state)) {
       if (!Boolean(state[key])) {
         const form = document.querySelector("form");
         form.classList.add("was-validated"); // validated check
-        // Setwarning(true);
         return false;
       }
     }

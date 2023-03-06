@@ -39,7 +39,7 @@ export default function Login() {
         }
       })
       .catch((error) => {
-        alert("unsuccessful, error" + error);
+        alert("unsuccessful, " + error);
         console.log(error);
       });
   };

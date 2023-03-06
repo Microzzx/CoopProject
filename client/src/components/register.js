@@ -58,7 +58,7 @@ export default function Register() {
           }
         })
         .catch((error) => {
-          alert("unsuccessful, error" + error);
+          alert("unsuccessful, " + error.response.data.message);
           console.log(error);
         });
     } else if (!validateEmail(email)) {

@@ -11,7 +11,7 @@ function Navbar_guest() {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav className="navbar navbar-expand-lg bg-light fixed-top">
       <div className="container-fluid">
         <a href="/home" className="navbar-brand">
           <img src={img1} weight="44" height="41" alt="Logo" />

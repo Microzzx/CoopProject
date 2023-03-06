@@ -81,7 +81,7 @@ export default function Profile() {
         window.location.reload(false);
       })
       .catch((error) => {
-        alert("unsuccessful, error" + error);
+        alert("unsuccessful, " + error);
         window.location.reload(false);
       });
   };
