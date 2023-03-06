@@ -75,7 +75,7 @@ function FormExtra() {
           <div className="col-12 mb-3">
             - Confidentiality.pdf &nbsp;
             <a
-              href={`${process.env.REACT_APP_API}/static2/pdfs/Confidentiality.pdf`}
+              href={`${process.env.REACT_APP_API}/static/pdfs/Confidentiality.pdf`}
               download
             >
               Download
