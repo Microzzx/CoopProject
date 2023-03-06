@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 module.exports = (email, data) => {
   // create the email
   const mailOptions = {
-    from: "janekitpk10@gmail.com",
+    from: "CPALL Team",
     to: email,
     subject: `Your document ${data.form} status has been updated`,
     html: `
@@ -67,7 +67,7 @@ module.exports = (email, data) => {
         : data.status === "Declined" && data.form === "A2"
         ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
         : data.status === "Approved_extra" && data.form === "A2"
-        ? "คุณได้ดำเนินการทั้งหมดเสร็จสิ้น"
+        ? "คุณได้ดำเนินการทั้งหมดเสร็จสิ้น กรุณารอการติดต่อจากเจ้าหน้าที่"
         : data.status === "Declined_extra" && data.form === "A2"
         ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
         : null
