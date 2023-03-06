@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 module.exports = (email, data) => {
   // create the email
   const mailOptions = {
-    from: "CPALL Team",
+    from: "janekitpk10@gmail.com",
     to: email,
     subject: `Your document ${data.form} status has been updated`,
     html: `
