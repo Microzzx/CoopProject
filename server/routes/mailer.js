@@ -34,6 +34,9 @@ module.exports = (email, data) => {
             margin-top: 0;
             text-align: center;
           }
+          h3 {
+            text-align: center;
+          }
           p {
             margin-bottom: 20px;
             text-align: center;
@@ -54,23 +57,31 @@ module.exports = (email, data) => {
       data.form
     } status has been updated to <span class="status">${data.status}</span>.</p>
     <p>
-  ${
-    data.status === "Approved" && data.form === "A1"
-      ? "ฟอร์ม A2 พร้อมใช้งานแล้วโปรดดำเนินการต่อ"
-      : data.status === "Declined" && data.form === "A1"
-      ? `${data.comment}<br>กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
-      : data.status === "Approved" && data.form === "A2"
-      ? "ฟอร์มเอกสารเพิ่มเติม พร้อมใช้งานแล้วโปรดดำเนินการต่อ"
-      : data.status === "Declined" && data.form === "A2"
-      ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
-      : data.status === "Approved_extra" && data.form === "A2"
-      ? "คุณได้ดำเนินการทั้งหมดเสร็จสิ้น"
-      : data.status === "Declined_extra" && data.form === "A2"
-      ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
-      : null
-  }
-</p>
+    ${
+      data.status === "Approved" && data.form === "A1"
+        ? "ฟอร์ม A2 พร้อมใช้งานแล้วโปรดดำเนินการต่อ"
+        : data.status === "Declined" && data.form === "A1"
+        ? `${data.comment}<br>กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
+        : data.status === "Approved" && data.form === "A2"
+        ? "ฟอร์มเอกสารเพิ่มเติม พร้อมใช้งานแล้วโปรดดำเนินการต่อ"
+        : data.status === "Declined" && data.form === "A2"
+        ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
+        : data.status === "Approved_extra" && data.form === "A2"
+        ? "คุณได้ดำเนินการทั้งหมดเสร็จสิ้น"
+        : data.status === "Declined_extra" && data.form === "A2"
+        ? `${data.comment} กรุณาติดต่อเจ้าหน้าที่และดำเนินการใหม่อีกครั้ง`
+        : null
+    }
+    </p> 
+    <h3>Contact</h3>
+    <p>
+      Email: natnareesir@cpall.co.th<br>
+      Tel: 091-004-9465 Mobile: 089-141-0193<br>
+      Address: 58/28 หมู่ 2 อาคารเดอะธารา ชั้น 19 ถนนแจ้งวัฒนะ<br> 
+      ตําบลบางตลาด อําเภอปากเกร็ด จังหวัดนนทบุรี 11120
+    </p>
   </div>
+
 </body>
     </html>
   `,
