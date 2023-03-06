@@ -4,7 +4,7 @@ const connection = require("../connection");
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const jwt = require("jsonwebtoken");
-const { TOKEN_SECRET } = require("../config");
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
 router.post("/", jsonParser, (req, res) => {
   if (req.headers.authorization) {
@@ -32,7 +32,7 @@ router.post("/", jsonParser, (req, res) => {
               fname: users[0].fname,
               lname: users[0].lname,
               phone: users[0].phone,
-              picture_url: `${process.env.server_url}/static${users[0].picture_url}`,
+              picture_url: `${process.env.server_url}/static2${users[0].picture_url}`,
             });
             return;
           }

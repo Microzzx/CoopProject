@@ -52,7 +52,6 @@ function FormA1() {
   const [comlist, setComList] = useState([]);
 
   const postA1 = () => {
-    console.log(state);
     const token = localStorage.getItem("token");
     Axios.post(`${process.env.REACT_APP_API}/a1/input`, state, {
       headers: {
@@ -97,18 +96,21 @@ function FormA1() {
 
   return (
     <div style={{ paddingTop: "68px" }}>
-      <div className="container border shadow rcorners2 mt-5 mb-5 ">
+      <div
+        className="container border shadow rcorners2 mt-5 mb-5 "
+        style={{ minWidth: "914px" }}
+      >
         <form
           className="row row-cols-auto g-3 top-row needs-validation"
           noValidate
           onSubmit={handleSubmit}
         >
-          <div className="col-md-12 mb-2">
+          <div className="col-12 mb-2">
             <h2 className="center mtc mbc">
               แบบสอบถามประวัติผู้รับเหมารายใหม่
             </h2>
           </div>
-          <div className="col-md-6">
+          <div className="col-6">
             <label className="form-label">1. ชื่อบริษัท</label>
             <Input
               id={"validationDefaultUsername"}
@@ -118,7 +120,7 @@ function FormA1() {
               setFunc={(e) => setState({ ...state, comname: e.target.value })}
             ></Input>
           </div>
-          <div className="col-md-3">
+          <div className="col-3">
             <label className="label">อายุบริษัท</label>
             <div className="input-group mb-4">
               <Input
@@ -136,18 +138,18 @@ function FormA1() {
               </div>
             </div>
           </div>
-          <div className="col-md-3" />
-          <div className="col-md-12">
+          <div className="col-3" />
+          <div className="col-12">
             <label className="label">2. สถานที่ตั้งบริษัท</label>
           </div>
-          <div className="col-md-12 mt-1">
+          <div className="col-12 mt-1">
             <AutoAddress
               state={state}
               setState={setState}
               onSelect={onSelect}
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-6">
             <label className="label">3. ประเภทงาน</label>
             <select
               required
@@ -170,8 +172,8 @@ function FormA1() {
               <option value="อื่นๆ">อื่นๆ</option>
             </select>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-6">
+          <div className="col-6" />
+          <div className="col-6">
             <label className="label">
               4. งานที่ถนัด (งานตกแต่งก่อสร้าง) เช่น
             </label>
@@ -183,8 +185,8 @@ function FormA1() {
               setFunc={(e) => setState({ ...state, toughness: e.target.value })}
             ></Input>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-6">
+          <div className="col-6" />
+          <div className="col-6">
             <label className="label">
               5. งานที่ไม่ถนัด (งานตกแต่งก่อสร้าง) เช่น
             </label>
@@ -196,8 +198,8 @@ function FormA1() {
               setFunc={(e) => setState({ ...state, weakness: e.target.value })}
             ></Input>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-6">
+          <div className="col-6" />
+          <div className="col-6">
             <label className="label">6. ผลงานที่โดดเด่นมีอะไรบ้าง</label>
             <Textarea
               id={"inputAchieve"}
@@ -207,8 +209,8 @@ function FormA1() {
               setFunc={(e) => setState({ ...state, achieve: e.target.value })}
             ></Textarea>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-12">
+          <div className="col-6" />
+          <div className="col-12">
             <label className="label">
               7. มีพนักงานประจำทั้งหมดที่คน (ไม่มีให้กรอก 0)
             </label>
@@ -219,7 +221,7 @@ function FormA1() {
               }
             />
           </div>
-          <div className="col-md-12">
+          <div className="col-12">
             <label className="label">
               8. มีพนักงานชั่วคราวทั้งหมดที่คน (OUTSOURCE)
             </label>
@@ -233,13 +235,13 @@ function FormA1() {
               }
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-6">
             <label className="label">
               9. เครื่องมือ/เครื่องจักร ที่มีอะไรบ้าง (เครื่องมือหนัก+ใหญ่)
             </label>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-6">
+          <div className="col-6" />
+          <div className="col-6">
             <Textarea
               id={"inputtools"}
               value={state.tools}
@@ -248,8 +250,8 @@ function FormA1() {
               setFunc={(e) => setState({ ...state, tools: e.target.value })}
             ></Textarea>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-6">
+          <div className="col-6" />
+          <div className="col-6">
             <label className="label">
               10. งานที่ตั้งเป้าจะรับงานกับ 7-11 กี่สาขา/เดือน
             </label>
@@ -269,8 +271,8 @@ function FormA1() {
               </div>
             </div>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-6">
+          <div className="col-6" />
+          <div className="col-6">
             <label className="label">
               11. จังหวัดที่สามารถรับงานได้ จังหวัดอะไรบ้าง
             </label>
@@ -282,8 +284,8 @@ function FormA1() {
               setFunc={(e) => setState({ ...state, provinces: e.target.value })}
             ></Input>
           </div>
-          <div className="col-md-6" />
-          <div className="col-md-1 mt-5">
+          <div className="col-6" />
+          <div className="col-1 mt-5">
             <button type="submit" className="btn btn-primary">
               Submit
             </button>

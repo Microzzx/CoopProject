@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { TOKEN_SECRET } = require("../config");
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
 router.post("/", jsonParser, (req, res) => {
   const email = req.body.email;

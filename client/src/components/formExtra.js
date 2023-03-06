@@ -64,27 +64,27 @@ function FormExtra() {
           noValidate
           onSubmit={handleSubmit}
         >
-          <div className="col-md-12 mb-2">
+          <div className="col-12 mb-2">
             <h2 className="center mtc mbc">เอกสารเพิ่มเติม</h2>
           </div>
-          <div className="col-md-12 mb-1">
+          <div className="col-12 mb-1">
             <h5 className="label">
               กรุณาดาวน์โหลดแบบฟอร์ม และกรอกข้อมูลให้ครบถ้วน
             </h5>
           </div>
-          <div className="col-md-12 mb-3">
+          <div className="col-12 mb-3">
             - Confidentiality.pdf &nbsp;
             <a
-              href={`${process.env.REACT_APP_API}/static/pdfs/Confidentiality.pdf`}
+              href={`${process.env.REACT_APP_API}/static2/pdfs/Confidentiality.pdf`}
               download
             >
               Download
             </a>
           </div>
-          <div className="col-md-12 mb-2">
+          <div className="col-12 mb-2">
             <h5 className="label">อัพโหลดเอกสารเพิ่มเติม</h5>
           </div>
-          <div className="col-md-6">
+          <div className="col-6">
             <label className="label">1. หนังสือรักษาความลับ</label>
             <Input
               name="pdf"
@@ -93,7 +93,7 @@ function FormExtra() {
               setFunc={(e) => handlePDFChange(e)}
             ></Input>
           </div>
-          <div className="col-md-12 mt-4">
+          <div className="col-12 mt-4">
             <button type="submit" className="btn btn-primary">
               Submit
             </button>

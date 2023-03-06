@@ -12,10 +12,8 @@ import green from "../image/green.png";
 import blue from "../image/blue.png";
 
 export default function Home() {
-  console.log(process.env);
   return (
     <>
-      {/* ----- */}
       <div style={{ paddingTop: "68px" }} />
       <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-indicators">
@@ -94,56 +92,55 @@ export default function Home() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      {/* ---- */}
-      <div class="container py-2">
-        <div class="row row_branchen">
-          <div class="col-lg-4 col-md-12">
-            <div class="card">
-              <div class="image__wrapper">
-                <div class="card__shadow--1"></div>
+      <div className="container py-2">
+        <div className="row row_branchen">
+          <div className="col-lg-4 col-md-12">
+            <div className="card">
+              <div className="image__wrapper">
+                <div className="card__shadow--1"></div>
                 <img
-                  class="card-img-top"
+                  className="card-img-top"
                   src={card1}
                   alt="Angebote - Verkaufsautomaten"
                 />
               </div>
-              <div class="card-body pb-5">
-                <h3 class="card-title">ปรัชญาองค์กร</h3>
-                <p class="card-text">
+              <div className="card-body pb-5">
+                <h3 className="card-title">ปรัชญาองค์กร</h3>
+                <p className="card-text">
                   เราปรารถนารอยยิ้มจากลูกค้า ด้วยทีมงานที่มีความสุข
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12">
-            <div class="card">
-              <div class="image__wrapper">
-                <div class="card__shadow--1"></div>
+          <div className="col-lg-4 col-md-12">
+            <div className="card">
+              <div className="image__wrapper">
+                <div className="card__shadow--1"></div>
                 <img
-                  class="card-img-top"
+                  className="card-img-top"
                   src={card2}
                   alt="Angebote - Verkaufsautomaten"
                 />
               </div>
-              <div class="card-body pb-5">
-                <h3 class="card-title">วิสัยทัศน์</h3>
-                <p class="card-text">เราให้บริการความสะดวกกับทุกชุมชน</p>
+              <div className="card-body pb-5">
+                <h3 className="card-title">วิสัยทัศน์</h3>
+                <p className="card-text">เราให้บริการความสะดวกกับทุกชุมชน</p>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12">
-            <div class="card">
-              <div class="image__wrapper">
-                <div class="card__shadow--1"></div>
+          <div className="col-lg-4 col-md-12">
+            <div className="card">
+              <div className="image__wrapper">
+                <div className="card__shadow--1"></div>
                 <img
-                  class="card-img-top"
+                  className="card-img-top"
                   src={card3}
                   alt="Angebote - Verkaufsautomaten"
                 />
               </div>
-              <div class="card-body pb-4">
-                <h3 class="card-title">พันธกิจ</h3>
-                <p class="card-text">
+              <div className="card-body pb-4">
+                <h3 className="card-title">พันธกิจ</h3>
+                <p className="card-text">
                   สร้างความผูกพันกับลูกค้า
                   ด้วยสินค้าและบริการที่เปี่ยมด้วยนวัตกรรม
                   มุ่งสู่องค์กรคุณภาพและมีความยั่งยืน
@@ -154,8 +151,6 @@ export default function Home() {
         </div>
         <hr className="featurette-divider" />
       </div>
-
-      {/* ----- */}
       <div className="container marketing">
         <div className="row featurette">
           <div className="col-md-12 mb-2">
@@ -289,9 +284,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div class="row gy-4" style={{ textAlign: "center" }}>
-          <div class="col-md-6">
-            <div class="info-item">
+        <div className="row gy-4" style={{ textAlign: "center" }}>
+          <div className="col-md-6">
+            <div className="info-item">
               <div>
                 <h3 style={{ paddingBottom: "8px" }}>ที่อยู่</h3>
                 <p className="lead">
@@ -302,24 +297,24 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="info-item">
+          <div className="col-md-6">
+            <div className="info-item">
               <div>
                 <h3 style={{ paddingBottom: "8px" }}>Email</h3>
                 <p className="lead">natnareesir@cpall.co.th</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="info-item">
+          <div className="col-md-6">
+            <div className="info-item">
               <div>
                 <h3 style={{ paddingBottom: "8px" }}>Tel.</h3>
                 <p className="lead">091-004-9465</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="info-item">
+          <div className="col-md-6">
+            <div className="info-item">
               <div>
                 <h3 style={{ paddingBottom: "8px" }}>Mobile.</h3>
                 <p className="lead">089-141-0193</p>
